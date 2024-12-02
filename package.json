@@ -1,0 +1,16 @@
+{
+  "name": "poke-gear",
+  "version": "1.0.0",
+  "description": "1. Context WEB note taking app geared towards competitive pokemon players.\r 2. Fluid and rich note taking features. What deck you're taking notes for / against, different categories of notes.\r 3. Account creation, save your information online / to the cloud.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "node --watch app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.1"
+  }
+}

@@ -19,3 +19,7 @@
 - [ ] Turn the simple UI into an actual nice, user friendly one.
 - [ ] Integrate REACT.
 - [ ] Integrate Poke-API in order to load in pokemon sprites.
+
+### Run the app
+1. ```npm run watch```
+2. Navigate to ```http://localhost:8080/```

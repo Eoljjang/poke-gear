@@ -5,7 +5,7 @@
 3. Account creation, save your information online / to the cloud.
 
 ### Release v0.1 Goals: Concept.
-- [ ] A very simple note taking app with context. Which deck you're writing notes for, good organization of notes, search, sort, etc.
+- [ ] Note taking features: Heirarchy organization, search, add tags for notes (Ex: matchup, decklist, review, custom, etc.).
 - [ ] Local storage upon each load of the page.
 - [ ] A simple layout and vision for the interface should be developed.
 - [ ] Use express to route between different pages.

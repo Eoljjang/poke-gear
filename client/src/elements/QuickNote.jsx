@@ -1,4 +1,5 @@
 import { useState } from "react";
+import '../styles/elements/QuickNote.css'
 function QuickNote(){
     const [QuickNote, setQuickNote] = useState([]); // State of the quick note content.
 
@@ -6,7 +7,7 @@ function QuickNote(){
 
     return(
         <div className="quicknote-container">
-            I am a quick note.
+            Quick Note
         </div>
     )
 }

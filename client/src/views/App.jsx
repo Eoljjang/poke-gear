@@ -10,8 +10,11 @@ function App() {
     <>
       <Header/>
       <div className="dashboard-content">
-        <QuickLinks/>
-        <div className="dashboard-notes-container">
+        <div className="col-1-container">
+          <QuickLinks/>
+        </div>
+
+        <div className="col-2-container">
           <QuickNote/>
           <RecentNotes/>
         </div>

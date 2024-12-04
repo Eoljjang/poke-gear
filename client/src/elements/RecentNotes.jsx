@@ -8,7 +8,7 @@ function RecentNotes(){
 
     return(
         <div className="recent-notes-container">
-            I am recent notes.
+            Recent Notes
         </div>
     )
 }

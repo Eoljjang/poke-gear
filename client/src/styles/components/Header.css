@@ -1,0 +1,27 @@
+.header-container {
+    height: 12vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #BBE1FA;
+    color: white;
+}
+
+.header-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 0rem 1.25rem;
+}
+
+.header-button:hover {
+    text-decoration: underline;
+}
+
+.header-title {
+    margin: 0;
+    font-size: 2rem;
+}

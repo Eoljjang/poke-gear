@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import '../styles/elements/RecentNotes.css'
+import '../styles/components/RecentNotes.css'
 
 function RecentNotes(){
     const [RecentNotes, setRecentNotes] = useState([]); // The state of the current recent notes.

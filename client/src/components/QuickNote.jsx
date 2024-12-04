@@ -1,5 +1,5 @@
 import { useState } from "react";
-import '../styles/elements/QuickNote.css'
+import '../styles/components/QuickNote.css'
 function QuickNote(){
     const [QuickNote, setQuickNote] = useState([]); // State of the quick note content.
 

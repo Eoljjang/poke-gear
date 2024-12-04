@@ -1,5 +1,7 @@
 import '../styles/components/Header.css'
+import DropdownBurgerIcon from '../elements/DropdownBurgerIcon.jsx'
 import { useState } from 'react'
+
 
 const Header = () => {
     const [isSidebarOpen, setSidebarOpen] = useState(false)
@@ -13,9 +15,7 @@ const Header = () => {
 
     return (
         <header className="header-container">
-            <button onClick={toggleSidebar} className="header-button">
-                Sidebar Toggle
-            </button>
+            <DropdownBurgerIcon/>
             <h1 className="header-title">Poke-Gear</h1>
             <button onClick={handleLogin} className="header-button">
                 Login

@@ -28,3 +28,8 @@
 ### Run the app
 1. ```npm run watch```
 2. Navigate to ```http://localhost:8080/```
+
+
+### Run the client
+1. ```npm install```
+2. ```npm run dev```

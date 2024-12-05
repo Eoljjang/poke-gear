@@ -2,7 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './views/App.jsx' // Top level child of the app.
-import Note from './views/Note.jsx' // child
+import NotesPage from './views/NotesPage.jsx' // child
 import QuickLinks from './components/QuickLinks.jsx'
 import { createBrowserRouter } from 'react-router-dom'
 import { RouterProvider } from 'react-router'
@@ -19,7 +19,7 @@ const router = createBrowserRouter([
       },
       {
         path: "notes",
-        element: <Note />  // Note is a child route inside Dashboard
+        element: <NotesPage />  // Note is a child route inside Dashboard
       },
 
     ],

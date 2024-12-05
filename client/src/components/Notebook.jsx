@@ -6,7 +6,9 @@ function Notebook({notebook}) {
     return(
         <div className="notebook-item">
             <div className="notebook-name">{notebook.name}</div>
-            <img src="" alt="" className="notebook-img" />
+            <div className="notebook-img">
+                <img src="" alt="" /> {/* Future: Should be able to handle multiple sprites. */}
+            </div>
         </div>
     )
 }

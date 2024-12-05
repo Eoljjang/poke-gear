@@ -4,9 +4,11 @@ import RecentNotes from '../components/RecentNotes.jsx'
 import QuickLinks from '../components/QuickLinks.jsx'
 import QuickNote from '../components/QuickNote.jsx'
 import Sidebar from '../components/Sidebar.jsx'
-import '../styles/views/Dashboard.css'
+// import Note from './Note.jsx'
 import { useState } from 'react'
-import { Router } from 'express'
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import '../styles/views/Dashboard.css'
+
 
 function Dashboard() {
   const [isSidebarOpen, setSidebarOpen] = useState(false)
@@ -20,17 +22,16 @@ function Dashboard() {
     setSidebarOpen(false);
   };
 
-  //TODO
-  const handleLogin = () => {
-  }
-
   return (
-    <>
-      <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} />
-
-      <Header handleLogin={handleLogin}>
+    <Router>
+      <Header>
         <DropdownBurgerIcon onClickOpenSidebar={openSidebar} />
       </Header>
+
+      <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} >
+        <Link to="/" className='link'>Dashboard</Link>
+        <Link to="/notes" className='link'>Notes</Link>
+      </Sidebar>
 
       <div className={`dashboard-content ${isSidebarOpen ? 'blurred' : ''}`}>
         <div className="col-1-container">
@@ -43,7 +44,11 @@ function Dashboard() {
         </div>
       </div>
 
-    </>
+      <Routes>
+        {/* <Route path="/" element={<Dashboard />} /> */}
+        {/* <Route path="/notes" element={<Note />} /> */}
+      </Routes>
+    </Router>
   )
 }
 

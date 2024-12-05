@@ -4,7 +4,8 @@ import RecentNotes from '../components/RecentNotes.jsx'
 import QuickLinks from '../components/QuickLinks.jsx'
 import QuickNote from '../components/QuickNote.jsx'
 import Sidebar from '../components/Sidebar.jsx'
-// import Note from './Note.jsx'
+import Footer from '../components/Footer.jsx'
+import '../styles/views/App.css'
 import { useState } from 'react'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import '../styles/views/Dashboard.css'
@@ -21,6 +22,16 @@ function Dashboard() {
     console.log('Closing Sidebar');
     setSidebarOpen(false);
   };
+
+  const footerLinks = {
+    "Link 1": "URL",
+    "Link 2": "URL",
+    "Link 3": "URL"
+  }
+
+  //TODO
+  const handleLogin = () => {
+  }
 
   return (
     <Router>
@@ -43,6 +54,8 @@ function Dashboard() {
           <RecentNotes />
         </div>
       </div>
+
+      <Footer footerLinks={footerLinks}/>
 
       <Routes>
         {/* <Route path="/" element={<Dashboard />} /> */}

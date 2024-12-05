@@ -1,26 +1,47 @@
 import Header from '../components/Header.jsx'
+import DropdownBurgerIcon from '../elements/DropdownBurgerIcon.jsx'
 import RecentNotes from '../components/RecentNotes.jsx'
 import QuickLinks from '../components/QuickLinks.jsx'
 import QuickNote from '../components/QuickNote.jsx'
-import '../styles/views/App.css' // Styling for homepage.
+import Sidebar from '../components/Sidebar.jsx'
+import '../styles/views/App.css'
+import { useState } from 'react'
 
 function App() {
+  const [isSidebarOpen, setSidebarOpen] = useState(false)
+
+  const openSidebar = () => {
+      console.log('Opening Sidebar')
+      setSidebarOpen(true)
+  }
+  const closeSidebar = () => {
+    console.log('Closing Sidebar');
+    setSidebarOpen(false);
+  };
+
+  //TODO
+  const handleLogin = () => {
+  }
 
   return (
     <>
-      <Header/>
-      <div className="dashboard-content">
+      <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} />
+
+
+      <Header handleLogin={handleLogin}>
+        <DropdownBurgerIcon onClickOpenSidebar={openSidebar} />
+      </Header>
+
+      <div className={`dashboard-content ${isSidebarOpen ? 'blurred' : ''}`}>
         <div className="col-1-container">
-          <QuickLinks/>
+          <QuickLinks />
         </div>
 
         <div className="col-2-container">
-          <QuickNote/>
-          <RecentNotes/>
+          <QuickNote />
+          <RecentNotes />
         </div>
-
       </div>
-
     </>
   )
 }

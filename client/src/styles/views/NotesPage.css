@@ -1,0 +1,28 @@
+.notes-page-container{
+    min-height: 100vh; /* Take up space between header and footer. */
+    display: flex;
+    flex-direction: column;
+
+}
+
+.notes-content{
+    display: flex;
+    flex-grow: 1;
+    width: 100%;
+}
+
+.notesbooks-section{
+    border: 1px solid green;
+    width: 20%;
+    padding: 1rem;
+}
+
+.notes-section{
+    border: 1px solid black;
+    width: 20%;
+}
+
+.note-editor-section{
+    border: 1px solid black;
+    flex-grow: 1; /* Tkaes up the remaining space. */
+}

@@ -1,12 +1,13 @@
 import Header from '../components/Header.jsx'
 import DropdownBurgerIcon from '../elements/DropdownBurgerIcon.jsx'
-import RecentNotes from '../components/RecentNotes.jsx'
-import QuickLinks from '../components/QuickLinks.jsx'
-import QuickNote from '../components/QuickNote.jsx'
+import Dashboard from './Dashboard.jsx'
 import Sidebar from '../components/Sidebar.jsx'
 import Footer from '../components/Footer.jsx'
-import '../styles/views/App.css'
 import { useState } from 'react'
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import {Outlet} from "react-router-dom"
+import '../styles/views/Dashboard.css'
+
 
 function App() {
   const [isSidebarOpen, setSidebarOpen] = useState(false)
@@ -32,26 +33,24 @@ function App() {
 
   return (
     <>
-      <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} />
-
-
-      <Header handleLogin={handleLogin}>
+      <Header>
         <DropdownBurgerIcon onClickOpenSidebar={openSidebar} />
       </Header>
 
-      <div className={`dashboard-content ${isSidebarOpen ? 'blurred' : ''}`}>
-        <div className="col-1-container">
-          <QuickLinks />
-        </div>
+      <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} >
+        <Link to="/" className='link'>Dashboard</Link>
+        <Link to="/notes" className='link'>Notes</Link>
+      </Sidebar>
 
-        <div className="col-2-container">
-          <QuickNote />
-          <RecentNotes />
-        </div>
-      </div>
+      {/*
+      - We simply render the child of whatever url you're on.
+      - If you need to pass state, pass it through the "context" parameter.
+      */}
+      <Outlet context={[isSidebarOpen]}/>
 
       <Footer footerLinks={footerLinks}/>
     </>
+
   )
 }
 

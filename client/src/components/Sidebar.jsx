@@ -3,7 +3,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import "../styles/components/Sidebar.css"; // We'll create this CSS file
 
-const Sidebar = ({ isOpen, onClose }) => {
+const Sidebar = ({ children, isOpen, onClose }) => {
   return (
     <>
       <div
@@ -13,13 +13,24 @@ const Sidebar = ({ isOpen, onClose }) => {
 
       <div className={`sidebar ${isOpen ? "open" : ""}`}>
         <div className="sidebar-content">
-          <text className="sidebar-text">Sidebar Content</text>
+          <ul className="sidebar-list">
+
+          {React.Children.map(children, (child, index) => (
+            <li className="sidebar-list-item">
+              <text className="sidebar-text">
+                {child}
+              </text>
+            </li>
+
+          ))}
+          </ul>
         </div>
       </div>
     </>
   );
 };
 Sidebar.propTypes = {
+  children: PropTypes.node,
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
 };

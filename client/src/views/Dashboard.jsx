@@ -4,10 +4,11 @@ import RecentNotes from '../components/RecentNotes.jsx'
 import QuickLinks from '../components/QuickLinks.jsx'
 import QuickNote from '../components/QuickNote.jsx'
 import Sidebar from '../components/Sidebar.jsx'
-import '../styles/views/App.css'
+import '../styles/views/Dashboard.css'
 import { useState } from 'react'
+import { Router } from 'express'
 
-function App() {
+function Dashboard() {
   const [isSidebarOpen, setSidebarOpen] = useState(false)
 
   const openSidebar = () => {
@@ -27,7 +28,6 @@ function App() {
     <>
       <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} />
 
-
       <Header handleLogin={handleLogin}>
         <DropdownBurgerIcon onClickOpenSidebar={openSidebar} />
       </Header>
@@ -42,8 +42,9 @@ function App() {
           <RecentNotes />
         </div>
       </div>
+
     </>
   )
 }
 
-export default App
+export default Dashboard

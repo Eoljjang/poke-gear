@@ -1,22 +1,20 @@
 // src/components/Sidebar.jsx
-import React from 'react';
-import PropTypes from 'prop-types';
-import '../styles/components/Sidebar.css'; // We'll create this CSS file
+import React from "react";
+import PropTypes from "prop-types";
+import "../styles/components/Sidebar.css"; // We'll create this CSS file
 
 const Sidebar = ({ isOpen, onClose }) => {
   return (
     <>
-      {/* Overlay */}
       <div
-        className={`sidebar-overlay ${isOpen ? 'open' : ''}`}
+        className={`sidebar-overlay ${isOpen ? "open" : ""}`}
         onClick={onClose}
       ></div>
 
-      {/* Sidebar */}
-      <div className={`sidebar ${isOpen ? 'open' : ''}`}>
-        {/* Sidebar content goes here */}
-        <h2>Sidebar Content</h2>
-        {/* Add your sidebar items here */}
+      <div className={`sidebar ${isOpen ? "open" : ""}`}>
+        <div className="sidebar-content">
+          <text className="sidebar-text">Sidebar Content</text>
+        </div>
       </div>
     </>
   );

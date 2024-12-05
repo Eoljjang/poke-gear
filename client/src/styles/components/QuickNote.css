@@ -1,17 +1,15 @@
-.quicknote-container{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.quicknote-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
+  margin: 0 auto;
+  padding: 0.5rem; /* padding within the container */
+  min-width: 70%;
 
-    margin: 0 auto;
-    padding: 0.5rem; /* padding within the container */
-    min-width: 70%;
-
-    color: black;
-    background: #BBE1FA;
-    border: 0.5px solid #000000;
-    border-radius: 22px;
-    box-shadow: 4px 4px 4px rgba(43, 83, 94, 0.75);
-
+  color: black;
+  background: #84c5f0;
+  border: 0.5px solid #000000;
+  border-radius: 22px;
+  box-shadow: 4px 4px 4px rgba(43, 83, 94, 0.75);
 }

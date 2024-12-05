@@ -4,6 +4,7 @@ import RecentNotes from '../components/RecentNotes.jsx'
 import QuickLinks from '../components/QuickLinks.jsx'
 import QuickNote from '../components/QuickNote.jsx'
 import Sidebar from '../components/Sidebar.jsx'
+import Footer from '../components/Footer.jsx'
 import '../styles/views/App.css'
 import { useState } from 'react'
 
@@ -18,6 +19,12 @@ function App() {
     console.log('Closing Sidebar');
     setSidebarOpen(false);
   };
+
+  const footerLinks = {
+    "Link 1": "URL",
+    "Link 2": "URL",
+    "Link 3": "URL"
+  }
 
   //TODO
   const handleLogin = () => {
@@ -42,6 +49,8 @@ function App() {
           <RecentNotes />
         </div>
       </div>
+
+      <Footer footerLinks={footerLinks}/>
     </>
   )
 }

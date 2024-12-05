@@ -13,7 +13,7 @@ body, html, #root {
 
 .dashboard-content{
   display: flex;
-  height: 70%;
+  min-height: 100vh;
   margin: 1.5rem;
 }
 
@@ -28,5 +28,4 @@ body, html, #root {
   gap: 1rem;
   width: 40%;
   padding: 1rem;
-
 }

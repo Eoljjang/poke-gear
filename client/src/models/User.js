@@ -1,4 +1,4 @@
-import Deck from './Deck';
+import Notebook from './Notebook';
 
 class User {
   constructor(data) {
@@ -7,6 +7,7 @@ class User {
     this.email = data.email;
 
     this.decks = new Map(); //Placeholder data structure
+    this.notebooks = new Map();
   }
 
   encryptPassword(){
@@ -16,6 +17,10 @@ class User {
   createDeck(deck){
     this.decks.set(deck.id, deck);
     }
+
+  createNotebook(notebook){
+    this.notebooks.set(notebook.id, notebook);
+  }
 
 }
 

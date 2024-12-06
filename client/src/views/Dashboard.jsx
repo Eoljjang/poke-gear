@@ -1,21 +1,19 @@
 import QuickLinks from "../components/QuickLinks";
 import QuickNote from "../components/QuickNote";
 import RecentNotes from "../components/RecentNotes";
-import Deck from "../models/Deck";
+import Notebook from "../models/Notebook";
 import { useOutletContext } from "react-router-dom";
 
-const dummyDeck = new Deck({
+const dummyNotebook = new Notebook({
   id: 1,
-  name: "Deck 1",
-  cards: [],
+  name: "Notebook 1",
 });
 
 function Dashboard() {
   const [dummyUser] = useOutletContext();
 
-  const createDeck = () => {
-    dummyUser.createDeck(dummyDeck);
-    console.log(dummyUser.decks.get(1));
+  const createNotebook = () => {
+    dummyUser.createNotebook(dummyNotebook);
   }
     return(
       <div className="dashboard-content">
@@ -24,8 +22,8 @@ function Dashboard() {
         </div>
 
         <div className="col-2-container">
-          <button onClick={createDeck}>
-            Create Deck
+          <button onClick={createNotebook}>
+            Create Notebook
           </button>
           <QuickNote />
           <RecentNotes />

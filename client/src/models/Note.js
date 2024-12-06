@@ -1,10 +1,10 @@
 import NoteContent from './NoteContent.js';
 
 class Note {
-    constructor(notebook) {
-        this.id = notebook.id;
-        this.name = notebook.name;
-        this.noteContent = new NoteContent();
+    constructor(noteData) {
+        this.id = noteData.id;
+        this.name = noteData.name;
+        this.noteContent = noteData.noteContent;
     }
 
     editNote(note) {

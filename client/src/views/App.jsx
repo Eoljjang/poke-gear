@@ -1,8 +1,8 @@
 import Header from '../components/Header.jsx'
 import DropdownBurgerIcon from '../elements/DropdownBurgerIcon.jsx'
-import Dashboard from './Dashboard.jsx'
 import Sidebar from '../components/Sidebar.jsx'
 import Footer from '../components/Footer.jsx'
+import User from '../models/User.js'
 import { useState } from 'react'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import {Outlet} from "react-router-dom"
@@ -13,11 +13,9 @@ function App() {
   const [isSidebarOpen, setSidebarOpen] = useState(false)
 
   const openSidebar = () => {
-      console.log('Opening Sidebar')
       setSidebarOpen(true)
   }
   const closeSidebar = () => {
-    console.log('Closing Sidebar');
     setSidebarOpen(false);
   };
 
@@ -26,6 +24,12 @@ function App() {
     "Link 2": "URL",
     "Link 3": "URL"
   }
+
+  const dummyUser = new User({
+    id: 1,
+    name: "John Doe",
+    email: "johndoe@email.com",
+  });
 
   //TODO
   const handleLogin = () => {
@@ -46,7 +50,7 @@ function App() {
       - We simply render the child of whatever url you're on.
       - If you need to pass state, pass it through the "context" parameter.
       */}
-      <Outlet context={[isSidebarOpen]}/>
+      <Outlet context={[dummyUser]}/>
 
       <Footer footerLinks={footerLinks}/>
     </>

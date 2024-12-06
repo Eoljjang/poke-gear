@@ -5,14 +5,11 @@ import '../styles/components/Notebook.css'
 function Notebook({notebook, onClick, selected}) {
     let selected_class = "";
     if (selected){
-        console.log('selected');
-        selected_class = "notebook-item-selected"
+        selected_class = "selected"
     }
-    else{
-        selected_class = "notebook-item-unselected"
-    }
+
     return(
-        <div className={selected_class} onClick={onClick}>
+        <div className={`notebook-item ${selected_class}`} onClick={onClick}>
             <div className="notebook-name">{notebook.name}</div>
             <div className="notebook-img">
                 <img src="" alt="" /> {/* Future: Should be able to handle multiple sprites. */}

@@ -1,0 +1,8 @@
+.active-note-header{
+    font-size: 2rem;
+}
+
+.active-note-subheader{
+    font-weight: lighter;
+    font-style: italic;
+}

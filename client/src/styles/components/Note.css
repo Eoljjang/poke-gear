@@ -1,4 +1,4 @@
-.notebook-item-unselected{
+.note-item{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -12,9 +12,11 @@
     overflow: hidden; /* hide overflowing text */
 
     font-size: 0.75rem;
+
+
 }
 
-.notebook-img{
+.note-img{
     border: 1px solid black;
     width: 15%;
 }

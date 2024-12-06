@@ -19,7 +19,7 @@ const router = createBrowserRouter([
       },
       {
         path: "notes",
-        element: <NotesPage />  // Note is a child route inside Dashboard
+        element: <NotesPage />,  // Note is a child route inside Dashboard
       },
 
     ],

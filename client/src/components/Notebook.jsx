@@ -2,9 +2,17 @@ import '../styles/components/Notebook.css'
 
 // Props:
 // 1) notebook = The specific notebook to be rendered.
-function Notebook({notebook}) {
+function Notebook({notebook, onClick, selected}) {
+    let selected_class = "";
+    if (selected){
+        console.log('selected');
+        selected_class = "notebook-item-selected"
+    }
+    else{
+        selected_class = "notebook-item-unselected"
+    }
     return(
-        <div className="notebook-item">
+        <div className={selected_class} onClick={onClick}>
             <div className="notebook-name">{notebook.name}</div>
             <div className="notebook-img">
                 <img src="" alt="" /> {/* Future: Should be able to handle multiple sprites. */}

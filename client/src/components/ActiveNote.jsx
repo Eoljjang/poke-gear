@@ -1,6 +1,5 @@
 import "../styles/components/ActiveNote.css";
 function ActiveNote({activeNote}){
-
     if (activeNote){
         return(
             <>

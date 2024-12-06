@@ -14,6 +14,22 @@
     font-size: 0.75rem;
 }
 
+.notebook-item-selected{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    align-items: center;
+    background: #6ec0f7;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.15);
+    border-radius: 6px;
+    padding: 0.5rem;
+    width: 100%;
+    overflow: hidden; /* hide overflowing text */
+
+    font-size: 0.75rem;
+}
+
 .notebook-img{
     border: 1px solid black;
     width: 15%;

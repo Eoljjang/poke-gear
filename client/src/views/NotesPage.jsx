@@ -56,6 +56,7 @@ function NotesPage() {
                           key={notebook.id} 
                           notebook={notebook} 
                           onClick={() => handleNotebookClick(notebook.notebook_id)}
+                          selected={notebook.notebook_id === selectedNotebook} // Check if this notebook is selected
                         />
                     ))
                     }
@@ -68,6 +69,7 @@ function NotesPage() {
                         key={note.note_id} 
                         note={note} 
                         onClick={() => handleNoteClick(note.note_id)}
+                        selected={note.note_id === selectedNote}
                       />
                     ))}
                 </div>

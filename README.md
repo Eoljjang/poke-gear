@@ -29,7 +29,7 @@ Note Taking Functionality:
 - [ ] Test for 2 - 4 weeks.
 - [ ] Make iterative changes based on feedback.
 
-**Full 1.0 release after the user testing phase**
+<i>Full 1.0 release after the user testing phase<i/>
 
 ---
 

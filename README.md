@@ -10,8 +10,8 @@
 
 Note Taking Functionality:
 - [X] Heirarchy organization.
-- [] Simple editing. Ideally we can store RTF.
-- [] Able to add tags to notes (Ex: matchup, decklist, review, custom, etc.) -> Right click to add a tag.
+- [ ] Simple editing. Ideally we can store RTF.
+- [ ] Able to add tags to notes (Ex: matchup, decklist, review, custom, etc.) -> Right click to add a tag.
 
 
 ### Release v0.2 Goals: Time to add some structure.

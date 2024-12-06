@@ -31,6 +31,10 @@
   border-bottom-right-radius: 16px;
 }
 
+.sidebar.open {
+  left: 0;
+}
+
 .sidebar-content {
   margin-top: 3rem;
   margin-left: 2rem;
@@ -38,11 +42,7 @@
 
 .sidebar text {
   color: #fff;
-  font-size: 2rem;
-}
-
-.sidebar.open {
-  left: 0;
+  font-size: 1.75rem;
 }
 
 .sidebar-list {
@@ -52,5 +52,6 @@
 }
 
 .sidebar-list-item {
+  cursor: pointer;
   margin-bottom: 1rem;
 }

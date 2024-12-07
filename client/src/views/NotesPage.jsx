@@ -43,7 +43,6 @@ function NotesPage() {
     const currentNotes = currentNotebook ? currentNotebook.notes : [];
     const activeNote = currentNotes.find((note) => note.note_id === selectedNote);
 
-
     return (
         <div className="notes-page-container">
             <div className="text-modifiers">This will be where the RTF modifiers go</div>
@@ -78,6 +77,7 @@ function NotesPage() {
                 <div className="active-note-section">
                   <ActiveNote 
                     activeNote={activeNote}
+                    //handleContentChange={handleContentChange}
                   />
                 </div>
             </div>

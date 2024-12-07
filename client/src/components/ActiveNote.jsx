@@ -1,4 +1,8 @@
 import "../styles/components/ActiveNote.css";
+import React, { useState } from 'react';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css'; // Import Quill's styling.
+
 function ActiveNote({activeNote}){
     if (activeNote){
         return(
@@ -13,7 +17,11 @@ function ActiveNote({activeNote}){
                 </div>
 
                 <div className="active-note-content">
-                    <p>{activeNote.content}</p>
+                    <ReactQuill
+                        theme="snow"
+                        value={activeNote.content}
+                        //onChange={handleContentChange} // define some sort of onChange function to be passed in. State kept in NotesPage.jsx
+                    />
                 </div>
             </>
         )

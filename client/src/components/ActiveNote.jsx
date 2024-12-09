@@ -15,7 +15,7 @@ function ActiveNote({activeNote, toolbarRef}){
             modules: {
               toolbar: toolbarRef.current, // Use the passed toolbar ref
             },
-            //theme: 'snow', // delete this if you we ever want to write a custom toolbar since the theme overrides custom styling.
+            theme: 'snow', // delete this if you we ever want to write a custom toolbar since the theme overrides custom styling.
           });
           if (activeNote && activeNote.content) {
             quill.root.innerHTML = activeNote.content; // Set the HTML content

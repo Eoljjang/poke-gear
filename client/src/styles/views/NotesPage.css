@@ -21,6 +21,7 @@
 }
 
 .notebooks-section{
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -32,7 +33,45 @@
     background: #E9ECEF;
 }
 
+
+.add-notebooks-button{
+    padding: 0;
+    margin: 0;
+    outline: none;
+    font: inherit;
+    text-align: inherit;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    background: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.add-notebooks-button:hover {
+    background: #026ddf;
+    transform: scale(1.05);
+}
+
+.add-notebooks-button:focus {
+    outline: none;
+  }
+
+
 .notes-section{
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;

@@ -3,7 +3,8 @@ import Notebook from '../components/Notebook';
 import Note from '../components/Note';
 import ActiveNote from '../components/ActiveNote';
 import { useState } from 'react';
-import {Outlet} from "react-router-dom"
+import { useOutletContext } from "react-router-dom"
+
 
 const dummyData = [
     {
@@ -25,8 +26,11 @@ const dummyData = [
   ];
 
 function NotesPage() {
+    const [dummyUser] = useOutletContext();
+
     const [selectedNotebook, setSelectedNotebook] = useState(null); // Pass the ID of the selected notebook.
     const [selectedNote, setSelectedNote] = useState(null); // Pass the ID of the selected note.
+    const [notebookIndex, setNotebookIndex] = useState(0); // Pass the index of the selected note.
 
     const handleNotebookClick = (notebookId) => {
       console.log(notebookId);
@@ -39,7 +43,18 @@ function NotesPage() {
       setSelectedNote(noteId);
     }
 
-    const currentNotebook = dummyData.find((notebook) => notebook.notebook_id === selectedNotebook);
+    const handleCreateNotebook = () => {
+      dummyUser.createNotebook(dummyData[notebookIndex]);
+      setNotebookIndex((prevIndex) => prevIndex + 1);
+    }
+
+    const handleCreateNote = () => {
+      console.log('Create note');
+
+      //dummyUser.notebooks[selectedNotebook].createNote(createNote());
+    }
+
+    const currentNotebook = dummyUser.notebooks.find((notebook) => notebook.notebook_id === selectedNotebook);
     const currentNotes = currentNotebook ? currentNotebook.notes : [];
     const activeNote = currentNotes.find((note) => note.note_id === selectedNote);
 
@@ -50,32 +65,38 @@ function NotesPage() {
             <div className="notes-content">
                 {/* 1) Notebook selector*/}
                 <div className="notebooks-section">
-                    {dummyData.map((notebook) => (
+                    {dummyUser.notebooks.map((notebook) => (
                         <Notebook
-                          key={notebook.id} 
-                          notebook={notebook} 
+                          key={notebook.notebook_id}
+                          notebook={notebook}
                           onClick={() => handleNotebookClick(notebook.notebook_id)}
                           selected={notebook.notebook_id === selectedNotebook} // Check if this notebook is selected
                         />
                     ))
                     }
+                    <button className='add-notebooks-button'
+                      onClick={() => handleCreateNotebook()}
+                    >+</button>
                 </div>
 
                 {/* 2) Specific note selector. This should only appear once you select a note. */}
                 <div className="notes-section">
                     {currentNotes.map((note) => (
-                      <Note 
-                        key={note.note_id} 
-                        note={note} 
+                      <Note
+                        key={note.note_id}
+                        note={note}
                         onClick={() => handleNoteClick(note.note_id)}
                         selected={note.note_id === selectedNote}
                       />
                     ))}
+                  <button className='add-notebooks-button'
+                      onClick={() => handleCreateNote()}
+                    >+</button>
                 </div>
 
                 {/* 3) Section where you actually edit / write the note.*/}
                 <div className="active-note-section">
-                  <ActiveNote 
+                  <ActiveNote
                     activeNote={activeNote}
                     //handleContentChange={handleContentChange}
                   />

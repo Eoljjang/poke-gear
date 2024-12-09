@@ -3,11 +3,11 @@ class Notebook {
         this.id = data.id;
         this.name = data.name;
 
-        this.notes = new Map();
+        this.notes = [];
     }
 
     createNote(note){
-        this.notes.set(note.id, note);
+        this.notes.push(note);
     }
 }
 

@@ -6,8 +6,8 @@ class User {
     this.name = data.name;
     this.email = data.email;
 
-    this.decks = new Map(); //Placeholder data structure
-    this.notebooks = new Map();
+    this.decks = []; //Placeholder data structure
+    this.notebooks = [];
   }
 
   encryptPassword(){
@@ -15,11 +15,11 @@ class User {
   }
 
   createDeck(deck){
-    this.decks.set(deck.id, deck);
+    this.decks.push(deck);
     }
 
   createNotebook(notebook){
-    this.notebooks.set(notebook.id, notebook);
+    this.notebooks.push(notebook);
   }
 
 }

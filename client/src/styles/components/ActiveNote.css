@@ -6,3 +6,18 @@
     font-weight: lighter;
     font-style: italic;
 }
+
+/* Quill Text editor styling */
+.quill{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+.ql-editor{
+    border: 1px solid red;
+}
+
+#editor{
+    height: 400px;
+}

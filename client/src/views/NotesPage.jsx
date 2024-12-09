@@ -4,6 +4,10 @@ import Note from '../components/Note';
 import ActiveNote from '../components/ActiveNote';
 import { useState } from 'react';
 import { useOutletContext } from "react-router-dom"
+import ReactQuill from 'react-quill';
+import Quill from 'quill';
+import 'react-quill/dist/quill.snow.css'; // Import Quill's styling.
+import { useRef, useEffect } from "react";
 
 
 const dummyData = [
@@ -31,6 +35,7 @@ function NotesPage() {
     const [selectedNotebook, setSelectedNotebook] = useState(null); // Pass the ID of the selected notebook.
     const [selectedNote, setSelectedNote] = useState(null); // Pass the ID of the selected note.
     const [notebookIndex, setNotebookIndex] = useState(0); // Pass the index of the selected note.
+    const toolbarRef = useRef(null); // Reference to the RTF toolbar.
 
     const handleNotebookClick = (notebookId) => {
       console.log(notebookId);
@@ -60,7 +65,15 @@ function NotesPage() {
 
     return (
         <div className="notes-page-container">
-            <div className="text-modifiers">This will be where the RTF modifiers go</div>
+            <div className="text-modifiers">
+                {/* Toolbar */}
+                <div ref={toolbarRef}>
+                  <button className="ql-bold">Bold</button>
+                  <button className="ql-italic">Italic</button>
+                  <button className="ql-underline">Underline</button>
+                  {/* Add other toolbar buttons as needed */}
+                </div>
+            </div>
 
             <div className="notes-content">
                 {/* 1) Notebook selector*/}
@@ -98,6 +111,7 @@ function NotesPage() {
                 <div className="active-note-section">
                   <ActiveNote
                     activeNote={activeNote}
+                    toolbarRef={toolbarRef}
                     //handleContentChange={handleContentChange}
                   />
                 </div>

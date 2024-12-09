@@ -14,10 +14,10 @@
     align-items: center;
     gap: 1rem;
 }
-.ql-editor{
-    border: 1px solid red;
+.ql-editor {
+    border: none !important; /* Ensure no border is applied */
+    outline: none; /* Removes any focus outline */
 }
-
 #editor{
-    height: 400px;
+    height: fit-content;
 }

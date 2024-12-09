@@ -3,7 +3,7 @@ import React, { act, useState } from 'react';
 import ReactQuill from 'react-quill';
 import Quill from "quill";
 import { useRef, useEffect } from "react";
-import 'react-quill/dist/quill.snow.css'; // Import Quill's styling.
+import '../styles/views/TextEditor.css'; // Import Quill's styling.
 
 function ActiveNote({activeNote, toolbarRef}){
     // References to toolbar and quill editor.
@@ -15,7 +15,7 @@ function ActiveNote({activeNote, toolbarRef}){
             modules: {
               toolbar: toolbarRef.current, // Use the passed toolbar ref
             },
-            theme: 'snow', // delete this if you we ever want to write a custom toolbar since the theme overrides custom styling.
+            //theme: 'snow', // delete this if you we ever want to write a custom toolbar since the theme overrides custom styling.
           });
           if (activeNote && activeNote.content) {
             quill.root.innerHTML = activeNote.content; // Set the HTML content
@@ -25,7 +25,7 @@ function ActiveNote({activeNote, toolbarRef}){
 
     if (activeNote){
         return(
-            <>
+            <div className="test">
                 <div className="active-note-heading">
                     <div className="active-note-header">
                         {activeNote.title}
@@ -40,7 +40,7 @@ function ActiveNote({activeNote, toolbarRef}){
                     <div ref={editorRef} id="editor">
                     </div>
                 </div>
-            </>
+            </div>
         )
     }
     else{

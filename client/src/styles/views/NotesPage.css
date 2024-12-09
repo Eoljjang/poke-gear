@@ -15,7 +15,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 2.5rem;
+    height: fit-content;
     border-bottom: 2px solid black;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
@@ -33,6 +33,9 @@
     background: #E9ECEF;
 }
 
+.text-modifiers button{
+    display: none;
+}
 
 .add-notebooks-button{
     padding: 0;

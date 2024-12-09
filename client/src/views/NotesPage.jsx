@@ -67,7 +67,7 @@ function NotesPage() {
         <div className="notes-page-container">
             <div className="text-modifiers">
                 {/* Toolbar */}
-                <div ref={toolbarRef}>
+                <div className='toolbar' ref={toolbarRef}>
                   <button className="ql-bold">Bold</button>
                   <button className="ql-italic">Italic</button>
                   <button className="ql-underline">Underline</button>

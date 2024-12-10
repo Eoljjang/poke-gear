@@ -6,13 +6,11 @@
 
 ### Release v0.1 Goals: Concept & First UI.
 - [X] A simple layout and vision for the interface should be developed.
-- [ ] Integrate a simple storage system, where the user can **save** notes into JSON format.
+- [X] Integrate a simple storage system, where the user can **save** notes into JSON format.
 
 Note Taking Functionality:
 - [X] Heirarchy organization.
-- [ ] Simple editing. Ideally we can store RTF.
-- [ ] Able to add tags to notes (Ex: matchup, decklist, review, custom, etc.) -> Right click to add a tag.
-
+- [X] Simple editing. Ideally we can store RTF.
 
 ### Release v0.2 Goals: Time to add some structure.
 - [ ] Find a place to permanently host the website.
@@ -21,6 +19,7 @@ Note Taking Functionality:
 
 ### Release v0.3 Goals: Integration of API's
 - [ ] Decklist creation
+- [ ] Able to add tags to notes (Ex: matchup, decklist, review, custom, etc.) -> Right click to add a tag.
 - [ ] Integrate Poke-API in order to load in pokemon sprites.
 - [ ] Find a API to load card images.
 

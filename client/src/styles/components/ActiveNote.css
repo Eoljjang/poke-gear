@@ -9,6 +9,12 @@
     font-size: 2rem;
 }
 
+.active-note-heading{
+    display: flex;
+    flex-direction: column;
+    margin-top:0.75rem;
+}
+
 .active-note-subheader{
     font-weight: lighter;
     font-size: 0.75rem;
@@ -19,16 +25,19 @@
 .quill{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+    min-width: 0;
 }
 
-.active-note-content{
-    border: 2px solid white;
+#note-title-input{
+    font-size:2rem;
+    background: none;
+    color: black;
+    border: none;
 }
 
-#editor{
-    height: fit-content;
-    padding: 0px;
-    margin: 0px;
+#note-title-input:focus{
+    outline: none; /* Remove default styling */
+    border-bottom: 1px solid #007BFF;
+
+
 }

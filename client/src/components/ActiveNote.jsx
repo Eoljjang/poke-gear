@@ -4,37 +4,14 @@ import ReactQuill from 'react-quill';
 import Quill from "quill";
 import { useRef, useEffect } from "react";
 import '../styles/views/TextEditor.css'; // Import Quill's styling.
+import Editor from "quill/core/editor";
 
-function ActiveNote({activeNote, toolbarRef, handleNoteUpdate}){
-    // References to toolbar and quill editor.
-    const editorRef = useRef(null);
-    const [editor, setEditor] = useState(null);
-
-    useEffect(() => {
-        // Initialize the Quill editor once the component is mounted
-        if (editorRef.current && toolbarRef.current && !editor) {
-          const quill = new Quill(editorRef.current, {
-            modules: {
-              toolbar: toolbarRef.current, // Use the passed toolbar ref
-            },
-            theme: 'snow', // delete this if you we ever want to write a custom toolbar since the theme overrides custom styling.
-          });
-          if (activeNote && activeNote.content) {
-            quill.root.innerHTML = activeNote.content; // Set the HTML content
-          }
-
-          setEditor(editor); // instantiate the editor.
-
-          // Listen for changes and update the data
-          quill.on("text-change", () => {
-            const updatedContent = quill.root.innerHTML; // Get what user wrote into the editor.
-            if (activeNote && handleNoteUpdate) {
-                handleNoteUpdate(activeNote.id, updatedContent);
-            }
-          })
+function ActiveNote({activeNote, handleNoteUpdate}){
+    const handleChange = (value) => {
+        if (activeNote.content !== value) {
+            handleNoteUpdate(activeNote.note_id, value); // Only call the update handler if content changes.
         }
-      }, [toolbarRef, activeNote, editor]); // Reinitialize when toolbarRef changes
-
+    }
     if (activeNote){
         return(
             <div className="test">
@@ -48,9 +25,10 @@ function ActiveNote({activeNote, toolbarRef, handleNoteUpdate}){
                 </div>
 
                 <div className="active-note-content">
-                    {/* Quill Editor */}
-                    <div ref={editorRef} id="editor">
-                    </div>
+                    <ReactQuill
+                        value={activeNote.content}
+                        onChange={handleChange}
+                    />
                 </div>
             </div>
         )

@@ -41,13 +41,26 @@ function NotesPage() {
   const activeNote = currentNotes.find((note) => note.note_id === selectedNote);
 
   // Handlers
-  const handleNotebookClick = (notebookId) => {
-    setSelectedNotebook(notebookId);
-    setSelectedNote(null); // Reset note selection
+  const handleNotebookClick = (e, notebookId) => {
+    if (e.type === 'click'){
+      console.log("Left clicked a notebook.");
+      setSelectedNotebook(notebookId);
+      setSelectedNote(null); // Reset note selection
+    }
+    else if (e.type === 'contextmenu'){
+        console.log("Right clicked a notebook.");
+    }
   };
 
-  const handleNoteClick = (noteId) => {
-    setSelectedNote(noteId);
+  const handleNoteClick = (e, noteId) => {
+    if (e.type === 'click'){
+      console.log("Left clicked a note.");
+      setSelectedNote(noteId);
+    }
+    else if (e.type === 'contextmenu'){
+      console.log("Right clicked a note.");
+    }
+    
   };
 
   const handleCreateNotebook = () => {
@@ -120,7 +133,7 @@ function NotesPage() {
             <Notebook
               key={notebook.notebook_id}
               notebook={notebook}
-              onClick={() => handleNotebookClick(notebook.notebook_id)}
+              handleNotebookClick={handleNotebookClick}
               selected={notebook.notebook_id === selectedNotebook}
             />
           ))}
@@ -138,7 +151,7 @@ function NotesPage() {
             <Note
               key={note.note_id}
               note={note}
-              onClick={() => handleNoteClick(note.note_id)}
+              handleNoteClick={handleNoteClick}
               selected={note.note_id === selectedNote}
             />
           ))}

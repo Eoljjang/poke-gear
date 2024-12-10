@@ -28,7 +28,6 @@ function NotesPage() {
 
   const [selectedNotebook, setSelectedNotebook] = useState(null); // ID of selected notebook
   const [selectedNote, setSelectedNote] = useState(null); // ID of selected note
-  const toolbarRef = useRef(null); // Reference to the toolbar
 
   // Current notebook = selected one.
   const currentNotebook = dummyData.find(
@@ -152,7 +151,6 @@ function NotesPage() {
         <div className="active-note-section">
           <ActiveNote
             activeNote={activeNote}
-            toolbarRef={toolbarRef}
             handleNoteTitleUpdate={handleNoteTitleUpdate}
             handleNoteUpdate={handleNoteUpdate}
           />

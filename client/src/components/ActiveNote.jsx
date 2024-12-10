@@ -33,6 +33,7 @@ function ActiveNote({activeNote, handleNoteTitleUpdate, handleNoteUpdate}){
 
                 <div className="active-note-content">
                     <ReactQuill /* Do not give this an id otherwise the onChange stops working. */
+                        key={activeNote.note_id} // If the note_id changes, then forces Quill to re-render.
                         value={activeNote.content}
                         onChange={handleNoteChange}
                         theme="snow"

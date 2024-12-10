@@ -5,12 +5,14 @@ import Quill from "quill";
 import { useRef, useEffect } from "react";
 import '../styles/views/TextEditor.css'; // Import Quill's styling.
 
-function ActiveNote({activeNote, toolbarRef}){
+function ActiveNote({activeNote, toolbarRef, handleNoteUpdate}){
     // References to toolbar and quill editor.
     const editorRef = useRef(null);
+    const [editor, setEditor] = useState(null);
+
     useEffect(() => {
         // Initialize the Quill editor once the component is mounted
-        if (editorRef.current && toolbarRef.current) {
+        if (editorRef.current && toolbarRef.current && !editor) {
           const quill = new Quill(editorRef.current, {
             modules: {
               toolbar: toolbarRef.current, // Use the passed toolbar ref
@@ -20,8 +22,18 @@ function ActiveNote({activeNote, toolbarRef}){
           if (activeNote && activeNote.content) {
             quill.root.innerHTML = activeNote.content; // Set the HTML content
           }
+
+          setEditor(editor); // instantiate the editor.
+
+          // Listen for changes and update the data
+          quill.on("text-change", () => {
+            const updatedContent = quill.root.innerHTML; // Get what user wrote into the editor.
+            if (activeNote && handleNoteUpdate) {
+                handleNoteUpdate(activeNote.id, updatedContent);
+            }
+          })
         }
-      }, [toolbarRef, activeNote]); // Reinitialize when toolbarRef changes
+      }, [toolbarRef, activeNote, editor]); // Reinitialize when toolbarRef changes
 
     if (activeNote){
         return(

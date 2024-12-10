@@ -6,6 +6,7 @@
   align-items: center;
   background-color: #6ec0f7;
   color: white;
+  border-bottom: 2px solid black;
 }
 
 .header-button {

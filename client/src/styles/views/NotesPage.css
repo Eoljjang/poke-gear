@@ -87,6 +87,7 @@
 
 .active-note-section{
     flex-grow: 1; /* Tkaes up the remaining space. */
+    overflow-x:hidden;
     overflow-y: auto; /* Enable vertical scrolling when content exceeds height */
     padding: 1.25rem; /* Optional padding for spacing */
 }

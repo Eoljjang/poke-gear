@@ -25,9 +25,10 @@ function ActiveNote({activeNote, handleNoteUpdate}){
                 </div>
 
                 <div className="active-note-content">
-                    <ReactQuill
+                    <ReactQuill /* Do not give this an id otherwise the onChange stops working. */
                         value={activeNote.content}
                         onChange={handleChange}
+                        theme="snow"
                     />
                 </div>
             </div>

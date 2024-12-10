@@ -1,25 +1,3 @@
-
-skip to:contentpackage searchsign in
-❤
-
-    Pro
-    Teams
-    Pricing
-    Documentation
-
-npm
-react-quill
-TypeScript icon, indicating that this package has built-in type declarations
-2.0.0 • Public • Published 2 years ago
-
-/react-quill/dist/quill.snow.css
-/
-/
-/
-quill.snow.css
-945 LOC
-24.7 kB
-
 /*!
 
  * Quill Editor v1.3.7
@@ -1716,7 +1694,7 @@ quill.snow.css
 
 .ql-toolbar.ql-snow {
 
-  border: 1px solid #ccc;
+  border: none;
 
   box-sizing: border-box;
 
@@ -1909,64 +1887,3 @@ quill.snow.css
   border: 1px solid #ccc;
 
 }
-
-Package Sidebar
-Install
-npm i react-quill
-Repository
-
-github.com/zenoamaro/react-quill
-Homepage
-
-github.com/zenoamaro/react-quill
-Weekly Downloads
-
-581,630
-Version
-
-2.0.0
-License
-
-MIT
-Unpacked Size
-
-405 kB
-Total Files
-
-14
-Issues
-
-385
-Pull Requests
-
-25
-Last publish
-
-2 years ago
-Collaborators
-
-    zenoamaro
-    alexkrolick
-
-Try on RunKit
-Report malware
-Footer
-Support
-
-    Help
-    Advisories
-    Status
-    Contact npm
-
-Company
-
-    About
-    Blog
-    Press
-
-Terms & Policies
-
-    Policies
-    Terms of Use
-    Code of Conduct
-    Privacy

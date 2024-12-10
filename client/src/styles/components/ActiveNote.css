@@ -19,16 +19,5 @@
 .quill{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-}
-
-.active-note-content{
-    border: 2px solid white;
-}
-
-#editor{
-    height: fit-content;
-    padding: 0px;
-    margin: 0px;
+    min-width: 0;
 }

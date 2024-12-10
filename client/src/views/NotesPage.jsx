@@ -42,6 +42,7 @@ function NotesPage() {
 
   // Handlers
   const handleNotebookClick = (e, notebookId) => {
+    console.log(e.type);
     if (e.type === 'click'){
       console.log("Left clicked a notebook.");
       setSelectedNotebook(notebookId);
@@ -53,11 +54,12 @@ function NotesPage() {
   };
 
   const handleNoteClick = (e, noteId) => {
+    console.log(e.button);
     if (e.type === 'click'){
       console.log("Left clicked a note.");
       setSelectedNote(noteId);
     }
-    else if (e.type === 'contextmenu'){
+    else if (e.type === "contextmenu"){
       console.log("Right clicked a note.");
     }
     

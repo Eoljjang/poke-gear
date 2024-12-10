@@ -12,16 +12,16 @@ function NotesPage() {
       notebook_id: 1,
       name: 'Notebook 1',
       notes: [
-        { note_id: 1, title: 'Deck 1', content: 'Content of note 1' },
-        { note_id: 2, title: 'Deck 2', content: 'Content of note 2' },
+        { note_id: 1, title: 'Deck 1', date:"mm/dd/yyyy", content: 'Content of note 1' },
+        { note_id: 2, title: 'Deck 2', date:"mm/dd/yyyy", content: 'Content of note 2' },
       ],
     },
     {
       notebook_id: 2,
       name: 'Notebook 2',
       notes: [
-        { note_id: 3, title: 'Deck 3', content: 'Content of note 3' },
-        { note_id: 4, title: 'Deck 4', content: 'Content of note 4' },
+        { note_id: 3, title: 'Deck 3', date:"mm/dd/yyyy", content: 'Content of note 3' },
+        { note_id: 4, title: 'Deck 4', date:"mm/dd/yyyy", content: 'Content of note 4' },
       ],
     },
   ]);
@@ -66,6 +66,7 @@ function NotesPage() {
         note_id: currentNotebook.notes.length + 1,
         title: `New Note`,
         content: '',
+        date: "mm/dd/yyyy"
       };
       setDummyData((prevData) =>
         prevData.map((notebook) =>
@@ -76,6 +77,23 @@ function NotesPage() {
       );
     }
   };
+
+  const handleNoteTitleUpdate = (noteId, updatedTitle) => {
+    setDummyData((prevData) =>
+      prevData.map((notebook) =>
+        notebook.notebook_id === selectedNotebook
+          ? {
+              ...notebook,
+              notes: notebook.notes.map((note) =>
+                note.note_id === noteId
+                  ? { ...note, title: updatedTitle}
+                  : note
+              ),
+            }
+          : notebook
+      )
+    );
+  }
 
   const handleNoteUpdate = (noteId, updatedContent) => {
     setDummyData((prevData) =>
@@ -96,15 +114,6 @@ function NotesPage() {
 
   return (
     <div className="notes-page-container">
-      <div className="text-modifiers">
-        {/* Toolbar */}
-        <div className="toolbar" ref={toolbarRef}>
-          <button className="ql-bold">Bold</button>
-          <button className="ql-italic">Italic</button>
-          <button className="ql-underline">Underline</button>
-        </div>
-      </div>
-
       <div className="notes-content">
         {/* 1) Notebook Selector */}
         <div className="notebooks-section">
@@ -144,6 +153,7 @@ function NotesPage() {
           <ActiveNote
             activeNote={activeNote}
             toolbarRef={toolbarRef}
+            handleNoteTitleUpdate={handleNoteTitleUpdate}
             handleNoteUpdate={handleNoteUpdate}
           />
         </div>

@@ -6,8 +6,13 @@ import { useRef, useEffect } from "react";
 import '../styles/views/TextEditor.css'; // Import Quill's styling.
 import Editor from "quill/core/editor";
 
-function ActiveNote({activeNote, handleNoteUpdate}){
-    const handleChange = (value) => {
+function ActiveNote({activeNote, handleNoteTitleUpdate, handleNoteUpdate}){
+    const handleTitleChange = (value) =>{
+        if (activeNote.title !== value) {
+            handleNoteTitleUpdate(activeNote.note_id, value)
+        }
+    }
+    const handleNoteChange = (value) => {
         if (activeNote.content !== value) {
             handleNoteUpdate(activeNote.note_id, value); // Only call the update handler if content changes.
         }
@@ -16,18 +21,20 @@ function ActiveNote({activeNote, handleNoteUpdate}){
         return(
             <div className="test">
                 <div className="active-note-heading">
-                    <div className="active-note-header">
-                        {activeNote.title}
-                    </div>
+                    <input type="text" id="note-title-input"
+                        value={activeNote.title}
+                        onChange={(e) => handleTitleChange(e.target.value)}
+                        placeholder="Untitled"
+                    />
                     <div className="active-note-subheader">
-                        Date created here.
+                        {activeNote.date}
                     </div>
                 </div>
 
                 <div className="active-note-content">
                     <ReactQuill /* Do not give this an id otherwise the onChange stops working. */
                         value={activeNote.content}
-                        onChange={handleChange}
+                        onChange={handleNoteChange}
                         theme="snow"
                     />
                 </div>

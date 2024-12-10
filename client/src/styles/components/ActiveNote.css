@@ -9,6 +9,12 @@
     font-size: 2rem;
 }
 
+.active-note-heading{
+    display: flex;
+    flex-direction: column;
+    margin-top:0.75rem;
+}
+
 .active-note-subheader{
     font-weight: lighter;
     font-size: 0.75rem;
@@ -20,4 +26,18 @@
     display: flex;
     flex-direction: column;
     min-width: 0;
+}
+
+#note-title-input{
+    font-size:2rem;
+    background: none;
+    color: black;
+    border: none;
+}
+
+#note-title-input:focus{
+    outline: none; /* Remove default styling */
+    border-bottom: 1px solid #007BFF;
+
+
 }

@@ -2,6 +2,7 @@ import '../styles/views/NotesPage.css';
 import Notebook from '../components/Notebook';
 import Note from '../components/Note';
 import ActiveNote from '../components/ActiveNote';
+import ContextMenu from '../components/ContextMenu';
 import { useState, useRef } from 'react';
 import 'react-quill/dist/quill.snow.css'; // Import Quill's styling.
 
@@ -28,6 +29,7 @@ function NotesPage() {
 
   const [selectedNotebook, setSelectedNotebook] = useState(null); // ID of selected notebook
   const [selectedNote, setSelectedNote] = useState(null); // ID of selected note
+  const [contextMenu, setContextMenu] = useState({ visible: false, clickedItem:null, x: 0, y: 0 }); // state of the context menu.
 
   // Current notebook = selected one.
   const currentNotebook = dummyData.find(
@@ -42,7 +44,6 @@ function NotesPage() {
 
   // Handlers
   const handleNotebookClick = (e, notebookId) => {
-    console.log(e.type);
     if (e.type === 'click'){
       console.log("Left clicked a notebook.");
       setSelectedNotebook(notebookId);
@@ -50,6 +51,12 @@ function NotesPage() {
     }
     else if (e.type === 'contextmenu'){
         console.log("Right clicked a notebook.");
+        setContextMenu({
+          visible: true,
+          clickedItem: notebookId,
+          x: e.pageX,
+          y: e.pageY,
+        })
     }
   };
 
@@ -62,7 +69,11 @@ function NotesPage() {
     else if (e.type === "contextmenu"){
       console.log("Right clicked a note.");
     }
-    
+  };
+
+  const handleContextMenuOptionClick = (action) => {
+    console.log(`Selected option: ${action}`);
+    setContextMenu({ visible: false, x: 0, y: 0 }); // Hide context menu after selection
   };
 
   const handleCreateNotebook = () => {
@@ -171,6 +182,15 @@ function NotesPage() {
           />
         </div>
       </div>
+      {/* If there was a right click, then we render the context menu. */}
+      {contextMenu.visible && (
+        <ContextMenu
+            clickedItem = {contextMenu.clickedItem}
+            posx = {contextMenu.x}
+            posy = {contextMenu.y}
+        />
+      )}
+
     </div>
   );
 }

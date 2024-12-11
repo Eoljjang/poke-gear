@@ -30,6 +30,12 @@ function NotesPage() {
     },
   ]);
 
+  const [isVisible, setIsVisible] = useState(
+    {
+      notebooks: true,
+      notes: false
+    }
+  )
   const [selectedNotebook, setSelectedNotebook] = useState(null); // ID of selected notebook
   const [selectedNote, setSelectedNote] = useState(null); // ID of selected note
   const [contextMenu, setContextMenu] = useState({ visible: false, clickedItem:null, x: 0, y: 0 }); // state of the context menu.
@@ -51,6 +57,11 @@ function NotesPage() {
       console.log("Left clicked a notebook.");
       setSelectedNotebook(notebookId);
       setSelectedNote(null); // Reset note selection
+      // Make sure we sure the notes lol.
+      setIsVisible({
+        notebooks: true,
+        notes: true
+      })
     }
     else if (e.type === 'contextmenu'){
         console.log("Right clicked a notebook.");
@@ -146,45 +157,87 @@ function NotesPage() {
     );
   };
 
+  const onClickCollapseNotebooks = () => {
+    console.log("reached");
+    if (isVisible.notebooks === true){
+      setIsVisible({
+        notebooks: false,
+        notes: false,
+      })
+    }
+    else if (isVisible.notebooks === false){
+      setIsVisible({
+        notebooks: true,
+        notes: false
+      })
+    }
+  }
+
+  const onClickCollapseNotes = () => {
+    // Clicking on notes-btn when both are collapsed should not do anything.
+    if (isVisible.notes === false && isVisible.notebooks === false){
+      console.log("Do nothing as both notebooks & notes are already collapsed.");
+    }
+    else if (isVisible.notes === true){
+      setIsVisible({
+        notebooks: true,
+        notes: false,
+      })
+    }
+    else if (isVisible.notes === false){
+      setIsVisible({
+        notebooks: true,
+        notes: true,
+      })
+    }
+  }
+
   return (
     <div className="notes-page-container">
       <Toolbar
-
+        onClickCollapseNotebooks = {onClickCollapseNotebooks}
+        onClickCollapseNotes = {onClickCollapseNotes}
       />
       <div className="notes-content">
         {/* 1) Notebook Selector */}
-        <div className="notebooks-section">
-          {dummyData.map((notebook) => (
-            <Notebook
-              key={notebook.notebook_id}
-              notebook={notebook}
-              handleNotebookClick={handleNotebookClick}
-              selected={notebook.notebook_id === selectedNotebook}
-            />
-          ))}
-          <button
-            className="add-notebooks-button"
-            onClick={handleCreateNotebook}
-          >
-            +
-          </button>
-        </div>
+        {isVisible.notebooks && (
+            <div className="notebooks-section">
+            {dummyData.map((notebook) => (
+              <Notebook
+                key={notebook.notebook_id}
+                notebook={notebook}
+                handleNotebookClick={handleNotebookClick}
+                selected={notebook.notebook_id === selectedNotebook}
+              />
+            ))}
+            <button
+              className="add-notebooks-button"
+              onClick={handleCreateNotebook}
+            >
+              +
+            </button>
+          </div>
+        )}
+
 
         {/* 2) Note Selector */}
-        <div className="notes-section">
-          {currentNotes.map((note) => (
-            <Note
-              key={note.note_id}
-              note={note}
-              handleNoteClick={handleNoteClick}
-              selected={note.note_id === selectedNote}
-            />
-          ))}
+        {isVisible.notes &&(
+              <div className="notes-section">
+              {currentNotes.map((note) => (
+                <Note
+                  key={note.note_id}
+                  note={note}
+                  handleNoteClick={handleNoteClick}
+                  selected={note.note_id === selectedNote}
+                />
+              ))}
 
-          <button className="add-notebooks-button" onClick={handleCreateNote}>
-            +
-          </button>
-        </div>
+              <button className="add-notebooks-button" onClick={handleCreateNote}>
+                +
+              </button>
+            </div>
+        )}
+
 
         {/* 3) Active Note Editor */}
         <div className="active-note-section">

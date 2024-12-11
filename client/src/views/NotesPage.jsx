@@ -53,7 +53,7 @@ function NotesPage() {
         console.log("Right clicked a notebook.");
         setContextMenu({
           visible: true,
-          clickedItem: notebookId,
+          clickedItem: {notebook_id: notebookId},
           x: e.pageX,
           y: e.pageY,
         })
@@ -68,12 +68,18 @@ function NotesPage() {
     }
     else if (e.type === "contextmenu"){
       console.log("Right clicked a note.");
+      setContextMenu({
+        visible: true,
+        clickedItem: {note_id: noteId},
+        x: e.pageX,
+        y: e.pageY,
+      })
     }
   };
 
   const handleContextMenuOptionClick = (action) => {
     console.log(`Selected option: ${action}`);
-    setContextMenu({ visible: false, x: 0, y: 0 }); // Hide context menu after selection
+    setContextMenu({visible: false, x: 0, y: 0 }); // Hide context menu after selection
   };
 
   const handleCreateNotebook = () => {
@@ -188,6 +194,7 @@ function NotesPage() {
             clickedItem = {contextMenu.clickedItem}
             posx = {contextMenu.x}
             posy = {contextMenu.y}
+            handleContextMenuOptionClick={handleContextMenuOptionClick}
         />
       )}
 

@@ -1,27 +1,34 @@
 // This component is for having a custom menu pop up when you right click a notebook.
 // This component will handle both right-clicking a notebook and right-clicking a note.
+import '../styles/components/ContextMenu.css'
+import { useRef, useEffect, useState } from 'react';
+
+// Props:
+// 1) clickedItem -> Json object outlining if you clicked a notebook or note.
+// 2) posx -> X position of clicked item.
+// 3) posy -> Y position of clicked item.
 function ContextMenu({clickedItem, posx, posy, handleContextMenuOptionClick}){
     if(clickedItem.notebook_id){
-        console.log("Notebook right clicked.");
+        console.log("Right-clicked notebook menu:", clickedItem.notebook_id);
     }
     else if (clickedItem.note_id){
-        console.log("Note right clicked.");
+        console.log("Right-clicked note menu:", clickedItem.note_id);
     }
-    console.log(posx, posy);
+
     return(
-        <div
+        <div id="context-menu-container"
             style={{
                 position: 'absolute',
                 top: posx,
                 left: posy,
-                backgroundColor: 'white',
-                border: '1px solid #ccc',
-                boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
-                padding: '10px',
-                zIndex: 1000,
             }}
         >
-            hi
+
+        <ul id="context-menu">
+            <li id="menu-rename" onClick={() => handleContextMenuOptionClick("menu-rename")}>Rename</li>
+            <li id="menu-add-sprite" onClick={() => handleContextMenuOptionClick("menu-add-sprite")}>Add Sprite</li>
+            <li id="menu-delete" onClick={() => handleContextMenuOptionClick("menu-delete")}>Delete</li>
+        </ul>
 
         </div>
     )

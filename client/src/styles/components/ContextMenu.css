@@ -1,0 +1,31 @@
+#context-menu-container{
+    margin: 0;
+    z-index: 1000;
+    padding: 0.5rem;
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+#context-menu{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+    gap: 0.25rem;
+    padding: 0;
+    margin: 0;
+    width: fit-content;
+}
+
+#context-menu li{
+    font-size: 0.75rem;
+    border-radius: 0.25rem;
+    padding: 0.25rem;
+    list-style: none;
+}
+
+#context-menu li:hover{
+    background-color: #BBE1FA;
+    transition: 0.15s
+}

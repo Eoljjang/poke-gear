@@ -3,6 +3,7 @@ import Notebook from '../components/Notebook';
 import Note from '../components/Note';
 import ActiveNote from '../components/ActiveNote';
 import ContextMenu from '../components/ContextMenu';
+import Toolbar from '../components/Toolbar.jsx';
 import { useState, useRef } from 'react';
 import 'react-quill/dist/quill.snow.css'; // Import Quill's styling.
 
@@ -147,6 +148,9 @@ function NotesPage() {
 
   return (
     <div className="notes-page-container">
+      <Toolbar
+
+      />
       <div className="notes-content">
         {/* 1) Notebook Selector */}
         <div className="notebooks-section">

@@ -9,9 +9,14 @@ function Notebook({notebook, handleNotebookClick, selected}) {
     }
 
     return(
-        <div className={`notebook-item ${selected_class}`} 
-            onClick={(e) => handleNotebookClick(e, notebook.notebook_id)}
-            onContextMenu={(e) => handleNotebookClick(e, notebook.notebook_id)}
+        <div className={`notebook-item ${selected_class}`}
+            onClick={(e) => {
+                handleNotebookClick(e, notebook.notebook_id)
+            }}
+            onContextMenu={(e) => {
+                handleNotebookClick(e, notebook.notebook_id)
+                e.preventDefault(); // Prevents default browser contextmenu.
+            }}
         >
             <div className="notebook-name">{notebook.name}</div>
             <div className="notebook-img">

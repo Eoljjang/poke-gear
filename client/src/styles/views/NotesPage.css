@@ -1,32 +1,34 @@
-.notes-page-container{
-    min-height: 100vh; /* Take up space between header and footer. */
+.notes-page-container {
+    min-height: 100vh; /* Take up space between header and footer */
     display: flex;
+    width: 100%;
 
 }
 
-.notes-content{
+.notes-content {
     display: flex;
-    height: 100vh; /* Ensure the parent div takes full viewport height */
+    flex-grow: 1; /* Allow the content section to grow to fill remaining space */
+    width: 100%; /* Ensure it spans the full width of the container */
 }
 
-.notebooks-section{
+.notebooks-section {
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 0.75rem;
     border-right: 1px solid black;
-    min-width: 100px;
     padding: 2rem;
     box-shadow: rgba(0, 0, 0, 0.24) 2px 0px 8px;
     background: #E9ECEF;
+    flex: 0 0 auto; /* Do not grow or shrink */
 }
 
-.text-modifiers button{
+.text-modifiers button {
     display: none;
 }
 
-.add-notebooks-button{
+.add-notebooks-button {
     padding: 0;
     margin: 0;
     outline: none;
@@ -59,10 +61,9 @@
 
 .add-notebooks-button:focus {
     outline: none;
-  }
+}
 
-
-.notes-section{
+.notes-section {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -70,14 +71,14 @@
     gap: 0.75rem;
     padding: 2rem;
     border-right: 1px solid black;
-    min-width: 125px;
     box-shadow: rgba(0, 0, 0, 0.24) 2px 0px 8px;
     background: #E9ECEF;
+    flex: 0 0 auto; /* Do not grow or shrink */
 }
 
-.active-note-section{
-    flex-grow: 1; /* Tkaes up the remaining space. */
-    overflow-x:hidden;
+.active-note-section {
+    flex-grow: 1; /* Ensure it takes the remaining space */
+    overflow-x: hidden;
     overflow-y: auto; /* Enable vertical scrolling when content exceeds height */
-    padding: 1.25rem; /* Optional padding for spacing */
+    padding: 1.5rem; /* Optional padding for spacing */
 }

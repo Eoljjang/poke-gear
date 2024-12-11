@@ -10,6 +10,7 @@
     padding: 0.5rem;
     width: 100%;
     overflow: hidden; /* hide overflowing text */
+    flex-wrap: wrap;
 
     font-size: 0.75rem;
 }
@@ -23,7 +24,13 @@
     background: #6ec0f7;
 }
 
-.notebook-img{
-    border: 1px solid black;
-    width: 15%;
+.notebook-img{ /* Container for the sprite */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notebook-img img{
+    width: auto;
+    height: 25px;
 }

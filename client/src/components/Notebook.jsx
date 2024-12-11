@@ -1,4 +1,5 @@
 import '../styles/components/Notebook.css'
+import gardevoirSprite from '../assets/gardevoirSprite.png';
 
 // Props:
 // 1) notebook = The specific notebook to be rendered.
@@ -20,7 +21,7 @@ function Notebook({notebook, handleNotebookClick, selected}) {
         >
             <div className="notebook-name">{notebook.name}</div>
             <div className="notebook-img">
-                <img src="" alt="" /> {/* Future: Should be able to handle multiple sprites. */}
+                <img src={"PLACEHOLDER: notebook.sprite"} alt="" /> {/* Future: Should be able to handle multiple sprites. */}
             </div>
         </div>
     )

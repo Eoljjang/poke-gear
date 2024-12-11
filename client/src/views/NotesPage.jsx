@@ -12,6 +12,7 @@ function NotesPage() {
     {
       notebook_id: 1,
       name: 'Notebook 1',
+      sprite: "Put the link to the api sprite here.",
       notes: [
         { note_id: 1, title: 'Deck 1', date:"mm/dd/yyyy", content: 'Content of note 1' },
         { note_id: 2, title: 'Deck 2', date:"mm/dd/yyyy", content: 'Content of note 2' },
@@ -20,6 +21,7 @@ function NotesPage() {
     {
       notebook_id: 2,
       name: 'Notebook 2',
+      sprite: "Put the link to the api sprite here.",
       notes: [
         { note_id: 3, title: 'Deck 3', date:"mm/dd/yyyy", content: 'Content of note 3' },
         { note_id: 4, title: 'Deck 4', date:"mm/dd/yyyy", content: 'Content of note 4' },

@@ -174,6 +174,7 @@ function NotesPage() {
               selected={note.note_id === selectedNote}
             />
           ))}
+
           <button className="add-notebooks-button" onClick={handleCreateNote}>
             +
           </button>

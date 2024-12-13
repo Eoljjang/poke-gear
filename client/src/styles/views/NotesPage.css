@@ -1,7 +1,10 @@
 .notes-page-container {
-    min-height: 100vh; /* Take up space between header and footer */
     display: flex;
     width: 100%;
+
+    /* These allow the footer without scrolling */
+    min-height: 100vh; 
+    overlay: hidden;
 
 }
 
@@ -22,10 +25,6 @@
     box-shadow: rgba(0, 0, 0, 0.24) 2px 0px 8px;
     background: #E9ECEF;
     flex: 0 0 auto; /* Do not grow or shrink */
-}
-
-.text-modifiers button {
-    display: none;
 }
 
 .add-notebooks-button {

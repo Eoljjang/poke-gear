@@ -2,8 +2,11 @@
 body, html, #root {
   margin: 0;
   padding: 0;
-  height: 100%;
   width: 100%;
+
+  /* This allows footer without scrolling. */
+  height: 100vh;
+  overflow: hidden;
 }
 
 .root {

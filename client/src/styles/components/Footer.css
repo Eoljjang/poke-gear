@@ -5,6 +5,12 @@ footer{
     align-items: center;
     justify-content: space-between;
     border-top: 2px solid black;
+
+    /* These fix the footer to the bottom of screen. */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
 }
 
 .footer-link{

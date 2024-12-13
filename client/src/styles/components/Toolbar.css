@@ -5,6 +5,8 @@
     border-right: 1px solid black;
     max-width: 50px;
     background: #E9ECEF;
+    padding: 0.5rem;
+    gap: 0.25rem;
 }
 
 .toolbar button{
@@ -16,8 +18,13 @@
 
 .toolbar button:hover{
     background-color: #BBE1FA;
-    transition: 0.15s;
+    transition: 0.2s;
     border: none;
+}
+
+.toolbar button:not(:hover){
+    transition: 0.2s;
+    background: #E9ECEF;
 }
 
 .toolbar button img {

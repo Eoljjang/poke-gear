@@ -20,6 +20,11 @@
     transition: 0.2s;
 }
 
+.notebook-item:not(:hover):not(.selected){
+    transition: 0.2s;
+    background: #FFFFFF;
+}
+
 .selected{
     background: #6ec0f7;
 }

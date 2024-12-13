@@ -27,5 +27,14 @@
 
 #context-menu li:hover{
     background-color: #BBE1FA;
-    transition: 0.15s
+    transition: 0.2s
+}
+
+#context-menu #menu-delete:hover{
+    background-color: #FFB3B3;
+    transition: 0.2s;
+}
+
+#context-menu li:not(:hover){
+    transition: 0.2s;
 }

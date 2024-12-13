@@ -7,6 +7,7 @@ import { useState } from 'react'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import {Outlet} from "react-router-dom"
 import '../styles/views/Dashboard.css'
+import '../styles/views/App.css'
 
 
 function App() {
@@ -36,7 +37,7 @@ function App() {
   }
 
   return (
-    <>
+    <div id="app">
       <Header>
         <DropdownBurgerIcon onClickOpenSidebar={openSidebar} />
       </Header>
@@ -50,10 +51,13 @@ function App() {
       - We simply render the child of whatever url you're on.
       - If you need to pass state, pass it through the "context" parameter.
       */}
-      <Outlet context={[dummyUser]}/>
+      <div id="app-content">
+        <Outlet context={[dummyUser]}/>
+      </div>
+
 
       <Footer footerLinks={footerLinks}/>
-    </>
+    </div>
 
   )
 }

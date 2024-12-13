@@ -91,9 +91,25 @@ function NotesPage() {
     }
   };
 
-  const handleContextMenuOptionClick = (action) => {
+  const handleContextMenuOptionClick = (action, clickedItem) => {
     console.log(`Selected option: ${action}`);
-    setContextMenu({visible: false, x: 0, y: 0 }); // Hide context menu after selection
+
+    // Delete & its a notebook.
+    if (action === "menu-delete" && clickedItem.notebook_id){
+      console.log(clickedItem);
+      setDummyData(dummyData.filter(notebook => notebook.notebook_id !== clickedItem.notebook_id));
+    }
+
+    // Delete and its a note.
+    else if (action === "menu-delete" && clickedItem.note_id){
+      setDummyData(dummyData.map(notebook => ({
+        ...notebook,
+        notes: notebook.notes.filter(note => note.note_id !== clickedItem.note_id),
+      })));
+    }
+    
+    // Hide context menu after selection
+    setContextMenu({visible: false, x: 0, y: 0 }); 
   };
 
   const handleCreateNotebook = () => {
@@ -190,6 +206,10 @@ function NotesPage() {
         notes: true,
       })
     }
+  }
+
+  const handleDelete = (id) => {
+    console.log("Deleted note / notebook:", id);
   }
 
   return (

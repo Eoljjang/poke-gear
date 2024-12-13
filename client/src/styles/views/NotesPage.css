@@ -3,7 +3,7 @@
     width: 100%;
 
     /* These allow the footer without scrolling */
-    min-height: 100vh; 
+    height: 100vh; 
     overlay: hidden;
 
 }

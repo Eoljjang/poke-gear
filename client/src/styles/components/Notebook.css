@@ -45,7 +45,7 @@
     flex-wrap: wrap;
 
     font-size: 0.75rem;
-    border: 1px solid #000000;
+    color: #000000;
     background: #FFFFFF;
     cursor: default;
 }

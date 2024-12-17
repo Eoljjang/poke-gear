@@ -39,6 +39,11 @@ function NotesPage() {
   const [selectedNotebook, setSelectedNotebook] = useState(null); // ID of selected notebook
   const [selectedNote, setSelectedNote] = useState(null); // ID of selected note
   const [contextMenu, setContextMenu] = useState({ visible: false, clickedItem:null, x: 0, y: 0 }); // state of the context menu.
+  const [renamingNotebookId, setRenamingNotebookId] = useState(null);
+  const [renamingNoteId, setRenamingNoteId] = useState(null);
+  const [renameValue, setRenameValue] = useState("");
+
+
 
   // Current notebook = selected one.
   const currentNotebook = dummyData.find(
@@ -107,9 +112,50 @@ function NotesPage() {
         notes: notebook.notes.filter(note => note.note_id !== clickedItem.note_id),
       })));
     }
+
+    if (action === "menu-rename" && clickedItem.notebook_id){
+      const notebookToRename = dummyData.find(nb => nb.notebook_id === clickedItem.notebook_id);
+      if (notebookToRename) {
+        setRenamingNotebookId(clickedItem.notebook_id);
+        setRenameValue(notebookToRename.name);
+      }
+    }
+    else if (action === "menu-rename" && clickedItem.note_id){
+      const noteToRename = dummyData.find(nb => nb.notebook_id === selectedNotebook).notes.find(note => note.note_id === clickedItem.note_id);
+      if (noteToRename) {
+        setRenamingNoteId(clickedItem.note_id);
+        setRenameValue(noteToRename.title);
+      }
+    }
+
     // Hide context menu after selection
     setContextMenu({visible: false, x: 0, y: 0 });
   };
+
+  const handleRenameUpdate = () => {
+    if (renamingNotebookId){
+      setDummyData(prevData =>
+        prevData.map(notebook => ({
+          ...notebook,
+          name: notebook.notebook_id === renamingNotebookId ? renameValue : notebook.name,
+        }))
+      );
+      setRenamingNotebookId(null);
+      setRenameValue("");
+      return
+    }
+    else if (renamingNoteId){
+      setDummyData(dummyData.map(notebook => ({
+        ...notebook,
+        notes: notebook.notes.map(note => ({
+          ...note,
+          title: note.note_id === renamingNoteId ? renameValue : note.title,
+        })),
+      })));
+      setRenamingNoteId(null);
+      setRenameValue("");
+    }
+  }
 
   const handleCreateNotebook = () => {
     const newNotebook = {
@@ -234,6 +280,10 @@ function NotesPage() {
                   notebook={notebook}
                   handleNotebookClick={handleNotebookClick}
                   selected={notebook.notebook_id === selectedNotebook}
+                  isRenaming={notebook.notebook_id === renamingNotebookId}
+                  renameValue={renameValue}
+                  onRenameChange={(value) => setRenameValue(value)}
+                  handleRenameUpdate={handleRenameUpdate}
                 />
               ))}
               <button

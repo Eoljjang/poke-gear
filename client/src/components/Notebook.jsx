@@ -1,20 +1,34 @@
 import '../styles/components/Notebook.css'
 import gardevoirSprite from '../assets/gardevoirSprite.png';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 
 // Props:
 // 1) notebook = The specific notebook to be rendered.
-function Notebook({notebook, handleNotebookClick, selected}) {
+function Notebook({
+    notebook,
+    handleNotebookClick,
+    selected,
+    isRenaming,
+    renameValue,
+    onRenameChange,
+    handleRenameUpdate
+})
+    {
     let selected_class = "";
     if (selected){
         selected_class = "selected"
     }
 
-    const [isRenaming, setIsRenaming] = useState(false);
-    const [notebookName, setNotebookName] = useState(notebook.name);
+    const inputRef = useRef(null);
 
-    useEffect(() => {setNotebookName(notebook.name)}, []);
+    useEffect(() => {
+        if (isRenaming){
+            inputRef.current.focus();
+            inputRef.current.select();
+        }
+
+    }, [isRenaming]);
 
     return(
         <div className={`notebook-item ${selected_class}`}
@@ -28,24 +42,31 @@ function Notebook({notebook, handleNotebookClick, selected}) {
         >
             <div className="notebook-name">
             {isRenaming ? (
+
                 <input
                 className="notebook-name-input"
+                ref={inputRef}
+                value={renameValue}
                 onChange={e => {
-                    setNotebookName(e.target.value);
+                    onRenameChange(e.target.value);
                 }}
-                value={notebookName}
+                onBlur={handleRenameUpdate}
+                onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                        handleRenameUpdate();
+                    }
+                }}
                 />
 
             ):
                 (
-                    <span>{notebookName}</span>
+                    <span>{notebook.name}</span>
                 )
             }
             </div>
             <div className="notebook-img">
                 <img src={"PLACEHOLDER: notebook.sprite"} alt="" /> {/* Future: Should be able to handle multiple sprites. */}
             </div>
-            <button className="notebook-rename" onClick={() => setIsRenaming(!isRenaming)}>Rename</button>
         </div>
     )
 }

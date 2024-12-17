@@ -4,7 +4,7 @@ import Note from '../components/Note';
 import ActiveNote from '../components/ActiveNote';
 import ContextMenu from '../components/ContextMenu';
 import Toolbar from '../components/Toolbar.jsx';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import 'react-quill/dist/quill.snow.css'; // Import Quill's styling.
 
 function NotesPage() {
@@ -107,9 +107,8 @@ function NotesPage() {
         notes: notebook.notes.filter(note => note.note_id !== clickedItem.note_id),
       })));
     }
-    
     // Hide context menu after selection
-    setContextMenu({visible: false, x: 0, y: 0 }); 
+    setContextMenu({visible: false, x: 0, y: 0 });
   };
 
   const handleCreateNotebook = () => {
@@ -213,72 +212,80 @@ function NotesPage() {
   }
 
   return (
-    <div className="notes-page-container">
-      <Toolbar
-        onClickCollapseNotebooks = {onClickCollapseNotebooks}
-        onClickCollapseNotes = {onClickCollapseNotes}
+    <>
+      <div
+        className={`notes-page-overlay ${contextMenu.visible ? 'open' : ''}`}
+        onClick={() => setContextMenu({visible: false, x: 0, y: 0 })}
       />
-      <div className="notes-content">
-        {/* 1) Notebook Selector */}
-        {isVisible.notebooks && (
-            <div className="notebooks-section">
-            {dummyData.map((notebook) => (
-              <Notebook
-                key={notebook.notebook_id}
-                notebook={notebook}
-                handleNotebookClick={handleNotebookClick}
-                selected={notebook.notebook_id === selectedNotebook}
-              />
-            ))}
-            <button
-              className="add-notebooks-button"
-              onClick={handleCreateNotebook}
-            >
-              +
-            </button>
-          </div>
-        )}
 
-
-        {/* 2) Note Selector */}
-        {isVisible.notes &&(
-              <div className="notes-section">
-              {currentNotes.map((note) => (
-                <Note
-                  key={note.note_id}
-                  note={note}
-                  handleNoteClick={handleNoteClick}
-                  selected={note.note_id === selectedNote}
+      <div className="notes-page-container"
+      >
+        <Toolbar
+          onClickCollapseNotebooks = {onClickCollapseNotebooks}
+          onClickCollapseNotes = {onClickCollapseNotes}
+        />
+        <div className="notes-content">
+          {/* 1) Notebook Selector */}
+          {isVisible.notebooks && (
+              <div className="notebooks-section">
+              {dummyData.map((notebook) => (
+                <Notebook
+                  key={notebook.notebook_id}
+                  notebook={notebook}
+                  handleNotebookClick={handleNotebookClick}
+                  selected={notebook.notebook_id === selectedNotebook}
                 />
               ))}
-
-              <button className="add-notebooks-button" onClick={handleCreateNote}>
+              <button
+                className="add-notebooks-button"
+                onClick={handleCreateNotebook}
+              >
                 +
               </button>
             </div>
+          )}
+
+
+          {/* 2) Note Selector */}
+          {isVisible.notes &&(
+                <div className="notes-section">
+                {currentNotes.map((note) => (
+                  <Note
+                    key={note.note_id}
+                    note={note}
+                    handleNoteClick={handleNoteClick}
+                    selected={note.note_id === selectedNote}
+                  />
+                ))}
+
+                <button className="add-notebooks-button" onClick={handleCreateNote}>
+                  +
+                </button>
+              </div>
+          )}
+
+
+          {/* 3) Active Note Editor */}
+          <div className="active-note-section">
+            <ActiveNote
+              activeNote={activeNote}
+              handleNoteTitleUpdate={handleNoteTitleUpdate}
+              handleNoteUpdate={handleNoteUpdate}
+            />
+          </div>
+        </div>
+        {/* If there was a right click, then we render the context menu. */}
+        {contextMenu.visible && (
+          <ContextMenu
+              clickedItem = {contextMenu.clickedItem}
+              posx = {contextMenu.x}
+              posy = {contextMenu.y}
+              handleContextMenuOptionClick={handleContextMenuOptionClick}
+          />
         )}
 
-
-        {/* 3) Active Note Editor */}
-        <div className="active-note-section">
-          <ActiveNote
-            activeNote={activeNote}
-            handleNoteTitleUpdate={handleNoteTitleUpdate}
-            handleNoteUpdate={handleNoteUpdate}
-          />
-        </div>
       </div>
-      {/* If there was a right click, then we render the context menu. */}
-      {contextMenu.visible && (
-        <ContextMenu
-            clickedItem = {contextMenu.clickedItem}
-            posx = {contextMenu.x}
-            posy = {contextMenu.y}
-            handleContextMenuOptionClick={handleContextMenuOptionClick}
-        />
-      )}
-
-    </div>
+    </>
   );
 }
 

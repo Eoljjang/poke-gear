@@ -1,9 +1,27 @@
+.notes-page-overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.05);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease;
+    z-index: 999;
+}
+
+.notes-page-overlay.open {
+    opacity: 1;
+    visibility: visible;
+  }
+
 .notes-page-container {
     display: flex;
     width: 100%;
 
     /* These allow the footer without scrolling */
-    height: 100vh; 
+    height: 100%;
     overlay: hidden;
 
 }

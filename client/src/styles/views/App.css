@@ -1,9 +1,14 @@
+/* Do not change the below stylings. This is how we get the content to take up
+100% of the space bewteen the header and the footer. */
 #app{
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    height: 100%;
 
   }
-  #app-content{
-    flex: 1;
-  }
+
+#app-content{
+  flex: auto;
+  border: 2px solid red;
+  overflow-y: scroll;
+}

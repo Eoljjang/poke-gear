@@ -55,7 +55,7 @@
     -webkit-appearance: none;
     -moz-appearance: none;
 
-    /* position: absolute;  Commenting out for now due to footer bug. */
+    position: absolute;
     bottom: 1rem;
     right: 1rem;
 

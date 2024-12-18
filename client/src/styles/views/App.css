@@ -9,6 +9,5 @@
 
 #app-content{
   flex: auto;
-  border: 2px solid red;
   overflow-y: scroll;
 }

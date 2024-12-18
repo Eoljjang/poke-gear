@@ -59,9 +59,7 @@ function Notebook({
                 />
 
             ):
-                (
-                    <span>{notebook.name}</span>
-                )
+            notebook.name
             }
             </div>
             <div className="notebook-img">

@@ -8,8 +8,10 @@
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.15);
     border-radius: 6px;
     padding: 0.5rem;
-    width: 100%;
+    width: 125px;
     overflow: hidden; /* hide overflowing text */
+    flex-wrap: nowrap;
+    gap: 0.25rem;
 
     font-size: 0.75rem;
 }
@@ -31,5 +33,5 @@
 
 .note-img{
     border: 1px solid black;
-    width: 15%;
+    min-width: 15%;
 }

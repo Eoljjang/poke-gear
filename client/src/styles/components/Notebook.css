@@ -10,7 +10,8 @@
     padding: 0.5rem;
     width: 150px;
     overflow: hidden; /* hide overflowing text */
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    gap: 0.25rem;
 
     font-size: 0.75rem;
 }
@@ -29,15 +30,9 @@
     background: #6ec0f7;
 }
 
-.notebook-img{ /* Container for the sprite */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.notebook-img img{
-    width: auto;
-    height: 25px;
+.notebook-img{
+    border: 1px solid black;
+    min-width: 15%;
 }
 
 .notebook-name{

@@ -63,7 +63,7 @@ function Notebook({
             }
             </div>
             <div className="notebook-img">
-                <img src={"PLACEHOLDER: notebook.sprite"} alt="" /> {/* Future: Should be able to handle multiple sprites. */}
+                <img src="" alt="" /> {/* Future: Should be able to handle multiple sprites. */}
             </div>
         </div>
     )

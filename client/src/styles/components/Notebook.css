@@ -1,50 +1,50 @@
-.notebook-item{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+.notebook-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 
-    align-items: center;
-    background: #FFFFFF;
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.15);
-    border-radius: 6px;
-    padding: 0.5rem;
-    width: 150px;
-    overflow: hidden; /* hide overflowing text */
-    flex-wrap: nowrap;
-    gap: 0.25rem;
+  align-items: center;
+  background: #ffffff;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.15);
+  border-radius: 6px;
+  padding: 0.5rem;
+  width: 150px;
+  overflow: hidden; /* hide overflowing text */
+  flex-wrap: nowrap;
+  gap: 0.25rem;
 
-    font-size: 0.75rem;
+  font-size: 0.75rem;
 }
 
-.notebook-item:hover:not(.selected){
-    background: #eee;
-    transition: 0.2s;
+.notebook-item:hover:not(.selected) {
+  background: #eee;
+  transition: 0.2s;
 }
 
-.notebook-item:not(:hover):not(.selected){
-    transition: 0.2s;
-    background: #FFFFFF;
+.notebook-item:not(:hover):not(.selected) {
+  transition: 0.2s;
+  background: #ffffff;
 }
 
-.selected{
-    background: #6ec0f7;
+.selected {
+  background: #6ec0f7;
 }
 
-.notebook-img{
-    border: 1px solid black;
-    min-width: 15%;
+.notebook-img {
+  border: 1px solid black;
+  min-width: 15%;
 }
 
-.notebook-name{
-    overflow-x:hidden;
+.notebook-name {
+  overflow-x: hidden;
 }
 
-.notebook-name-input{
-    overflow-x: hidden; /* hide overflowing text */
-    flex-wrap: nowrap;
-
-    font-size: 0.75rem;
-    color: #000000;
-    background: #FFFFFF;
-    cursor: default;
+.notebook-name-input {
+  overflow-x: hidden; /* hide overflowing text */
+  flex-wrap: nowrap;
+  width: 90%;
+  font-size: 0.75rem;
+  color: #000000;
+  background: #ffffff;
+  cursor: default;
 }

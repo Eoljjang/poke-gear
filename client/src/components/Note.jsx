@@ -1,26 +1,67 @@
-import '../styles/components/Note.css'
-
+import "../styles/components/Note.css";
+import { useEffect, useRef } from "react";
 // Props:
 // 1) notebook = The specific notebook to be rendered.
-function Note({note, selected, handleNoteClick}) {
-    let selected_class = ""
-    if (selected){
-        selected_class = "selected";
+function Note({
+  note,
+  selected,
+  handleNoteClick,
+  isRenaming,
+  renameValue,
+  onRenameChange,
+  handleRenameUpdate,
+}) {
+  let selected_class = "";
+  if (selected) {
+    selected_class = "selected";
+  }
+
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    if (isRenaming) {
+      inputRef.current.focus();
+      inputRef.current.select();
     }
-    return(
-        <div className={`note-item ${selected_class}`}
-            onClick={(e) => {handleNoteClick(e, note.note_id)}}
-            onContextMenu={(e) => {
-                handleNoteClick(e, note.note_id)
-                e.preventDefault(); // Prevents default browser contextmenu.
+  }, [isRenaming]);
+
+  return (
+    <div
+      className={`note-item ${selected_class}`}
+      onClick={(e) => {
+        handleNoteClick(e, note.note_id);
+      }}
+      onContextMenu={(e) => {
+        handleNoteClick(e, note.note_id);
+        e.preventDefault(); // Prevents default browser contextmenu.
+      }}
+    >
+      <div className="note-name">
+        {isRenaming ? (
+          <input
+            className="note-name-input"
+            ref={inputRef}
+            value={renameValue}
+            onChange={(e) => {
+              onRenameChange(e.target.value);
             }}
-        >
-            <div className="note-name">{note.title}</div>
-            <div className="note-img">
-                <img src="" alt="" /> {/* Future: Should be able to handle multiple sprites. */}
-            </div>
-        </div>
-    )
+            onBlur={handleRenameUpdate}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                handleRenameUpdate();
+              }
+            }}
+          />
+        ) : (
+          <span>{note.title}</span>
+        )}
+      </div>
+      <div className="note-img">
+        <img src="" alt="" />{" "}
+        {/* Future: Should be able to handle multiple sprites. */}
+      </div>
+    </div>
+  );
 }
 
 // To-do

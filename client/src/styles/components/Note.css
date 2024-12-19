@@ -1,37 +1,53 @@
-.note-item{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+.note-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 
-    align-items: center;
-    background: #FFFFFF;
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.15);
-    border-radius: 6px;
-    padding: 0.5rem;
-    width: 125px;
-    overflow: hidden; /* hide overflowing text */
-    flex-wrap: nowrap;
-    gap: 0.25rem;
+  align-items: center;
+  background: #ffffff;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.15);
+  border-radius: 6px;
+  padding: 0.5rem;
+  width: 125px;
+  overflow: hidden; /* hide overflowing text */
+  flex-wrap: nowrap;
+  gap: 0.25rem;
 
-    font-size: 0.75rem;
+  font-size: 0.75rem;
 }
 
-.note-item:hover:not(.selected){
-    background: #eee;
-    transition: 0.2s;
+.note-item:hover:not(.selected) {
+  background: #eee;
+  transition: 0.2s;
 }
 
-.note-item:not(:hover):not(.selected){
-    background: #FFFFFF;
-    transition: 0.2s;
+.note-item:not(:hover):not(.selected) {
+  background: #ffffff;
+  transition: 0.2s;
 }
 
-.selected{
-    background: #6ec0f7;
-    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+.selected {
+  background: #6ec0f7;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+    rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+    rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
 }
 
-.note-img{
-    border: 1px solid black;
-    min-width: 15%;
+.note-img {
+  border: 1px solid black;
+  min-width: 15%;
+}
+
+.note-name {
+  overflow-x: hidden;
+}
+
+.note-name-input {
+  overflow-x: hidden; /* hide overflowing text */
+  flex-wrap: nowrap;
+  width: 90%;
+  font-size: 0.75rem;
+  color: #000000;
+  background: #ffffff;
+  cursor: default;
 }

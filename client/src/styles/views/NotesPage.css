@@ -1,101 +1,101 @@
-.notes-page-overlay{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.05);
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.2s ease;
-    z-index: 999;
+.notes-page-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.05);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease;
+  z-index: 999;
 }
 
 .notes-page-overlay.open {
-    opacity: 1;
-    visibility: visible;
-  }
+  opacity: 1;
+  visibility: visible;
+}
 
 .notes-page-container {
-    display: flex;
-    width: 100%;
+  display: flex;
+  width: 100%;
 
-    /* These allow the footer without scrolling */
-    height: 100%;
-    overlay: hidden;
-
+  /* These allow the footer without scrolling */
+  height: 100%;
+  overlay: hidden;
 }
 
 .notes-content {
-    display: flex;
-    flex-grow: 1; /* Allow the content section to grow to fill remaining space */
-    width: 100%; /* Ensure it spans the full width of the container */
+  display: flex;
+  flex-grow: 1; /* Allow the content section to grow to fill remaining space */
+  width: 100%; /* Ensure it spans the full width of the container */
 }
 
 .notebooks-section {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.75rem;
-    border-right: 1px solid black;
-    padding: 2rem;
-    box-shadow: rgba(0, 0, 0, 0.24) 2px 0px 8px;
-    background: #E9ECEF;
-    flex: 0 0 auto; /* Do not grow or shrink */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  border-right: 1px solid black;
+  padding: 2rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 2px 0px 8px;
+  background: #e9ecef;
+  flex: 0 0 auto; /* Do not grow or shrink */
 }
 
 .add-notebooks-button {
-    padding: 0;
-    margin: 0;
-    outline: none;
-    font: inherit;
-    text-align: inherit;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  font: inherit;
+  text-align: inherit;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 
-    position: absolute;
-    bottom: 1rem;
-    right: 1rem;
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 2.25rem;
-    height: 2.25rem;
-    border-radius: 50%;
-    background: #007BFF;
-    color: white;
-    border: none;
-    cursor: pointer;
+  padding-bottom: 0.1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
 }
 
 .add-notebooks-button:hover {
-    background: #026ddf;
-    transform: scale(1.05);
+  background: #026ddf;
+  transform: scale(1.05);
 }
 
 .add-notebooks-button:focus {
-    outline: none;
+  outline: none;
 }
 
 .notes-section {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 2rem;
-    border-right: 1px solid black;
-    box-shadow: rgba(0, 0, 0, 0.24) 2px 0px 8px;
-    background: #E9ECEF;
-    flex: 0 0 auto; /* Do not grow or shrink */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 2rem;
+  border-right: 1px solid black;
+  box-shadow: rgba(0, 0, 0, 0.24) 2px 0px 8px;
+  background: #e9ecef;
+  flex: 0 0 auto; /* Do not grow or shrink */
 }
 
 .active-note-section {
-    flex-grow: 1; /* Ensure it takes the remaining space */
-    overflow-x: hidden;
-    overflow-y: auto; /* Enable vertical scrolling when content exceeds height */
-    padding: 1.5rem; /* Optional padding for spacing */
+  flex-grow: 1; /* Ensure it takes the remaining space */
+  overflow-x: hidden;
+  overflow-y: auto; /* Enable vertical scrolling when content exceeds height */
+  padding: 1.5rem; /* Optional padding for spacing */
 }

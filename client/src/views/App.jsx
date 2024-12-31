@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import {Outlet} from "react-router-dom"
 import '../styles/views/Dashboard.css'
 import '../styles/views/App.css'
+import axios from "axios"
 
 
 function App() {
@@ -35,6 +36,15 @@ function App() {
   //TODO
   const handleLogin = () => {
   }
+
+  const getUsers = async(e) => {
+    await axios.get("http://localhost:4000/users")
+    .then(res => {
+      console.log(res.data)
+    })
+    .catch(err => console.log(err))
+  }
+  getUsers()
 
   return (
     <div id="app">

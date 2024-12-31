@@ -18,7 +18,7 @@ const corsOptions = {
 app.use(cors(corsOptions))
 app.use('/', router) // router must be at end of file.
 
-const dbOptions = {useNewUrlParse: true, useUnifiedTopology: true}
+const dbOptions = {useNewUrlParser: true, useUnifiedTopology: true}
 mongoose.connect(process.env.DB_URI, dbOptions)
 .then(() => console.log("DB connected."))
 .catch(err => console.log(err))

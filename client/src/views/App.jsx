@@ -37,15 +37,6 @@ function App() {
   const handleLogin = () => {
   }
 
-  const getUsers = async(e) => {
-    await axios.get("http://localhost:4000/users")
-    .then(res => {
-      console.log(res.data)
-    })
-    .catch(err => console.log(err))
-  }
-  getUsers()
-
   return (
     <div id="app">
       <Header>

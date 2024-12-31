@@ -1,18 +1,21 @@
+import { useNavigate } from 'react-router-dom'
 import '../styles/components/Header.css'
 import PropTypes from 'prop-types'
 
 const Header = ({ children }) => {
-    //TODO
-    const handleLogin = () => {
-    }
+    const navigate = useNavigate();
 
+    const handleSignout = (e) => {
+        e.preventDefault();
+        navigate("/login");
+    }
 
     return (
         <header className="header-container">
             {children}
             <h1 className="header-title">Poke-Gear</h1>
-            <button onClick={handleLogin} className="header-button">
-                Login
+            <button onClick={handleSignout} className="header-button">
+                Signout
             </button>
         </header>
     )

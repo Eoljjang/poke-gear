@@ -53,8 +53,8 @@ function App() {
       </Header>
 
       <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} >
-        <Link to="/" className='link'>Dashboard</Link>
-        <Link to="/notes" className='link'>Notes</Link>
+        <Link to="/app" className='link'>Dashboard</Link>
+        <Link to="/app/notes" className='link'>Notes</Link>
       </Sidebar>
 
       {/*

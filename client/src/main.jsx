@@ -7,18 +7,23 @@ import QuickLinks from './components/QuickLinks.jsx'
 import { createBrowserRouter } from 'react-router-dom'
 import { RouterProvider } from 'react-router'
 import Dashboard from './views/Dashboard.jsx'
+import Login from './views/Login.jsx'
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/login",
+    element: <Login />
+  },
+  {
+    path: "/app",
     element: <App />, // Dashboard is the parent route
     children: [ // These are the various views you can pass into the outlet.
       {
-        path: "/",
+        path: "/app",
         element: <Dashboard/>,
       },
       {
-        path: "notes",
+        path: "/app/notes",
         element: <NotesPage />,  // Note is a child route inside Dashboard
       },
 

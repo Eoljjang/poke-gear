@@ -19,7 +19,7 @@ function Login() {
 
         await axios.post("http://localhost:4000/login", postData)
         .then(response => {
-            console.log("login successful")
+            console.log(`User ${email} and PW ${password}`)
             navigate('/app')
         })
         .catch(e => {

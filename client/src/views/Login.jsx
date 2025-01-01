@@ -38,9 +38,9 @@ function Login() {
                 <div className="header-text">Welcome to Poke-Gear!</div>
                 <div className="subheader-text">Lets get you signed in</div>
             </div>
-            <div className="login-form">
+            <div className="login-form-container">
                 <h3>Login:</h3>
-                <form action="" method="POST" onSubmit={handleLogin}>
+                <form className="login-form" action="" method="POST" onSubmit={handleLogin}>
                     <div className="input-container">
                         <label htmlFor="email">Email:</label>
                         <input type="text" placeholder="Enter Email" name="email" onChange={(e) => setEmail(e.target.value)}required/>

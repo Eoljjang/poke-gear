@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
+import "../styles/views/Signup.css"
 function Signup() {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -26,24 +27,42 @@ function Signup() {
         navigate("/login")
     }
 
+    const handleReturn = (e) => { // cancel signup and go back to the login.
+        e.preventDefault()
+        navigate("/login")
+    }
+
     return(
-        <>
-            <form action="" method="post" onSubmit={handleSubmit}>
-                <label htmlFor="firstname">First Name:</label>
-                <input type="text" id="firstname" name="firstname"onChange={(e) => setFirstName(e.target.value)} required/>
+        <div className="signup-page">
+            <form className="signup-form" action="" method="post" onSubmit={handleSubmit}>
+                <div className="input-container">
+                    <label htmlFor="firstname">First Name:</label>
+                    <input type="text" id="firstname" name="firstname"onChange={(e) => setFirstName(e.target.value)} required/>
+                </div>
 
-                <label htmlFor="lastname">Last Name:</label>
-                <input type="text" id="lastname" name="lastname" onChange={(e) => setLastName(e.target.value)} required/>
+                <div className="input-container">
+                    <label htmlFor="lastname">Last Name:</label>
+                    <input type="text" id="lastname" name="lastname" onChange={(e) => setLastName(e.target.value)} required/>
+                </div>
 
-                <label htmlFor="password">Set Password:</label>
-                <input type="text" id="password" name = "password" onChange= {(e) => setPassword(e.target.value)} required/>
+                <div className="input-container">
+                    <label htmlFor="password">Set Password:</label>
+                    <input type="text" id="password" name = "password" onChange= {(e) => setPassword(e.target.value)} required/>
+                </div>
 
-                <label htmlFor="email">Set Email:</label>
-                <input type="text" id="email" name = "email" onChange= {(e) => setEmail(e.target.value)} required/>
+                <div className="input-container">
+                    <label htmlFor="email">Set Email:</label>
+                    <input type="text" id="email" name = "email" onChange= {(e) => setEmail(e.target.value)} required/>
+                </div>
 
-                <button type="submit">Complete Signup</button>
+                <div className="btn-container">
+                    <button className="btn-return" onClick={handleReturn}>return to login</button>
+                    <button className="btn-submit" type="submit">Complete Signup</button>
+                </div>
             </form>
-        </>
+
+
+        </div>
     )
 }
 

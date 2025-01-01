@@ -26,7 +26,7 @@
 
 
 
-.login-form{
+.login-form-container{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -36,11 +36,10 @@
     padding: 12px;
     border-radius: 12px;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-    
 
 }
 
-form{
+.login-form{
     display: flex;
     flex-direction: column;
     align-items: center;

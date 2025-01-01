@@ -45,3 +45,4 @@ Note Taking Functionality:
 
 ### Idea Dump
 - User can create decklists and associate them with notes. For example, referencing a specicic card in their decklist.
+- **Important** We have to figure out how to scope CSS to their individual JSX files. The classnames are starting to overlap with the introduction of express.

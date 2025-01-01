@@ -34,22 +34,32 @@ function Login() {
     }
     return(
         <div className="login-page">
-
+            <div className="header">
+                <div className="header-text">Welcome to Poke-Gear!</div>
+                <div className="subheader-text">Lets get you signed in</div>
+            </div>
             <div className="login-form">
                 <h3>Login:</h3>
                 <form action="" method="POST" onSubmit={handleLogin}>
-                    <label htmlFor="email">email</label>
-                    <input type="text" placeholder="Enter Email" name="email" onChange={(e) => setEmail(e.target.value)}required/>
+                    <div className="input-container">
+                        <label htmlFor="email">Email:</label>
+                        <input type="text" placeholder="Enter Email" name="email" onChange={(e) => setEmail(e.target.value)}required/>
+                    </div>
 
-                    <label htmlFor="password">Password</label>
-                    <input type="text" placeholder="Enter Password" name="password" onChange={(e) => setPassword(e.target.value)}required/>
+                    <div className="input-container">
+                        <label htmlFor="password">Password:</label>
+                        <input type="text" placeholder="Enter Password" name="password" onChange={(e) => setPassword(e.target.value)}required/>
+                    </div>
 
                     <button type="submit">Login</button>
                 </form>
+            </div>
 
+            <div className="signup-container">
                 <h3>No Account?</h3>
                 <button onClick={btnSignupClick}>Signup</button>
             </div>
+
         </div>
     )
 }

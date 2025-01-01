@@ -70,3 +70,9 @@
     align-items: center;
     justify-content: center;
 }
+
+.error-msg{
+    color:#FF3F3F;
+    font-weight: 150;
+    font-style: italic;
+}

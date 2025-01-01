@@ -8,6 +8,7 @@ function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
+    const [errorMsg, setErrorMsg] = useState("");
 
     // This function queries the databse and checks if the user exists before logging in.
     const handleLogin = async(e) => {
@@ -23,7 +24,11 @@ function Login() {
             navigate('/app')
         })
         .catch(e => {
-            console.error(e)
+            console.error(e.response.data.message);
+            setErrorMsg(e.response.data.message);
+            setEmail("");
+            setPassword("");
+
         })
 
     }
@@ -43,14 +48,17 @@ function Login() {
                 <form className="login-form" action="" method="POST" onSubmit={handleLogin}>
                     <div className="input-container">
                         <label htmlFor="email">Email:</label>
-                        <input type="text" placeholder="Enter Email" name="email" onChange={(e) => setEmail(e.target.value)}required/>
+                        <input type="text" value={email} placeholder="Enter Email" name="email" onChange={(e) => setEmail(e.target.value)}required/>
                     </div>
 
                     <div className="input-container">
                         <label htmlFor="password">Password:</label>
-                        <input type="text" placeholder="Enter Password" name="password" onChange={(e) => setPassword(e.target.value)}required/>
+                        <input type="text" value={password} placeholder="Enter Password" name="password" onChange={(e) => setPassword(e.target.value)}required/>
                     </div>
 
+                    {errorMsg &&(
+                        <div className="error-msg">{errorMsg}</div> // display error msg if any when trying to log in.
+                    )}
                     <button type="submit">Login</button>
                 </form>
             </div>

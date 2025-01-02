@@ -4,6 +4,7 @@ const router = express.Router()
 const schemas = require('../models/schemas')
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;
+    console.log("Attempting login through backend...")
 
     try{
         const user = await schemas.Users.findOne({email});

@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { useState } from 'react';
 import axios from "axios"
 import '../styles/views/Login.css'
-const backendURL = process.env.BACKEND_URL;
+const backendURL = process.env.BACKEND_URL || "http://localhost:4000";
 
 function Login() {
     const [email, setEmail] = useState("");
@@ -20,6 +20,7 @@ function Login() {
 
         await axios.post(backendURL+"/login", postData)
         .then(response => {
+            console.log(response)
             console.log(`User ${email} and PW ${password}`)
             navigate('/app')
         })

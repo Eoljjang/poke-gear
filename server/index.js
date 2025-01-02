@@ -10,12 +10,12 @@ const app = express()
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:false}))
 
-const corsOptions = {
-    origin: '*',
-    credentials: true,
-    optionsSucessStatus: 200
-}
-app.use(cors(corsOptions))
+// const corsOptions = {
+//     origin: '*',
+//     credentials: true,
+//     optionsSucessStatus: 200
+// }
+app.use(cors())
 app.use('/', router) // router must be at end of file.
 
 const dbOptions = {useNewUrlParser: true, useUnifiedTopology: true}

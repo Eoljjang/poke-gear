@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { useState } from 'react';
 import axios from "axios"
 import '../styles/views/Login.css'
-const backendURL = process.env.BACKEND_URL || "http://localhost:4000/login";
+const backendURL = process.env.BACKEND_URL || "https://your-backend.onrender.com/login";
 
 function Login() {
     const [email, setEmail] = useState("");

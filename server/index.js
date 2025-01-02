@@ -11,7 +11,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:false}))
 
 const corsOptions = {
-    origin: '*',
+    origin: ['https://poke-gear-ui.onrender.com/login', "https://poke-gear-ui.onrender.com/signup"],
     credentials: true,
     optionsSucessStatus: 200,
     methods: "GET, POST, PUT, DELETE",

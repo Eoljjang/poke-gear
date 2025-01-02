@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
 import "../styles/views/Signup.css"
+const backendURL = process.env.BACKEND_URL || "https://poke-gear.onrender.com/";
 function Signup() {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -17,7 +18,7 @@ function Signup() {
             password: password,
         }
 
-        await axios.post("http://localhost:4000/signup", postData)
+        await axios.post(backendURL + "signup", postData)
         .then(console.log('success!'))
     }
 

@@ -4,7 +4,7 @@ import './index.css'
 import App from './views/App.jsx' // Top level child of the app.
 import NotesPage from './views/NotesPage.jsx' // child
 import QuickLinks from './components/QuickLinks.jsx'
-import { createBrowserRouter } from 'react-router-dom'
+import { createBrowserRouter, Navigate } from 'react-router-dom'
 import { RouterProvider } from 'react-router'
 import Dashboard from './views/Dashboard.jsx'
 import Login from './views/Login.jsx'
@@ -12,6 +12,11 @@ import Signup from './views/Signup.jsx'
 
 
 const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Navigate to="/login"/>,
+
+  },
   {
     path: "/login",
     element: <Login />

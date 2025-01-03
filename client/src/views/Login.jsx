@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { useState } from 'react';
 import axios from "axios"
 import '../styles/views/Login.css'
-const backendURL = process.env.REACT_APP_BACKEND_URL || "http://localhost:4000/";
+//const backendURL = process.env.BACKEND_URL || "https://poke-gear.onrender.com/";
 
 function Login() {
     const [email, setEmail] = useState("");
@@ -11,36 +11,28 @@ function Login() {
     const [errorMsg, setErrorMsg] = useState("");
 
     // This function queries the databse and checks if the user exists before logging in.
-    const handleLogin = async (e) => {
+    const handleLogin = async(e) => {
         e.preventDefault();
         const postData = {
             email: email,
-            password: password,
-        };
+            password: password
+        }
 
-        try {
-            const response = await axios.post(backendURL + "login", postData);
-            console.log(response);
-            console.log(`User ${email} and PW ${password}`);
-            navigate('/app');
-        } catch (e) {
-            if (e.response) {
-                // The request was made, and the server responded with a status code outside 2xx
-                console.error(e.response.data.message);
-                setErrorMsg(e.response.data.message);
-            } else if (e.request) {
-                // The request was made, but no response was received
-                console.error("No response received from the server.");
-                setErrorMsg("Unable to reach the server. Please try again later.");
-            } else {
-                // Something happened while setting up the request
-                console.error("Error setting up the request:", e.message);
-                setErrorMsg("An unexpected error occurred. Please try again.");
-            }
+        await axios.post("http://localhost:4000/login", postData)
+        .then(response => {
+            console.log(response)
+            console.log(`User ${email} and PW ${password}`)
+            navigate('/app')
+        })
+        .catch(e => {
+            console.error(e.response.data.message);
+            setErrorMsg(e.response.data.message);
             setEmail("");
             setPassword("");
-        }
-    };
+
+        })
+
+    }
 
     const btnSignupClick = (e) => {
         e.preventDefault();

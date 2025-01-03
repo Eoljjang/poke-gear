@@ -2,43 +2,25 @@ import { useState } from "react";
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
 import "../styles/views/Signup.css"
-const backendURL = process.env.REACT_APP_BACKEND_URL || "http://localhost:4000/";
+//const backendURL = process.env.BACKEND_URL || "https://poke-gear.onrender.com/";
 function Signup() {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [errorMsg, setErrorMsg] = useState("");
     const navigate = useNavigate();
 
-    const postCreateUser = async () => {
+    const postCreateUser = async() => {
         const postData = {
             firstName: firstName,
             lastName: lastName,
             email: email,
             password: password,
-        };
-
-        try {
-            const response = await axios.post(`${backendURL}signup`, postData);
-            console.log('Success:', response.data);
-            navigate("/login");
-        } catch (e) {
-            if (e.response) {
-                // The request was made, and the server responded with a status code outside 2xx
-                console.error(e.response.data.message);
-                setErrorMsg(e.response.data.message);
-            } else if (e.request) {
-                // The request was made, but no response was received
-                console.error("No response received from the server.");
-                setErrorMsg("Unable to reach the server. Please try again later.");
-            } else {
-                // Something happened while setting up the request
-                console.error("Error setting up the request:", e.message);
-                setErrorMsg("An unexpected error occurred. Please try again.");
-            }
         }
-    };
+
+        await axios.post("http://localhost:4000/signup", postData)
+        .then(console.log('success!'))
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault()

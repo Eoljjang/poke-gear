@@ -3,6 +3,7 @@ const cors = require('cors')
 const bodyParser = require('body-parser') // helps with POST-ing.
 const router = require('./routes/router')
 const mongoose = require('mongoose')
+const path = require("path")
 require('dotenv/config')
 
 const app = express()
@@ -17,6 +18,25 @@ const corsOptions = {
     methods: "GET, POST, PUT, DELETE",
     allowedHeaders: "Content-Type",
 }
+
+// ------------- Deployment ----------------
+const __dirname1 = path.resolve();
+if(process.env.NODE_ENV === "production"){
+    app.use(express.static(path.join(__dirname1, "../client/dist")))
+    app.get("*", (req, res) => {
+        res.sendFile(path.resolve(__dirname1, "client", "dist", "index.html"))
+    })
+
+}
+else {
+    app.get("/", (req, res) => {
+        res.send("API is running successfully.")
+    })
+}
+
+// ------------- Deployment ----------------
+
+
 app.use(cors(corsOptions))
 app.use('/', router) // router must be at end of file.
 

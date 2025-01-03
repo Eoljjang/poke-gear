@@ -19,7 +19,7 @@ function Login() {
         };
     
         try {
-            const response = await axios.post("https://poke-gear.onrender.com/login", postData);
+            const response = await axios.post(backendURL + "login", postData);
             console.log(response);
             console.log(`User ${email} and PW ${password}`);
             navigate('/app');

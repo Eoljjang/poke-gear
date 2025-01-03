@@ -32,16 +32,18 @@ Note Taking Functionality:
 
 ---
 
-### Run the app
-1. ```npm run watch```
-2. Navigate to ```http://localhost:8080/```
+### Run the app locally
+1. In client folder: ```npm run watch```
+2. Navigate to ```http://localhost:5173/```
+    - Note that the you'll be automatically routed to /login.
+3. In server folder: ```npm start```
 
 
-### Run the client
-1. ```npm install```
-2. ```npm run dev```
+### Running the app online
+**Note:** The host server will automatically run a build on every new commit. Takes ~2 mins.
+1. Navigate to ```https://poke-gear-ui.onrender.com/```
 
---- 
+---
 
 ### Idea Dump
 - User can create decklists and associate them with notes. For example, referencing a specicic card in their decklist.

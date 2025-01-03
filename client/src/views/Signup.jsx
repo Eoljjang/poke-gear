@@ -8,6 +8,7 @@ function Signup() {
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [errorMsg, setErrorMsg] = useState("");
     const navigate = useNavigate();
 
     const postCreateUser = async() => {
@@ -20,6 +21,16 @@ function Signup() {
 
         await axios.post("http://localhost:4000/signup", postData)
         .then(console.log('success!'))
+        .catch(e => {
+            // Check if e.response exists before accessing it
+            if (e.response) {
+                console.error(e.response.data.message);  // Specific error message from the server
+                setErrorMsg(e.response.data.message);  // Display error to the user
+            } else {
+                console.error("Error: ", e.message);  // General error message for network or other issues
+                setErrorMsg("An error occurred. Please try again.");
+            }
+        });
     }
 
     const handleSubmit = (e) => {

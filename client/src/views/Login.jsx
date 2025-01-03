@@ -25,11 +25,16 @@ function Login() {
             navigate('/app')
         })
         .catch(e => {
-            console.error(e.response.data.message);
-            setErrorMsg(e.response.data.message);
-            setEmail("");
+            // Check if e.response exists
+            if (e.response) {
+                console.error(e.response.data.message);  // Specific error message from the server
+                setErrorMsg(e.response.data.message);
+            } else {
+                console.error("Error: ", e.message); // Fallback for other errors (e.g., network issues)
+                setErrorMsg("An error occurred. Please try again.");
+            }
+            setEmail(""); // Reset email and password fields
             setPassword("");
-
         })
 
     }

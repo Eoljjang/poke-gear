@@ -23,7 +23,7 @@ app.use('/', router) // router must be at end of file.
 const dbOptions = {useNewUrlParser: true, useUnifiedTopology: true}
 mongoose.connect(process.env.DB_URI, dbOptions)
 .then(() => console.log("DB connected."))
-.catch(err => console.log(err))
+.catch(err => console.log("Connect to DB Failed: " + err))
 
 const port = process.env.PORT || 4000 // Backend runs on port 4000. The frontend can run on another port. You query port 4000 to access the server.
 const server = app.listen(port, () => {

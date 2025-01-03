@@ -3,7 +3,6 @@ import { useState } from 'react';
 import axios from "axios"
 import '../styles/views/Login.css'
 const backendURL = process.env.REACT_APP_BACKEND_URL || "http://localhost:4000/";
-require("dotenv").config();
 
 function Login() {
     const [email, setEmail] = useState("");

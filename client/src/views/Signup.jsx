@@ -20,7 +20,7 @@ function Signup() {
         };
 
         try {
-            const response = await axios.post(`${backendURL}/signup`, postData);
+            const response = await axios.post(`${backendURL}signup`, postData);
             console.log('Success:', response.data);
             navigate("/login");
         } catch (e) {

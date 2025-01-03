@@ -2,7 +2,7 @@
 const express = require('express')
 const router = express.Router()
 const schemas = require('../models/schemas')
-router.post('https://poke-gear.onrender.com/login', async (req, res) => {
+router.post('/login', async (req, res) => {
     const { email, password } = req.body;
     console.log("Attempting login through backend...")
 
@@ -30,7 +30,7 @@ router.get("/", async (req, res) => {
     res.send("Hello world!")
 })
 
-router.post('https://poke-gear.onrender.com/signup', async(req, res) => {
+router.post('/signup', async(req, res) => {
     const {firstName, lastName, password, email} = req.body
     const userData = {firstName: firstName, lastName: lastName, password: password, email: email}
     const newUser = new schemas.Users(userData)

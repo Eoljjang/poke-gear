@@ -16,7 +16,7 @@ router.post('/login', async (req, res) => {
         if (password !== user.password){
             return res.status(401).json({message: "Password is incorrect."});
         }
-        res.status(200).json({message: "Login successful."});
+        res.status(200).json({message: "Login successful.", userEmail: email});
 
         // Compare the passwords
         // const isMatch = await schemas.Users.comparePassword(password);
@@ -33,6 +33,21 @@ router.post('/login', async (req, res) => {
 
 router.get("/", async (req, res) => {
     res.send("Hello world!")
+})
+
+router.post("/getUserData", async (req, res) => {
+    const {userEmail} = req.body;
+    console.log(userEmail);
+    try {
+        const user = await schemas.Users.findOne({email: userEmail});
+        if (!user){
+            return res.status(404).json({message: "Unable to retrieve user data for some reason. User does not exist."})
+        }
+        res.send(user.notebooks);
+    }
+    catch (e){
+        return res.status(500).json({message: "Error when retrieving user data:", e})
+    }
 })
 
 router.post('/signup', async(req, res) => {

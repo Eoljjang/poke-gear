@@ -22,7 +22,8 @@ function Login() {
         .then(response => {
             console.log(response)
             console.log(`User ${email} and PW ${password}`)
-            navigate('/app')
+            const userEmail = response.data.userEmail;
+            navigate(`/app?userEmail=${userEmail}`)
         })
         .catch(e => {
             // Check if e.response exists

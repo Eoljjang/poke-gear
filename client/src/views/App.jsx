@@ -3,8 +3,9 @@ import DropdownBurgerIcon from '../elements/DropdownBurgerIcon.jsx'
 import Sidebar from '../components/Sidebar.jsx'
 import Footer from '../components/Footer.jsx'
 import User from '../models/User.js'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom'
 import {Outlet} from "react-router-dom"
 import '../styles/views/Dashboard.css'
 import '../styles/views/App.css'
@@ -13,6 +14,21 @@ import axios from "axios"
 
 function App() {
   const [isSidebarOpen, setSidebarOpen] = useState(false)
+  const location = useLocation();
+  const [userData, setUserData] = useState([]);
+
+  // Query Parameters (Reads the URL)
+  const queryParams = new URLSearchParams(location.search);
+  const userEmail = queryParams.get('userEmail');
+
+  // Obtain user data
+  useEffect(() => {
+    const postData = {
+      userEmail: userEmail
+    }
+    axios.post("http://localhost:4000/getUserData", postData)
+    .then(userData => setUserData(userData.data))
+  }, [userEmail])
 
   const openSidebar = () => {
       setSidebarOpen(true)

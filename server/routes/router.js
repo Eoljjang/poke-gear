@@ -1,7 +1,8 @@
 // This is where we access the schemas.
 const express = require('express')
 const router = express.Router()
-const schemas = require('../models/schemas')
+const schemas = require('../models/schemas');
+const { useInRouterContext } = require('react-router-dom');
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;
     console.log("Attempting login through backend...")
@@ -11,7 +12,11 @@ router.post('/login', async (req, res) => {
         if (!user){
             return res.status(404).json({message: "Email does not exist. Please sign up."});
         }
-        res.send(200);
+
+        if (password !== user.password){
+            return res.status(401).json({message: "Password is incorrect."});
+        }
+        res.status(200).json({message: "Login successful."});
 
         // Compare the passwords
         // const isMatch = await schemas.Users.comparePassword(password);

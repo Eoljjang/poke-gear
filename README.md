@@ -48,3 +48,4 @@ Note Taking Functionality:
 ### Idea Dump
 - User can create decklists and associate them with notes. For example, referencing a specicic card in their decklist.
 - **Important** We have to figure out how to scope CSS to their individual JSX files. The classnames are starting to overlap with the introduction of express.
+- It's important to that we hash the passwords when we create a user. Currently it's just comparing them as strings which will not be good in the future.

@@ -3,14 +3,28 @@ const mongoose = require('mongoose')
 // const bcrypt = require('bcrypt'); // for password encryption.
 const Schema = mongoose.Schema
 
+const noteSchema = new Schema({
+    note_id: {type: Number, default: null},
+    title: {type: String, default: ""},
+    note_date: {type: Date, default: Date.now},
+    content: {type: String, default: ""},
+})
+
+const notebookSchema = new Schema({
+    notebook_id: {type: Number, default: null},
+    name: {type: String, defualt: ""}, // What the user decides to name it.
+    sprite: {type: String, default: ""}, // Link to sprite api.
+    notes: [noteSchema], // holds "note"
+})
+
 const userSchema = new Schema({
     firstName: {type:String},
     lastName: {type:String},
     email: {type: String,},
     password: {type:String},
-    entryDate: {type: Date, default: Date.now}
+    entryDate: {type: Date, default: Date.now},
+    notebooks: [notebookSchema] // holds "notebook"
 })
-
 // Hash password before saving
 // userSchema.pre('save', async function (next) {
 //     if (!this.isModified('password')) return next();
@@ -28,6 +42,6 @@ const userSchema = new Schema({
 //     return bcrypt.compare(candidatePassword, this.password);
 // };
 
-const Users = mongoose.model('Users', userSchema, 'users')
+const Users = mongoose.model('Users', userSchema, 'users') // no need to export the notebook & note schemas unless you want them to be separate collections (we don't).
 const mySchemas = {'Users': Users}
 module.exports = mySchemas

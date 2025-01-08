@@ -52,11 +52,30 @@ router.post("/getUserData", async (req, res) => {
 
 router.post('/signup', async(req, res) => {
     const {firstName, lastName, password, email} = req.body
-    const userData = {firstName: firstName, lastName: lastName, password: password, email: email}
-    const newUser = new schemas.Users(userData)
-    const saveUser = await newUser.save()
-    if (saveUser){
-        res.send("New user successfully created")
+
+    // Check if the email already exists.
+    try{
+        const user = await schemas.Users.findOne({email});
+        if (user){
+            return res.status(404).json({message: "Email already exists. Please log in."});
+        }
+    }
+    catch(error){
+        console.log(error);
+        return res.status(500).json({message: "Server Error. Could not check if email already exists."})
+    }
+
+    // Now create the new user.
+    try{
+        const userData = {firstName: firstName, lastName: lastName, password: password, email: email}
+        const newUser = new schemas.Users(userData)
+        const saveUser = await newUser.save()
+        if (saveUser){
+            return res.status(200).json({message: "Successfully created a new user."})
+        }
+    }
+    catch(error){
+        return res.status(500).json({message: "Server error. Unable to create new user."})
     }
 })
 

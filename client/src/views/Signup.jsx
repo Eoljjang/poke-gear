@@ -20,7 +20,11 @@ function Signup() {
         }
 
         await axios.post("http://localhost:4000/signup", postData)
-        .then(console.log('success!'))
+        .then(response => {
+            navigate("/login");
+            console.log(response.data.message);
+
+        })
         .catch(e => {
             // Check if e.response exists before accessing it
             if (e.response) {
@@ -36,7 +40,7 @@ function Signup() {
     const handleSubmit = (e) => {
         e.preventDefault()
         postCreateUser()
-        navigate("/login")
+        
     }
 
     const handleReturn = (e) => { // cancel signup and go back to the login.
@@ -71,6 +75,10 @@ function Signup() {
                     <button className="btn-return" onClick={handleReturn}>return to login</button>
                     <button className="btn-submit" type="submit">Complete Signup</button>
                 </div>
+
+                {errorMsg &&(
+                    <div className="error-msg">{errorMsg}</div>
+                )}
             </form>
 
 

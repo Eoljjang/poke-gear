@@ -60,7 +60,7 @@ function Login() {
 
                     <div className="input-container">
                         <label htmlFor="password">Password:</label>
-                        <input type="text" value={password} placeholder="Enter Password" name="password" onChange={(e) => setPassword(e.target.value)}required/>
+                        <input type="password" value={password} placeholder="Enter Password" name="password" onChange={(e) => setPassword(e.target.value)}required/>
                     </div>
 
                     {errorMsg &&(

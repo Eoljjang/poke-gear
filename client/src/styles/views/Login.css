@@ -64,6 +64,17 @@
     border-radius: 8px;
 }
 
+.show-password-container{
+    font-size: 0.90rem;
+}
+
+.show-password-input{
+    box-shadow: none;
+    background: white;
+}
+
+
+
 .signup-container{
     display: flex;
     flex-direction: column;

@@ -6,8 +6,17 @@ import { useRef, useEffect } from "react";
 import '../styles/views/TextEditor.css'; // Import Quill's styling.
 import Editor from "quill/core/editor";
 import axios from "axios";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function ActiveNote({activeNote, handleNoteTitleUpdate, handleNoteUpdate}){
+    // Handle URL querying
+    const location = useLocation();
+    const navigate = useNavigate();
+    const queryParams = new URLSearchParams(location.search);
+    const userEmail = queryParams.get("userEmail");
+    const notebook_id = queryParams.get("notebook_id");
+    const note_id = queryParams.get("note_id");
+
     const handleTitleChange = (value) =>{
         if (activeNote.title !== value) {
             handleNoteTitleUpdate(activeNote.note_id, value)
@@ -16,8 +25,13 @@ function ActiveNote({activeNote, handleNoteTitleUpdate, handleNoteUpdate}){
     const handleNoteChange = async (value) => {
         if (activeNote.content !== value) {
             handleNoteUpdate(activeNote.note_id, value); // Only call the update handler if content changes.
-            const postData = {noteContent: activeNote.content}; // take all the updated text and send it to the server.
-            await axios.post('http://localhost:4000/updateNote', postData)
+            const putData = {
+                noteContent: activeNote.content,
+                userEmail: userEmail,
+                notebook_id: notebook_id,
+                note_id: note_id
+            }; 
+            await axios.put('http://localhost:4000/updateNote', putData)
             .then(response => {
                 console.log(response);
             })

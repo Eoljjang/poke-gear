@@ -61,8 +61,8 @@ function App() {
       </Header>
 
       <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} >
-        <Link to="/app" className='link'>Dashboard</Link>
-        <Link to="/app/notes" className='link'>Notes</Link>
+        <Link to={`/app/?userEmail=${userEmail}`} className='link'>Dashboard</Link>
+        <Link to={`/app/notes?userEmail=${userEmail}`} className="link">Notes</Link>
       </Sidebar>
 
       {/*

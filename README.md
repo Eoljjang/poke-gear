@@ -29,6 +29,11 @@ Note Taking Functionality:
 - [ ] Test for 2 - 4 weeks.
 - [ ] Make iterative changes based on feedback.
 
+### Release v0.5 Goals: Security
+- [ ] Make sure URL's are safe and properly updated.
+- [ ] When switching between users, the new user should not have access to data from the previous user.
+- [ ] Check that inputs block injections.
+
 <i>Full 1.0 release after the user testing phase<i/>
 
 ---
@@ -51,3 +56,6 @@ Note Taking Functionality:
 - **Important** We have to figure out how to scope CSS to their individual JSX files. The classnames are starting to overlap with the introduction of express.
 - It's important to that we hash the passwords when we create a user. Currently it's just comparing them as strings which will not be good in the future.
 - Do thorough testing of the URL and what parameters get passed to it.
+- Currently when the user logs in, it loads all of their data. 
+    - however if they sign out, that data is still visible in the console under "network".
+    - This is horrendus security measures. So we should take this into account later on. WORK ON SECURITY.

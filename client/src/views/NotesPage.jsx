@@ -4,7 +4,7 @@ import Note from "../components/Note";
 import ActiveNote from "../components/ActiveNote";
 import ContextMenu from "../components/ContextMenu";
 import Toolbar from "../components/Toolbar.jsx";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
 import "react-quill/dist/quill.snow.css"; // Import Quill's styling.
@@ -33,12 +33,16 @@ function NotesPage() {
   const currentNotebook = userData.find(
     (notebook) => notebook.notebook_id === selectedNotebook
   );
-  
+
   // The notes for the selected notebook.
   const currentNotes = currentNotebook ? currentNotebook.notes : [];
 
   // Find the active note based on the note_id.
   const activeNote = currentNotes.find((note) => note.note_id === selectedNote);
+
+  // For updating the url
+  const navigate = useNavigate();
+  const location = useLocation();
 
   // Handlers
   const handleNotebookClick = (e, notebookId) => {
@@ -51,6 +55,13 @@ function NotesPage() {
         notebooks: true,
         notes: true,
       });
+
+      // Handle URL changes
+      const searchParams = new URLSearchParams(location.search);
+      searchParams.set('notebook_id', notebookId); // append to current url.
+      navigate(`${location.pathname}?${searchParams.toString()}`, { replace: true }); // set the new url.
+
+
     } else if (e.type === "contextmenu") {
       console.log("Right clicked a notebook.");
       setContextMenu({
@@ -67,6 +78,12 @@ function NotesPage() {
     if (e.type === "click") {
       console.log("Left clicked a note.");
       setSelectedNote(noteId);
+
+      // Handle URL changes
+      const searchParams = new URLSearchParams(location.search);
+      searchParams.set('note_id', noteId); // append to current url.
+      navigate(`${location.pathname}?${searchParams.toString()}`, { replace: true }); // set the new url.
+
     } else if (e.type === "contextmenu") {
       console.log("Right clicked a note.");
       setContextMenu({

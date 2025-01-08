@@ -79,4 +79,9 @@ router.post('/signup', async(req, res) => {
     }
 })
 
+router.post('/updateNote', async(req, res) => {
+    const {noteContent} = req.body
+    return res.status(200).json({message: "Successfully updated note content on server."})
+})
+
 module.exports = router

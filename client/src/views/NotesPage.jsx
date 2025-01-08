@@ -4,6 +4,7 @@ import Note from "../components/Note";
 import ActiveNote from "../components/ActiveNote";
 import ContextMenu from "../components/ContextMenu";
 import Toolbar from "../components/Toolbar.jsx";
+import { useNavigate } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
 import "react-quill/dist/quill.snow.css"; // Import Quill's styling.
@@ -12,7 +13,6 @@ function NotesPage() {
   // Single source of truth
   //const [userData, setUserData] = useState(userData);
   const [userData, setUserData] = useOutletContext();
-  console.log("Here it is: ", userData);
   const [isVisible, setIsVisible] = useState({
     notebooks: true,
     notes: false,
@@ -33,7 +33,7 @@ function NotesPage() {
   const currentNotebook = userData.find(
     (notebook) => notebook.notebook_id === selectedNotebook
   );
-
+  
   // The notes for the selected notebook.
   const currentNotes = currentNotebook ? currentNotebook.notes : [];
 
@@ -319,6 +319,7 @@ function NotesPage() {
           <div className="active-note-section">
             <ActiveNote
               activeNote={activeNote}
+              currentNotebook={currentNotebook}
               handleNoteTitleUpdate={handleNoteTitleUpdate}
               handleNoteUpdate={handleNoteUpdate}
             />

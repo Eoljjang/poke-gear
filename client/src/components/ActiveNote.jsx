@@ -5,6 +5,7 @@ import Quill from "quill";
 import { useRef, useEffect } from "react";
 import '../styles/views/TextEditor.css'; // Import Quill's styling.
 import Editor from "quill/core/editor";
+import axios from "axios";
 
 function ActiveNote({activeNote, handleNoteTitleUpdate, handleNoteUpdate}){
     const handleTitleChange = (value) =>{
@@ -12,9 +13,14 @@ function ActiveNote({activeNote, handleNoteTitleUpdate, handleNoteUpdate}){
             handleNoteTitleUpdate(activeNote.note_id, value)
         }
     }
-    const handleNoteChange = (value) => {
+    const handleNoteChange = async (value) => {
         if (activeNote.content !== value) {
             handleNoteUpdate(activeNote.note_id, value); // Only call the update handler if content changes.
+            const postData = {noteContent: activeNote.content}; // take all the updated text and send it to the server.
+            await axios.post('http://localhost:4000/updateNote', postData)
+            .then(response => {
+                console.log(response);
+            })
         }
     }
     if (activeNote){

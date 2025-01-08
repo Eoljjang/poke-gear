@@ -73,13 +73,46 @@
     background: white;
 }
 
+#login-btn{
+    border: none;
+    border-radius: 16px;
+    font-size:1rem;
+}
+
+#login-btn:hover{
+    border: none;
+    scale: 1.05;
+    transition: 0.2s;
+}
+
+#login-btn:not(:hover){
+    border: none;
+    transition: 0.2s;
+}
+
+#navigate-signup-btn{
+    border: none;
+    border-radius: 16px;
+    font-size: 1rem;
+}
+
+#navigate-signup-btn:hover{
+    border: none;
+    scale: 1.05;
+    transition: 0.2s;
+}
+
+#navigate-signup-btn:not(:hover){
+    border: none;
+    transition: 0.2s;
+}
+
 
 
 .signup-container{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
 }
 
 .error-msg{

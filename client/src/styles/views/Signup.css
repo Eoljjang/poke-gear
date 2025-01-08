@@ -36,9 +36,37 @@
     border: 1px solid black;
 }
 
+.btn-return:hover{
+    scale: 1.05;
+    transition: 0.2s;
+    border: 1px solid black;
+}
+
+.btn-return:not(:hover){
+    transition: 0.2s;
+    border: 1px solid black;
+}
+
 .btn-submit{
     width: 100%;
     background-color: #6ec0f7;
     color: black;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.btn-submit:hover{
+    border: none;
+    scale: 1.05;
+    transition: 0.2s;
+}
+
+.btn-submit:not(:hover){
+    transition: 0.2s;
+    border: none;
+}
+
+.error-msg{
+    color:#FF3F3F;
+    font-weight: 150;
+    font-style: italic;
 }

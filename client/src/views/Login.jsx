@@ -66,13 +66,13 @@ function Login() {
                     {errorMsg &&(
                         <div className="error-msg">{errorMsg}</div> // display error msg if any when trying to log in.
                     )}
-                    <button type="submit">Login</button>
+                    <button type="submit" id="login-btn">Login</button>
                 </form>
             </div>
 
             <div className="signup-container">
                 <h3>No Account?</h3>
-                <button onClick={btnSignupClick}>Signup</button>
+                <button id="navigate-signup-btn"onClick={btnSignupClick}>Signup</button>
             </div>
 
         </div>

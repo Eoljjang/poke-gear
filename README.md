@@ -14,8 +14,9 @@ Note Taking Functionality:
 
 ### Release v0.2 Goals: Time to add some structure.
 - [ ] Find a place to permanently host the website.
-- [ ] Online storage, some sort of database integration.
-- [ ] User can make an account to save thier information.
+- [X] Online storage, some sort of database integration.
+- [X] User can make an account to save thier information.
+- [ ] User can save their notes. 
 
 ### Release v0.3 Goals: Integration of API's
 - [ ] Decklist creation

@@ -5,51 +5,14 @@ import ActiveNote from "../components/ActiveNote";
 import ContextMenu from "../components/ContextMenu";
 import Toolbar from "../components/Toolbar.jsx";
 import { useState, useRef, useEffect } from "react";
+import { useOutletContext } from "react-router-dom";
 import "react-quill/dist/quill.snow.css"; // Import Quill's styling.
 
 function NotesPage() {
   // Single source of truth
-  const [dummyData, setDummyData] = useState([
-    {
-      notebook_id: 1,
-      name: "Notebook 1",
-      sprite: "Put the link to the api sprite here.",
-      notes: [
-        {
-          note_id: 1,
-          title: "Deck 1",
-          date: "mm/dd/yyyy",
-          content: "Content of note 1",
-        },
-        {
-          note_id: 2,
-          title: "Deck 2",
-          date: "mm/dd/yyyy",
-          content: "Content of note 2",
-        },
-      ],
-    },
-    {
-      notebook_id: 2,
-      name: "Notebook 2",
-      sprite: "Put the link to the api sprite here.",
-      notes: [
-        {
-          note_id: 3,
-          title: "Deck 3",
-          date: "mm/dd/yyyy",
-          content: "Content of note 3",
-        },
-        {
-          note_id: 4,
-          title: "Deck 4",
-          date: "mm/dd/yyyy",
-          content: "Content of note 4",
-        },
-      ],
-    },
-  ]);
-
+  //const [userData, setUserData] = useState(userData);
+  const [userData, setUserData] = useOutletContext();
+  console.log("Here it is: ", userData);
   const [isVisible, setIsVisible] = useState({
     notebooks: true,
     notes: false,
@@ -67,7 +30,7 @@ function NotesPage() {
   const [renameValue, setRenameValue] = useState("");
 
   // Current notebook = selected one.
-  const currentNotebook = dummyData.find(
+  const currentNotebook = userData.find(
     (notebook) => notebook.notebook_id === selectedNotebook
   );
 
@@ -121,8 +84,8 @@ function NotesPage() {
     // Delete & its a notebook.
     if (action === "menu-delete" && clickedItem.notebook_id) {
       console.log(clickedItem);
-      setDummyData(
-        dummyData.filter(
+      setUserData(
+        userData.filter(
           (notebook) => notebook.notebook_id !== clickedItem.notebook_id
         )
       );
@@ -130,8 +93,8 @@ function NotesPage() {
 
     // Delete and its a note.
     else if (action === "menu-delete" && clickedItem.note_id) {
-      setDummyData(
-        dummyData.map((notebook) => ({
+      setuserData(
+        userData.map((notebook) => ({
           ...notebook,
           notes: notebook.notes.filter(
             (note) => note.note_id !== clickedItem.note_id
@@ -141,7 +104,7 @@ function NotesPage() {
     }
 
     if (action === "menu-rename" && clickedItem.notebook_id) {
-      const notebookToRename = dummyData.find(
+      const notebookToRename = userData.find(
         (nb) => nb.notebook_id === clickedItem.notebook_id
       );
       if (notebookToRename) {
@@ -149,7 +112,7 @@ function NotesPage() {
         setRenameValue(notebookToRename.name);
       }
     } else if (action === "menu-rename" && clickedItem.note_id) {
-      const noteToRename = dummyData
+      const noteToRename = userData
         .find((nb) => nb.notebook_id === selectedNotebook)
         .notes.find((note) => note.note_id === clickedItem.note_id);
       if (noteToRename) {
@@ -164,7 +127,7 @@ function NotesPage() {
 
   const handleRenameUpdate = () => {
     if (renamingNotebookId) {
-      setDummyData((prevData) =>
+      setUserData((prevData) =>
         prevData.map((notebook) => ({
           ...notebook,
           name:
@@ -177,8 +140,8 @@ function NotesPage() {
       setRenameValue("");
       return;
     } else if (renamingNoteId) {
-      setDummyData(
-        dummyData.map((notebook) => ({
+      setUserData(
+        userData.map((notebook) => ({
           ...notebook,
           notes: notebook.notes.map((note) => ({
             ...note,
@@ -193,11 +156,11 @@ function NotesPage() {
 
   const handleCreateNotebook = () => {
     const newNotebook = {
-      notebook_id: dummyData.length + 1,
-      name: `Notebook ${dummyData.length + 1}`,
+      notebook_id: userData.length + 1,
+      name: `Notebook ${userData.length + 1}`,
       notes: [],
     };
-    setDummyData([...dummyData, newNotebook]);
+    setUserData([...userData, newNotebook]);
   };
 
   const handleCreateNote = () => {
@@ -208,7 +171,7 @@ function NotesPage() {
         content: "",
         date: "mm/dd/yyyy",
       };
-      setDummyData((prevData) =>
+      setUserData((prevData) =>
         prevData.map((notebook) =>
           notebook.notebook_id === selectedNotebook
             ? { ...notebook, notes: [...notebook.notes, newNote] }
@@ -219,7 +182,7 @@ function NotesPage() {
   };
 
   const handleNoteTitleUpdate = (noteId, updatedTitle) => {
-    setDummyData((prevData) =>
+    setUserData((prevData) =>
       prevData.map((notebook) =>
         notebook.notebook_id === selectedNotebook
           ? {
@@ -236,7 +199,7 @@ function NotesPage() {
   };
 
   const handleNoteUpdate = (noteId, updatedContent) => {
-    setDummyData((prevData) =>
+    setUserData((prevData) =>
       prevData.map((notebook) =>
         notebook.notebook_id === selectedNotebook
           ? {
@@ -306,7 +269,7 @@ function NotesPage() {
           {/* 1) Notebook Selector */}
           {isVisible.notebooks && (
             <div className="notebooks-section">
-              {dummyData.map((notebook) => (
+              {userData.map((notebook) => (
                 <Notebook
                   key={notebook.notebook_id}
                   notebook={notebook}

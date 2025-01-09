@@ -65,3 +65,4 @@ Note Taking Functionality:
 
 ### Backlog
 - [ ] Show a circle loading icon when note is updating to to show it's successfully uploaded to db.
+- [ ] Implement debounce for data syncing.

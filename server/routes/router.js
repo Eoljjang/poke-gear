@@ -3,6 +3,12 @@ const express = require('express')
 const router = express.Router()
 const schemas = require('../models/schemas');
 const { useInRouterContext } = require('react-router-dom');
+
+router.get("/", async (req, res) => {
+    res.send("Hello world!")
+})
+
+// -------- LOGIN AND SIGNUP --------------
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;
     console.log("Attempting login through backend...")
@@ -30,25 +36,6 @@ router.post('/login', async (req, res) => {
     }
 
 });
-
-router.get("/", async (req, res) => {
-    res.send("Hello world!")
-})
-
-router.post("/getUserData", async (req, res) => {
-    const {userEmail} = req.body;
-    console.log(userEmail);
-    try {
-        const user = await schemas.Users.findOne({email: userEmail});
-        if (!user){
-            return res.status(404).json({message: "Unable to retrieve user data for some reason. User does not exist."})
-        }
-        res.send(user.notebooks);
-    }
-    catch (e){
-        return res.status(500).json({message: "Error when retrieving user data:", e})
-    }
-})
 
 router.post('/signup', async(req, res) => {
     const {firstName, lastName, password, email} = req.body
@@ -79,6 +66,48 @@ router.post('/signup', async(req, res) => {
     }
 })
 
+// -------- LOGIN AND SIGNUP --------------
+
+// -------- LOAD USER DATA --------------
+
+router.post("/getUserData", async (req, res) => {
+    const {userEmail} = req.body;
+    console.log(userEmail);
+    try {
+        const user = await schemas.Users.findOne({email: userEmail});
+        if (!user){
+            return res.status(404).json({message: "Unable to retrieve user data for some reason. User does not exist."})
+        }
+        res.send(user.notebooks);
+    }
+    catch (e){
+        return res.status(500).json({message: "Error when retrieving user data:", e})
+    }
+})
+
+// -------- LOAD USER DATA --------------
+
+
+
+// -------- NOTEBOOK EDITING --------------
+router.post('/addNotebook', async(req, res) => {
+
+})
+
+router.delete('/deleteNotebook', async(req, res) => {
+
+})
+
+// -------- NOTEBOOK EDITING --------------
+
+
+
+// -------- NOTE EDITING --------------
+
+router.post('/addNote', async(req, res) => {
+
+})
+
 router.put('/updateNote', async(req, res) => {
     const {noteContent, userEmail, notebook_id, note_id} = req.body
 
@@ -87,7 +116,6 @@ router.put('/updateNote', async(req, res) => {
     const note_id_int = Number(note_id);
 
     try {
-
         // 1) Get the current user
         const user = await schemas.Users.findOne({email: userEmail});
    
@@ -105,7 +133,7 @@ router.put('/updateNote', async(req, res) => {
         if (!note){
             return res.status(404).json({message: "Note could not be found when updating note."});
         }
-        
+
         // 4) Update the note content
         note.content = noteContent;
 
@@ -119,5 +147,50 @@ router.put('/updateNote', async(req, res) => {
         return res.status(500).json({message: "Sever error when trying to update note."})
     }
 })
+
+router.put('/updateNoteTitle', async(req, res) => {
+    const {title, userEmail, notebook_id, note_id} = req.body;
+    const notebook_id_int = Number(notebook_id);
+    const note_id_int = Number(note_id);
+
+    try {
+        // 1) Get the current user
+        const user = await schemas.Users.findOne({email: userEmail});
+   
+        if (!user){
+            return res.status(404).json({message: "Email could not be found when updating note title."})
+        }
+        // 2) Get the notebook
+        const notebook = user.notebooks.find(nb => nb.notebook_id === notebook_id_int);
+        console.log('what');
+        if (!notebook){
+            return res.status(404).json({message: "Notebook could not be found when updating note title."});
+        }
+
+        // 3) Get the note
+        const note = notebook.notes.find(n => n.note_id === note_id_int); // issue here
+        if (!note){
+            return res.status(404).json({message: "Note could not be found when updating note title."});
+        }
+
+        // 4) Update the note title.
+        note.title = title;
+
+        // 5) Save user with updated content.
+        await user.save();
+        return res.status(200).json({message: "Successfully updated note title"})
+    }
+    catch(e){
+        console.log(e)
+        return res.status(500).json({message: "Server error when trying to update note title."});
+    }
+})
+
+router.delete('/deleteNote', async(req, res) => {
+
+})
+
+// -------- NOTE EDITING --------------
+
 
 module.exports = router

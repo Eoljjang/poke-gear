@@ -17,9 +17,26 @@ function ActiveNote({activeNote, handleNoteTitleUpdate, handleNoteUpdate}){
     const notebook_id = queryParams.get("notebook_id");
     const note_id = queryParams.get("note_id");
 
-    const handleTitleChange = (value) =>{
+    const handleTitleChange = async(value) =>{
         if (activeNote.title !== value) {
             handleNoteTitleUpdate(activeNote.note_id, value)
+            const putData = {
+                title: value,
+                userEmail: userEmail,
+                notebook_id: notebook_id,
+                note_id: note_id
+            };
+            await axios.put('http://localhost:4000/updateNoteTitle', putData, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                console.log(response);
+            })
+            .catch(error => {
+                console.log(error);
+            })
         }
     }
     const handleNoteChange = async (value) => {

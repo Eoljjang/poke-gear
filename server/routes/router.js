@@ -81,7 +81,43 @@ router.post('/signup', async(req, res) => {
 
 router.put('/updateNote', async(req, res) => {
     const {noteContent, userEmail, notebook_id, note_id} = req.body
-    return res.status(200).json({message: "Successfully updated note content on server."})
+
+    // Mongo has these fields as int. They come as strings so we have to convert them.
+    const notebook_id_int = Number(notebook_id);
+    const note_id_int = Number(note_id);
+
+    try {
+
+        // 1) Get the current user
+        const user = await schemas.Users.findOne({email: userEmail});
+   
+        if (!user){
+            return res.status(404).json({message: "Email could not be found when updating note."})
+        }
+        // 2) Get the notebook
+        const notebook = user.notebooks.find(nb => nb.notebook_id === notebook_id_int);
+        if (!notebook){
+            return res.status(404).json({message: "Notebook could not be found when updating note."});
+        }
+
+        // 3) Get the note
+        const note = notebook.notes.find(n => n.note_id === note_id_int); // issue here
+        if (!note){
+            return res.status(404).json({message: "Note could not be found when updating note."});
+        }
+
+        // 4) Update the note content
+        note.content = noteContent;
+
+        // 5) Save user with updated content.
+        await user.save();
+        return res.status(200).json({message: "Successfully updated note content."})
+
+    }
+    catch(error){
+        console.log(error);
+        return res.status(500).json({message: "Sever error when trying to update note."})
+    }
 })
 
 module.exports = router

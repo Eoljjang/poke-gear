@@ -26,14 +26,21 @@ function ActiveNote({activeNote, handleNoteTitleUpdate, handleNoteUpdate}){
         if (activeNote.content !== value) {
             handleNoteUpdate(activeNote.note_id, value); // Only call the update handler if content changes.
             const putData = {
-                noteContent: activeNote.content,
+                noteContent: value,
                 userEmail: userEmail,
                 notebook_id: notebook_id,
                 note_id: note_id
             }; 
-            await axios.put('http://localhost:4000/updateNote', putData)
+            await axios.put('http://localhost:4000/updateNote', putData, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
             .then(response => {
                 console.log(response);
+            })
+            .catch(error => {
+                console.log(error);
             })
         }
     }

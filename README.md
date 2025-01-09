@@ -59,3 +59,4 @@ Note Taking Functionality:
 - Currently when the user logs in, it loads all of their data. 
     - however if they sign out, that data is still visible in the console under "network".
     - This is horrendus security measures. So we should take this into account later on. WORK ON SECURITY.
+- Currently we are querying the database from pre-defined ids like notebook_id, note_id, etc. Mongo actually automatically genereates an object id for each item. So it might be worthwhile to use that instead but idk yet.

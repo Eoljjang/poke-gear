@@ -105,7 +105,7 @@ router.put('/updateNote', async(req, res) => {
         if (!note){
             return res.status(404).json({message: "Note could not be found when updating note."});
         }
-
+        
         // 4) Update the note content
         note.content = noteContent;
 

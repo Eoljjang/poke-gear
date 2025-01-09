@@ -20,7 +20,6 @@ function App() {
   // Query Parameters (Reads the URL)
   const queryParams = new URLSearchParams(location.search);
   const userEmail = queryParams.get('userEmail');
-  console.log("On dashboard:", userData);
 
   // Obtain user data
   useEffect(() => {

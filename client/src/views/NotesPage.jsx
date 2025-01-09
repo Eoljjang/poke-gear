@@ -8,6 +8,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
 import "react-quill/dist/quill.snow.css"; // Import Quill's styling.
+import axios from "axios";
 
 function NotesPage() {
   // Single source of truth
@@ -43,6 +44,8 @@ function NotesPage() {
   // For updating the url
   const navigate = useNavigate();
   const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const userEmail = queryParams.get("userEmail");
 
   // Handlers
   const handleNotebookClick = (e, notebookId) => {
@@ -95,7 +98,7 @@ function NotesPage() {
     }
   };
 
-  const handleContextMenuOptionClick = (action, clickedItem) => {
+  const handleContextMenuOptionClick = async (action, clickedItem) => {
     console.log(`Selected option: ${action}`);
 
     // Delete & its a notebook.
@@ -118,6 +121,22 @@ function NotesPage() {
           ),
         }))
       );
+      // Update the database. 
+      const deleteData = {
+        notebook_id: selectedNotebook,
+        note_id: clickedItem.note_id,
+        userEmail: userEmail
+      }
+
+      await axios.delete('http://localhost:4000/deleteNote', {
+        data: deleteData
+      })
+      .then(response => {
+        console.log(response);
+      })
+      .catch(e => {
+        console.log(e);
+      })
     }
 
     if (action === "menu-rename" && clickedItem.notebook_id) {

@@ -72,7 +72,6 @@ router.post('/signup', async(req, res) => {
 
 router.post("/getUserData", async (req, res) => {
     const {userEmail} = req.body;
-    console.log(userEmail);
     try {
         const user = await schemas.Users.findOne({email: userEmail});
         if (!user){
@@ -162,7 +161,6 @@ router.put('/updateNoteTitle', async(req, res) => {
         }
         // 2) Get the notebook
         const notebook = user.notebooks.find(nb => nb.notebook_id === notebook_id_int);
-        console.log('what');
         if (!notebook){
             return res.status(404).json({message: "Notebook could not be found when updating note title."});
         }
@@ -187,7 +185,27 @@ router.put('/updateNoteTitle', async(req, res) => {
 })
 
 router.delete('/deleteNote', async(req, res) => {
+    const {notebook_id, note_id, userEmail} = req.body
+    const notebook_id_int = Number(notebook_id);
+    const note_id_int = Number(note_id);
 
+    try{
+        const user = await schemas.Users.findOne({email: userEmail});
+        const notebook = user.notebooks.find(nb => nb.notebook_id === notebook_id_int);
+        const noteIndex = notebook.notes.findIndex(note => note.note_id === note_id_int);
+        if (noteIndex === -1){
+            return res.status(404).json({message: "Note not found when deleting"});
+        }
+
+        // Remove the note from the notes array
+        notebook.notes.splice(noteIndex, 1);
+        await user.save();
+        res.status(200).json({message: "note was successfully deleted"})
+
+    }
+    catch(e){
+        return res.status(500).json({message: e});
+    }
 })
 
 // -------- NOTE EDITING --------------

@@ -66,10 +66,7 @@ router.post('/signup', async(req, res) => {
     }
 })
 
-// -------- LOGIN AND SIGNUP --------------
-
 // -------- LOAD USER DATA --------------
-
 router.post("/getUserData", async (req, res) => {
     const {userEmail} = req.body;
     try {
@@ -84,130 +81,26 @@ router.post("/getUserData", async (req, res) => {
     }
 })
 
-// -------- LOAD USER DATA --------------
-
-
-
-// -------- NOTEBOOK EDITING --------------
-router.post('/addNotebook', async(req, res) => {
-
-})
-
-router.delete('/deleteNotebook', async(req, res) => {
-
-})
-
-// -------- NOTEBOOK EDITING --------------
-
-
-
-// -------- NOTE EDITING --------------
-
-router.post('/addNote', async(req, res) => {
-})
-
-router.put('/updateNote', async(req, res) => {
-    const {noteContent, userEmail, notebook_id, note_id} = req.body
-
-    // Mongo has these fields as int. They come as strings so we have to convert them.
-    const notebook_id_int = Number(notebook_id);
-    const note_id_int = Number(note_id);
-
-    try {
-        // 1) Get the current user
-        const user = await schemas.Users.findOne({email: userEmail});
-   
-        if (!user){
-            return res.status(404).json({message: "Email could not be found when updating note."})
-        }
-        // 2) Get the notebook
-        const notebook = user.notebooks.find(nb => nb.notebook_id === notebook_id_int);
-        if (!notebook){
-            return res.status(404).json({message: "Notebook could not be found when updating note."});
-        }
-
-        // 3) Get the note
-        const note = notebook.notes.find(n => n.note_id === note_id_int); // issue here
-        if (!note){
-            return res.status(404).json({message: "Note could not be found when updating note."});
-        }
-
-        // 4) Update the note content
-        note.content = noteContent;
-
-        // 5) Save user with updated content.
-        await user.save();
-        return res.status(200).json({message: "Successfully updated note content."})
-
-    }
-    catch(error){
-        console.log(error);
-        return res.status(500).json({message: "Sever error when trying to update note."})
-    }
-})
-
-router.put('/updateNoteTitle', async(req, res) => {
-    const {title, userEmail, notebook_id, note_id} = req.body;
-    const notebook_id_int = Number(notebook_id);
-    const note_id_int = Number(note_id);
-
-    try {
-        // 1) Get the current user
-        const user = await schemas.Users.findOne({email: userEmail});
-   
-        if (!user){
-            return res.status(404).json({message: "Email could not be found when updating note title."})
-        }
-        // 2) Get the notebook
-        const notebook = user.notebooks.find(nb => nb.notebook_id === notebook_id_int);
-        if (!notebook){
-            return res.status(404).json({message: "Notebook could not be found when updating note title."});
-        }
-
-        // 3) Get the note
-        const note = notebook.notes.find(n => n.note_id === note_id_int); // issue here
-        if (!note){
-            return res.status(404).json({message: "Note could not be found when updating note title."});
-        }
-
-        // 4) Update the note title.
-        note.title = title;
-
-        // 5) Save user with updated content.
-        await user.save();
-        return res.status(200).json({message: "Successfully updated note title"})
-    }
-    catch(e){
-        console.log(e)
-        return res.status(500).json({message: "Server error when trying to update note title."});
-    }
-})
-
-router.delete('/deleteNote', async(req, res) => {
-    const {notebook_id, note_id, userEmail} = req.body
-    const notebook_id_int = Number(notebook_id);
-    const note_id_int = Number(note_id);
+// -------- LIVE SYNCING DATA WITH DB --------------
+router.post('/syncUserData', async(req, res) => {
+    // Note that userData is their notebooks collection (which includes notes).
+    // - it does not include the top level user information such as their name, password, etc.
+    const {userEmail, userData} = req.body;
+    console.log("syncing data...")
 
     try{
         const user = await schemas.Users.findOne({email: userEmail});
-        const notebook = user.notebooks.find(nb => nb.notebook_id === notebook_id_int);
-        const noteIndex = notebook.notes.findIndex(note => note.note_id === note_id_int);
-        if (noteIndex === -1){
-            return res.status(404).json({message: "Note not found when deleting"});
-        }
 
-        // Remove the note from the notes array
-        notebook.notes.splice(noteIndex, 1);
+        // Update all user fields and their sub collections whenever there's a change.
+        user.notebooks = userData;
+
         await user.save();
-        res.status(200).json({message: "note was successfully deleted"})
+        res.status(200).json({message: "User data synced successfully."})
 
     }
     catch(e){
-        return res.status(500).json({message: e});
+        res.status(500).json({message: "Error when updating user data."})
     }
 })
-
-// -------- NOTE EDITING --------------
-
 
 module.exports = router

@@ -98,7 +98,7 @@ function NotesPage() {
     }
   };
 
-  const handleContextMenuOptionClick = async (action, clickedItem) => {
+  const handleContextMenuOptionClick = (action, clickedItem) => {
     console.log(`Selected option: ${action}`);
 
     // Delete & its a notebook.
@@ -121,22 +121,6 @@ function NotesPage() {
           ),
         }))
       );
-      // Update the database. 
-      const deleteData = {
-        notebook_id: selectedNotebook,
-        note_id: clickedItem.note_id,
-        userEmail: userEmail
-      }
-
-      await axios.delete('http://localhost:4000/deleteNote', {
-        data: deleteData
-      })
-      .then(response => {
-        console.log(response);
-      })
-      .catch(e => {
-        console.log(e);
-      })
     }
 
     if (action === "menu-rename" && clickedItem.notebook_id) {
@@ -199,7 +183,7 @@ function NotesPage() {
     setUserData([...userData, newNotebook]);
   };
 
-  const handleCreateNote = async() => {
+  const handleCreateNote = () => {
     if (currentNotebook) {
       const newNote = {
         note_id: currentNotebook.notes.length + 1,
@@ -214,14 +198,6 @@ function NotesPage() {
             : notebook
         )
       );
-      await axios.post('http://localhost:4000/addNote', newNote)
-      .then(response => {
-        console.log(response)
-      })
-      .catch(e => {
-        console.log(e)
-      })
-
     }
   };
 

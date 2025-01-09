@@ -21,14 +21,37 @@ function App() {
   const queryParams = new URLSearchParams(location.search);
   const userEmail = queryParams.get('userEmail');
 
-  // Obtain user data
+  // FETCHES USER DATA
   useEffect(() => {
     const postData = {
       userEmail: userEmail
     }
     axios.post("http://localhost:4000/getUserData", postData)
     .then(userData => setUserData(userData.data))
-  }, [userEmail])
+  }, [userEmail]) // re-fetches if the email changes (new user logs in).
+  
+  // LIVE SYNCING USER DATA WITH DB
+  const syncUserData = async(newUserData) => {
+    const postData = {
+      userEmail: userEmail,
+      userData: newUserData
+    }
+    try{
+      await axios.post("http://localhost:4000/syncUserData", postData)
+    }
+    catch(e){
+      console.error("Error saving user data:", e)
+    }
+  }
+
+  // ON USER DATA CHANGE, SYNC.
+  useEffect(() => {
+    if (userData.length > 0){
+      syncUserData(userData); // Sync the enire user data object.
+    }
+  }, [userData]) // Re-syncs whenever user's notebook / notes data changes.
+  
+
 
   const openSidebar = () => {
       setSidebarOpen(true)

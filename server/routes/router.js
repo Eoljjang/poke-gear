@@ -104,7 +104,6 @@ router.delete('/deleteNotebook', async(req, res) => {
 // -------- NOTE EDITING --------------
 
 router.post('/addNote', async(req, res) => {
-
 })
 
 router.put('/updateNote', async(req, res) => {

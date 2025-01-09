@@ -199,13 +199,13 @@ function NotesPage() {
     setUserData([...userData, newNotebook]);
   };
 
-  const handleCreateNote = () => {
+  const handleCreateNote = async() => {
     if (currentNotebook) {
       const newNote = {
         note_id: currentNotebook.notes.length + 1,
         title: `New Note`,
         content: "",
-        date: "mm/dd/yyyy",
+        //note_date: "mm/dd/yyyy",
       };
       setUserData((prevData) =>
         prevData.map((notebook) =>
@@ -214,6 +214,14 @@ function NotesPage() {
             : notebook
         )
       );
+      await axios.post('http://localhost:4000/addNote', newNote)
+      .then(response => {
+        console.log(response)
+      })
+      .catch(e => {
+        console.log(e)
+      })
+
     }
   };
 

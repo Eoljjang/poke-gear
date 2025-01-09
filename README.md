@@ -16,7 +16,9 @@ Note Taking Functionality:
 - [ ] Find a place to permanently host the website.
 - [X] Online storage, some sort of database integration.
 - [X] User can make an account to save thier information.
-- [ ] User can save their notes. 
+- [X] Live saving of note editing.
+- [ ] Save notebooks when they're created / deleted.
+- [ ] Save notes when they're created / deleted.
 
 ### Release v0.3 Goals: Integration of API's
 - [ ] Decklist creation
@@ -60,3 +62,6 @@ Note Taking Functionality:
     - however if they sign out, that data is still visible in the console under "network".
     - This is horrendus security measures. So we should take this into account later on. WORK ON SECURITY.
 - Currently we are querying the database from pre-defined ids like notebook_id, note_id, etc. Mongo actually automatically genereates an object id for each item. So it might be worthwhile to use that instead but idk yet.
+
+### Backlog
+- [ ] Show a circle loading icon when note is updating to to show it's successfully uploaded to db.

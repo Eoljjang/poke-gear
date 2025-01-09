@@ -110,7 +110,7 @@ function NotesPage() {
 
     // Delete and its a note.
     else if (action === "menu-delete" && clickedItem.note_id) {
-      setuserData(
+      setUserData(
         userData.map((notebook) => ({
           ...notebook,
           notes: notebook.notes.filter(

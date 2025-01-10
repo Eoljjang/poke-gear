@@ -17,9 +17,11 @@ Note Taking Functionality:
 - [X] Online storage, some sort of database integration.
 - [X] User can make an account to save thier information.
 - [X] Live saving of note editing.
-- [ ] Save notebooks when they're created / deleted.
-- [ ] Save notes when they're created / deleted.
-
+- [X] Save notebooks when they're created / deleted.
+- [X] Save notes when they're created / deleted.
+- [X] Add "last edited" and "date created" fields.
+- [ ] Implement proper debounce for note update, renaming, add, delete, etc. to not overwhelm the database.
+ 
 ### Release v0.3 Goals: Integration of API's
 - [ ] Decklist creation
 - [ ] Able to add tags to notes (Ex: matchup, decklist, review, custom, etc.) -> Right click to add a tag.

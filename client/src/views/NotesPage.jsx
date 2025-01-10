@@ -9,6 +9,7 @@ import { useState, useRef, useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
 import "react-quill/dist/quill.snow.css"; // Import Quill's styling.
 import axios from "axios";
+import {debounce} from 'lodash';
 
 function NotesPage() {
   // Single source of truth
@@ -218,7 +219,7 @@ function NotesPage() {
     );
   };
 
-  const handleNoteUpdate = (noteId, updatedContent) => {
+  const handleNoteUpdate = debounce((noteId, updatedContent) => {
     const now = new Date();
     const formattedDate = now.toISOString().split("T")[0]; // yyyy-mm-dd
     const formattedTime = now.toLocaleTimeString("en-US", { hour12: true, hour:'numeric', minute: 'numeric' }); // Show in 12hr time. Hide the seconds.
@@ -241,7 +242,7 @@ function NotesPage() {
           : notebook
       )
     );
-  };
+  }, 1000); // 1s debounce between each keystroke.
 
   const onClickCollapseNotebooks = () => {
     console.log("reached");

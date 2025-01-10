@@ -17,9 +17,9 @@ const Sidebar = ({ children, isOpen, onClose }) => {
 
           {React.Children.map(children, (child, index) => (
             <li onClick={onClose} className="sidebar-list-item">
-              <text>
+              <p>
                 {child}
-              </text>
+              </p>
             </li>
 
           ))}

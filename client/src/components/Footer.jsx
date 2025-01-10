@@ -8,7 +8,7 @@ function Footer({footerLinks}) {
     return(
         <footer>
             {Object.entries(footerLinks).map(([text, url], index) => (
-                <a key={url} href={url} className="footer-link"> {/* Using the URL as the key. If it raises issues later on check here.*/}
+                <a key={`${url}-${index}`} href={url} className="footer-link">
                     {text}
                 </a>
             ))}

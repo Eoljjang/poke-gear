@@ -189,7 +189,7 @@ function NotesPage() {
         note_id: currentNotebook.notes.length + 1,
         title: `New Note`,
         content: "",
-        //note_date: "mm/dd/yyyy",
+        note_date: new Date().toISOString(), // have to assign the date locally.
       };
       setUserData((prevData) =>
         prevData.map((notebook) =>
@@ -219,6 +219,10 @@ function NotesPage() {
   };
 
   const handleNoteUpdate = (noteId, updatedContent) => {
+    const now = new Date();
+    const formattedDate = now.toISOString().split("T")[0]; // yyyy-mm-dd
+    const formattedTime = now.toLocaleTimeString("en-US", { hour12: true, hour:'numeric', minute: 'numeric' }); // Show in 12hr time. Hide the seconds.
+
     setUserData((prevData) =>
       prevData.map((notebook) =>
         notebook.notebook_id === selectedNotebook
@@ -226,7 +230,11 @@ function NotesPage() {
               ...notebook,
               notes: notebook.notes.map((note) =>
                 note.note_id === noteId
-                  ? { ...note, content: updatedContent }
+                  ? { 
+                    ...note, 
+                    content: updatedContent,
+                    last_edited: `${formattedDate} at ${formattedTime}`,
+                  }
                   : note
               ),
             }

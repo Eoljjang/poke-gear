@@ -35,6 +35,7 @@ function ActiveNote({activeNote, handleNoteTitleUpdate, handleNoteUpdate}){
                         value={activeNote.title}
                         onChange={(e) => handleTitleChange(e.target.value)}
                         placeholder="Untitled"
+                        maxLength={50}
                     />
                     <div className="active-note-subheader">
                         Date Created: {activeNote.note_date.split("T")[0]} {/* Take off the time created. */}

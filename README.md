@@ -66,3 +66,4 @@ Note Taking Functionality:
 ### Backlog
 - [ ] Show a circle loading icon when note is updating to to show it's successfully uploaded to db.
 - [ ] Implement debounce for data syncing.
+- [ ] when you spam update the database it seems to break it and it'll stop accepting requests unless you restar it. Debounce has been implemented for note content but it needs to be done for renaming the note title as well.

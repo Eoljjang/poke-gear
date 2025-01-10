@@ -96,10 +96,11 @@ router.post('/syncUserData', async(req, res) => {
 
         await user.save();
         res.status(200).json({message: "User data synced successfully."})
+        console.log("User data synced successfully.")
 
     }
     catch(e){
-        res.status(500).json({message: "Error when updating user data."})
+        console.error("Error when syncing data:", e)
     }
 })
 

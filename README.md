@@ -21,6 +21,7 @@ Note Taking Functionality:
 - [X] Save notes when they're created / deleted.
 - [X] Add "last edited" and "date created" fields.
 - [ ] Implement proper debounce for note update, renaming, add, delete, etc. to not overwhelm the database.
+- [ ] Show a "saving" icon while the data is being uploaded to the db.
  
 ### Release v0.3 Goals: Integration of API's
 - [ ] Decklist creation

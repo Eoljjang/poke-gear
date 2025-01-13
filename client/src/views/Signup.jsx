@@ -2,7 +2,8 @@ import { useState } from "react";
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
 import "../styles/views/Signup.css"
-//const backendURL = process.env.BACKEND_URL || "https://poke-gear.onrender.com/";
+const dbUrl = import.meta.env.VITE_DB_URL; // Takes the db_url depending on if you're on dev or production.
+
 function Signup() {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -19,7 +20,7 @@ function Signup() {
             password: password,
         }
 
-        await axios.post("http://localhost:4000/signup", postData)
+        await axios.post(dbUrl+"/signup", postData)
         .then(response => {
             navigate("/login");
             console.log(response.data.message);
@@ -40,7 +41,7 @@ function Signup() {
     const handleSubmit = (e) => {
         e.preventDefault()
         postCreateUser()
-        
+
     }
 
     const handleReturn = (e) => { // cancel signup and go back to the login.

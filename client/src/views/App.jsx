@@ -10,6 +10,7 @@ import {Outlet} from "react-router-dom"
 import '../styles/views/Dashboard.css'
 import '../styles/views/App.css'
 import axios from "axios"
+const dbUrl = import.meta.env.VITE_DB_URL; // Takes the db_url depending on if you're on dev or production.
 
 
 function App() {
@@ -27,7 +28,7 @@ function App() {
     const postData = {
       userEmail: userEmail
     }
-    axios.post("http://localhost:4000/getUserData", postData)
+    axios.post(dbUrl + "/getUserData", postData)
     .then(userData => setUserData(userData.data))
   }, [userEmail]) // re-fetches if the email changes (new user logs in).
 
@@ -42,7 +43,7 @@ function App() {
     };
 
     try {
-      await axios.post("http://localhost:4000/syncUserData", postData);
+      await axios.post(dbUrl + "/syncUserData", postData);
       setTimeout(() => {
         setSyncing(false); // Hide syncing after the delay
       }, 2000); // Show syncing icon for 2 s.

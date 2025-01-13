@@ -8,7 +8,7 @@
     "watch": "node --watch app.js",
     "client": "npm run dev --prefix client",
     "server": "npm start --prefix server",
-    "start-all": "concurrently \"npm run dev --prefix client\" \"npm start --prefix server\""
+    "start-all": "concurrently \"npm run dev --prefix client\" \"npm start-dev --prefix server\""
   },
   "keywords": [],
   "author": "",

@@ -18,7 +18,7 @@ function Login() {
             password: password
         }
 
-        await axios.post("http://localhost:4000/login", postData)
+        await axios.post("https://poke-gear.onrender.com/login", postData)
         .then(response => {
             console.log(response)
             console.log(`User ${email} and PW ${password}`)

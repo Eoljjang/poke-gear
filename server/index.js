@@ -20,8 +20,8 @@ const corsOptions = {
 app.use(cors(corsOptions))
 app.use('/', router) // router must be at end of file.
 
-const dbOptions = {useNewUrlParser: true, useUnifiedTopology: true}
-mongoose.connect(process.env.DB_URI, dbOptions)
+const dbOptions = {useNewUrlParser: true, useUnifiedTopology: true} // no need to use db options since they've been deprecated. Try adding it in again if it breaks the program.
+mongoose.connect(process.env.DB_URI)
 .then(() => console.log("DB connected."))
 .catch(err => console.log(err))
 

@@ -67,8 +67,6 @@ Note Taking Functionality:
     - This is horrendus security measures. So we should take this into account later on. WORK ON SECURITY.
 - Currently we are querying the database from pre-defined ids like notebook_id, note_id, etc. Mongo actually automatically genereates an object id for each item. So it might be worthwhile to use that instead but idk yet.
 
-### Backlog
-- [ ] Implement debounce for data syncing.
-- [ ] when you spam update the database it seems to break it and it'll stop accepting requests unless you restar it. Debounce has been implemented for note content but it needs to be done for renaming the note title as well.
+### Bugs / Tickets to Do
 - [ ] There's a version error mismatch when editing note title and note content back and forth. This occurs when you put a debounce on renaming -> Since the title may have a discrepancy with the note content.
 - [ ] The syncing icon has nothing to do with interaction with the db. It's simply called whenever setUserData is called. Would be worthwhile to implement such that it displays and waits for a 200 response from the server.

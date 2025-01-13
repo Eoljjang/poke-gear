@@ -13,7 +13,7 @@ Note Taking Functionality:
 - [X] Simple editing. Ideally we can store RTF.
 
 ### Release v0.2 Goals: Time to add some structure.
-- [ ] Find a place to permanently host the website.
+- [X] Find a place to permanently host the website.
 - [X] Online storage, some sort of database integration.
 - [X] User can make an account to save thier information.
 - [X] Live saving of note editing.

@@ -146,6 +146,9 @@ function NotesPage() {
   };
 
   const handleRenameUpdate = () => {
+    const now = new Date();
+    const formattedDate = now.toISOString().split("T")[0]; // yyyy-mm-dd
+    const formattedTime = now.toLocaleTimeString("en-US", { hour12: true, hour:'numeric', minute: 'numeric' }); // Show in 12hr time. Hide the seconds.
     if (renamingNotebookId) {
       setUserData((prevData) =>
         prevData.map((notebook) => ({
@@ -166,6 +169,7 @@ function NotesPage() {
           notes: notebook.notes.map((note) => ({
             ...note,
             title: note.note_id === renamingNoteId ? renameValue : note.title,
+            last_edited: `${formattedDate} at ${formattedTime}`, // for note only.
           })),
         }))
       );
@@ -208,6 +212,9 @@ function NotesPage() {
   };
 
   const handleNoteTitleUpdate = (noteId, updatedTitle) => {
+    const now = new Date();
+    const formattedDate = now.toISOString().split("T")[0]; // yyyy-mm-dd
+    const formattedTime = now.toLocaleTimeString("en-US", { hour12: true, hour:'numeric', minute: 'numeric' }); // Show in 12hr time. Hide the seconds.
     setUserData((prevData) =>
       prevData.map((notebook) =>
         notebook.notebook_id === selectedNotebook
@@ -215,8 +222,13 @@ function NotesPage() {
               ...notebook,
               notes: notebook.notes.map((note) =>
                 note.note_id === noteId
-                  ? { ...note, title: updatedTitle }
+                  ? {
+                    ...note,
+                    title: updatedTitle,
+                    last_edited: `${formattedDate} at ${formattedTime}`,
+                  }
                   : note
+
               ),
             }
           : notebook

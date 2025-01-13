@@ -16,6 +16,7 @@ function App() {
   const [isSidebarOpen, setSidebarOpen] = useState(false)
   const location = useLocation();
   const [userData, setUserData] = useState([]);
+  const [syncing, setSyncing] = useState(false);
 
   // Query Parameters (Reads the URL)
   const queryParams = new URLSearchParams(location.search);
@@ -29,20 +30,27 @@ function App() {
     axios.post("http://localhost:4000/getUserData", postData)
     .then(userData => setUserData(userData.data))
   }, [userEmail]) // re-fetches if the email changes (new user logs in).
-  
+
   // LIVE SYNCING USER DATA WITH DB
-  const syncUserData = async(newUserData) => {
+  const syncUserData = async (newUserData) => {
+    setSyncing(true); // Show syncing icon.
+    console.log("sync status:", syncing); // Note: This might log `false` immediately because of the async behavior of setState
+
     const postData = {
       userEmail: userEmail,
       userData: newUserData
+    };
+
+    try {
+      await axios.post("http://localhost:4000/syncUserData", postData);
+      setTimeout(() => {
+        setSyncing(false); // Hide syncing after the delay
+      }, 2000); // Show syncing icon for 2 s.
+    } catch (e) {
+      console.error("Error saving user data:", e);
+      setSyncing(false); // Ensure syncing is turned off even if an error occurs.
     }
-    try{
-      await axios.post("http://localhost:4000/syncUserData", postData)
-    }
-    catch(e){
-      console.error("Error saving user data:", e)
-    }
-  }
+  };
 
   // ON USER DATA CHANGE, SYNC.
   useEffect(() => {
@@ -50,7 +58,7 @@ function App() {
       syncUserData(userData); // Sync the enire user data object.
     }
   }, [userData]) // Re-syncs whenever user's notebook / notes data changes.
-  
+
 
 
   const openSidebar = () => {
@@ -92,7 +100,7 @@ function App() {
       - If you need to pass state, pass it through the "context" parameter.
       */}
       <div id="app-content">
-        <Outlet context={[userData, setUserData]}/>
+        <Outlet context={[userData, setUserData, syncing]}/>
       </div>
 
 

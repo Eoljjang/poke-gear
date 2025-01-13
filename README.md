@@ -69,4 +69,5 @@ Note Taking Functionality:
 
 ### Bugs / Tickets to Do
 - [ ] There's a version error mismatch when editing note title and note content back and forth. This occurs when you put a debounce on renaming -> Since the title may have a discrepancy with the note content.
-- [ ] The syncing icon has nothing to do with interaction with the db. It's simply called whenever setUserData is called. Would be worthwhile to implement such that it displays and waits for a 200 response from the server.
+- [X] <del>The syncing icon has nothing to do with interaction with the db. It's simply called whenever setUserData is called. Would be worthwhile to implement such that it displays and waits for a 200 response from the server.</del>
+    - Resolved. The syncing icon now depends on the request instead (see App.jsx syncUserData() for more details).

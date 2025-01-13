@@ -22,7 +22,7 @@ Note Taking Functionality:
 - [X] Add "last edited" and "date created" fields.
 - [X] Implement proper debounce for <del>note update</del>, renaming, <del>add</del>, <del>delete</del> to not overwhelm the database.
     - See backlog list as to why debounce was not implemented for renaming. We'll skip it for now and maybe re-visit it later.
-- [X] Show a (naiive) "saving" icon while the data is being uploaded to the db.
+- [X] Show a "syncing" icon while data is being synced to the database.
 
 ### Release v0.3 Goals: Integration of API's
 - [ ] Decklist creation

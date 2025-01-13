@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { useState } from 'react';
 import axios from "axios"
 import '../styles/views/Login.css'
-//const backendURL = process.env.BACKEND_URL || "https://poke-gear.onrender.com/";
+const dbUrl = import.meta.env.VITE_DB_URL; // Takes the db_url depending on if you're on dev or production.
 
 function Login() {
     const [email, setEmail] = useState("");
@@ -18,7 +18,7 @@ function Login() {
             password: password
         }
 
-        await axios.post("https://poke-gear.onrender.com/login", postData)
+        await axios.post(dbUrl+'/login', postData)
         .then(response => {
             console.log(response)
             console.log(`User ${email} and PW ${password}`)

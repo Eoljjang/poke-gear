@@ -2,7 +2,6 @@
 const express = require('express')
 const router = express.Router()
 const schemas = require('../models/schemas');
-const { useInRouterContext } = require('react-router-dom');
 
 router.get("/", async (req, res) => {
     res.send("Hello world!")

@@ -22,7 +22,7 @@ Note Taking Functionality:
 - [X] Add "last edited" and "date created" fields.
 - [X] Implement proper debounce for <del>note update</del>, renaming, <del>add</del>, <del>delete</del> to not overwhelm the database.
     - See backlog list as to why debounce was not implemented for renaming. We'll skip it for now and maybe re-visit it later.
-- [ ] Show a "saving" icon while the data is being uploaded to the db.
+- [X] Show a (naiive) "saving" icon while the data is being uploaded to the db.
 
 ### Release v0.3 Goals: Integration of API's
 - [ ] Decklist creation
@@ -68,7 +68,7 @@ Note Taking Functionality:
 - Currently we are querying the database from pre-defined ids like notebook_id, note_id, etc. Mongo actually automatically genereates an object id for each item. So it might be worthwhile to use that instead but idk yet.
 
 ### Backlog
-- [ ] Show a circle loading icon when note is updating to to show it's successfully uploaded to db.
 - [ ] Implement debounce for data syncing.
 - [ ] when you spam update the database it seems to break it and it'll stop accepting requests unless you restar it. Debounce has been implemented for note content but it needs to be done for renaming the note title as well.
 - [ ] There's a version error mismatch when editing note title and note content back and forth. This occurs when you put a debounce on renaming -> Since the title may have a discrepancy with the note content.
+- [ ] The syncing icon has nothing to do with interaction with the db. It's simply called whenever setUserData is called. Would be worthwhile to implement such that it displays and waits for a 200 response from the server.

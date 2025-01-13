@@ -108,6 +108,11 @@
 .active-note-section {
   flex-grow: 1; /* Ensure it takes the remaining space */
   overflow-x: hidden;
-  overflow-y: auto; /* Enable vertical scrolling when content exceeds height */
-  padding: 1.5rem; /* Optional padding for spacing */
+  overflow-y: auto; /* Enable vertical scrolling */
+
+  /* Added the following to allow syncing icon to show up in top right */
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  position: relative; /* Establish positioning context for absolute elements */
 }

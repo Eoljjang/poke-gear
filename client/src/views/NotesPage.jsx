@@ -10,6 +10,7 @@ import { useOutletContext } from "react-router-dom";
 import "react-quill/dist/quill.snow.css"; // Import Quill's styling.
 import axios from "axios";
 import {debounce} from 'lodash';
+import SyncingIcon from "../components/SyncingIcon.jsx";
 
 function NotesPage() {
   const [userData, setUserData] = useOutletContext();
@@ -29,6 +30,15 @@ function NotesPage() {
   const [renamingNoteId, setRenamingNoteId] = useState(null);
   const [renameValue, setRenameValue] = useState("");
   const [isBtnDisabled, setIsBtnDisabled] = useState(false); // Whether or not add btn is enabled. This is so that user can't spam add the add btn and overload db.
+  const [syncing, setSyncing] = useState(false); // Change this to true whenever data is syncing to the database.
+
+  // Function to handle displaying syncing
+  const handleSyncingMsg = () => {
+    setSyncing(true);
+    setTimeout(() => {
+      setSyncing(false);
+    }, 2000) // No longer syncing after 2 second.
+  }
 
   // Current notebook = selected one.
   const currentNotebook = userData.find(
@@ -161,6 +171,7 @@ function NotesPage() {
       );
       setRenamingNotebookId(null);
       setRenameValue("");
+      handleSyncingMsg();
       return;
     } else if (renamingNoteId) {
       setUserData(
@@ -175,6 +186,7 @@ function NotesPage() {
       );
       setRenamingNoteId(null);
       setRenameValue("");
+      handleSyncingMsg();
     }
   };
 
@@ -187,6 +199,7 @@ function NotesPage() {
     };
     setUserData([...userData, newNotebook]);
     setTimeout(() => setIsBtnDisabled(false), 1000); // Change btn back to enabled after 1 second.
+    handleSyncingMsg();
   };
 
   const handleCreateNote = () => {
@@ -207,6 +220,7 @@ function NotesPage() {
       );
       // Change the btn state back to enabled after 1 second.
       setTimeout(() => setIsBtnDisabled(false), 1000);
+      handleSyncingMsg();
     }
 
   };
@@ -234,9 +248,11 @@ function NotesPage() {
           : notebook
       )
     );
+    handleSyncingMsg()
   };
 
   const handleNoteUpdate = debounce((noteId, updatedContent) => {
+    handleSyncingMsg(); // displays 'syncing' message.
     const now = new Date();
     const formattedDate = now.toISOString().split("T")[0]; // yyyy-mm-dd
     const formattedTime = now.toLocaleTimeString("en-US", { hour12: true, hour:'numeric', minute: 'numeric' }); // Show in 12hr time. Hide the seconds.
@@ -259,6 +275,7 @@ function NotesPage() {
           : notebook
       )
     );
+
   }, 1000); // 1s debounce between each keystroke.
 
   const onClickCollapseNotebooks = () => {
@@ -365,6 +382,9 @@ function NotesPage() {
 
           {/* 3) Active Note Editor */}
           <div className="active-note-section">
+            {syncing && (
+              <SyncingIcon/>
+            )}
             <ActiveNote
               activeNote={activeNote}
               currentNotebook={currentNotebook}

@@ -1,0 +1,39 @@
+
+#syncing-icon{
+    position: absolute;
+    top: 0.75rem;
+    left: 1rem;
+    animation: rotate-syncing 1.5s linear infinite;
+  }
+
+  #syncing-icon,
+  #syncing-icon:after {
+    box-sizing: border-box;
+  }
+
+  #syncing-icon {
+    display: inline-block;
+    width: 30px; /* Reduced size by 10px */
+    height: 30px; /* Reduced size by 10px */
+  }
+
+  #syncing-icon:after {
+    content: " ";
+    display: block;
+    width: 24px; /* Reduced size by 10px */
+    height: 24px; /* Reduced size by 10px */
+    margin: 3px; /* Adjusted margin for the new size */
+    border-radius: 50%;
+    border: 3px solid currentColor; /* Reduced border thickness */
+    border-color: currentColor transparent currentColor transparent;
+    animation: syncing-animate 1.2s linear infinite;
+  }
+
+  @keyframes syncing-animate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }

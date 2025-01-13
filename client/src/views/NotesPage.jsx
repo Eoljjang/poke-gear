@@ -12,8 +12,6 @@ import axios from "axios";
 import {debounce} from 'lodash';
 
 function NotesPage() {
-  // Single source of truth
-  //const [userData, setUserData] = useState(userData);
   const [userData, setUserData] = useOutletContext();
   const [isVisible, setIsVisible] = useState({
     notebooks: true,
@@ -30,6 +28,7 @@ function NotesPage() {
   const [renamingNotebookId, setRenamingNotebookId] = useState(null);
   const [renamingNoteId, setRenamingNoteId] = useState(null);
   const [renameValue, setRenameValue] = useState("");
+  const [isBtnDisabled, setIsBtnDisabled] = useState(false); // Whether or not add btn is enabled. This is so that user can't spam add the add btn and overload db.
 
   // Current notebook = selected one.
   const currentNotebook = userData.find(
@@ -176,16 +175,19 @@ function NotesPage() {
   };
 
   const handleCreateNotebook = () => {
+    setIsBtnDisabled(true); // Disable the add btn.
     const newNotebook = {
       notebook_id: userData.length + 1,
       name: `Notebook ${userData.length + 1}`,
       notes: [],
     };
     setUserData([...userData, newNotebook]);
+    setTimeout(() => setIsBtnDisabled(false), 1000); // Change btn back to enabled after 1 second.
   };
 
   const handleCreateNote = () => {
     if (currentNotebook) {
+      setIsBtnDisabled(true); // Disable the add btn.
       const newNote = {
         note_id: currentNotebook.notes.length + 1,
         title: `New Note`,
@@ -199,7 +201,10 @@ function NotesPage() {
             : notebook
         )
       );
+      // Change the btn state back to enabled after 1 second.
+      setTimeout(() => setIsBtnDisabled(false), 1000);
     }
+
   };
 
   const handleNoteTitleUpdate = (noteId, updatedTitle) => {
@@ -231,8 +236,8 @@ function NotesPage() {
               ...notebook,
               notes: notebook.notes.map((note) =>
                 note.note_id === noteId
-                  ? { 
-                    ...note, 
+                  ? {
+                    ...note,
                     content: updatedContent,
                     last_edited: `${formattedDate} at ${formattedTime}`,
                   }
@@ -313,6 +318,7 @@ function NotesPage() {
               <button
                 className="add-notebooks-button"
                 onClick={handleCreateNotebook}
+                disabled={isBtnDisabled}
               >
                 +
               </button>
@@ -338,6 +344,7 @@ function NotesPage() {
               <button
                 className="add-notebooks-button"
                 onClick={handleCreateNote}
+                disabled={isBtnDisabled}
               >
                 +
               </button>

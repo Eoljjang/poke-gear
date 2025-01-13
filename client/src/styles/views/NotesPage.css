@@ -44,7 +44,7 @@
   flex: 0 0 auto; /* Do not grow or shrink */
 }
 
-.add-notebooks-button {
+.add-notebooks-button { /* Handles both add notebooks and add notes. */
   padding: 0;
   margin: 0;
   outline: none;
@@ -69,6 +69,18 @@
   color: white;
   border: none;
   cursor: pointer;
+}
+
+.add-notebooks-button:disabled{
+  background: grey;
+  cursor: not-allowed;
+  transform: none;
+
+}
+
+.add-notebooks-button:disabled:hover{
+  transform: none;
+  background: grey;
 }
 
 .add-notebooks-button:hover {

@@ -20,9 +20,9 @@ Note Taking Functionality:
 - [X] Save notebooks when they're created / deleted.
 - [X] Save notes when they're created / deleted.
 - [X] Add "last edited" and "date created" fields.
-- [ ] Implement proper debounce for note update, renaming, add, delete, etc. to not overwhelm the database.
+- [ ] Implement proper debounce for <del>note update</del>, renaming, <del>add</del>, <del>delete</del> to not overwhelm the database.
 - [ ] Show a "saving" icon while the data is being uploaded to the db.
- 
+
 ### Release v0.3 Goals: Integration of API's
 - [ ] Decklist creation
 - [ ] Able to add tags to notes (Ex: matchup, decklist, review, custom, etc.) -> Right click to add a tag.
@@ -61,7 +61,7 @@ Note Taking Functionality:
 - **Important** We have to figure out how to scope CSS to their individual JSX files. The classnames are starting to overlap with the introduction of express.
 - It's important to that we hash the passwords when we create a user. Currently it's just comparing them as strings which will not be good in the future.
 - Do thorough testing of the URL and what parameters get passed to it.
-- Currently when the user logs in, it loads all of their data. 
+- Currently when the user logs in, it loads all of their data.
     - however if they sign out, that data is still visible in the console under "network".
     - This is horrendus security measures. So we should take this into account later on. WORK ON SECURITY.
 - Currently we are querying the database from pre-defined ids like notebook_id, note_id, etc. Mongo actually automatically genereates an object id for each item. So it might be worthwhile to use that instead but idk yet.

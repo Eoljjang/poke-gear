@@ -4,7 +4,7 @@ import RecentNotes from "../components/RecentNotes";
 import { useOutletContext } from "react-router-dom";
 
 function Dashboard() {
-  const [dummyUser] = useOutletContext();
+  const [userData] = useOutletContext();
 
     return(
       <div className="dashboard-content">
@@ -13,7 +13,9 @@ function Dashboard() {
         </div>
 
         <div className="col-2-container">
-          <QuickNote />
+          <QuickNote
+            userData={userData}
+          />
           <RecentNotes />
         </div>
       </div>

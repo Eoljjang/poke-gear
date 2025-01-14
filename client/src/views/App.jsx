@@ -60,8 +60,6 @@ function App() {
     }
   }, [userData]) // Re-syncs whenever user's notebook / notes data changes.
 
-
-
   const openSidebar = () => {
       setSidebarOpen(true)
   }

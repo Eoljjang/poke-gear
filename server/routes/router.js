@@ -80,6 +80,13 @@ router.post("/getUserData", async (req, res) => {
     }
 })
 
+// router.get("/recentNotes", async (req, res) => {
+//     const {userEmail} = req.body;
+//     try{
+//         const user = await schemas.Users.findOne({email}: user)
+//     }
+// })
+
 // -------- LIVE SYNCING DATA WITH DB --------------
 router.post('/syncUserData', async(req, res) => {
     // Note that userData is their notebooks collection (which includes notes).

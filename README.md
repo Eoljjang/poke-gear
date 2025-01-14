@@ -24,21 +24,26 @@ Note Taking Functionality:
     - See backlog list as to why debounce was not implemented for renaming. We'll skip it for now and maybe re-visit it later.
 - [X] Show a "syncing" icon while data is being synced to the database.
 
-### Release v0.3 Goals: Integration of API's
-- [ ] Decklist creation
-- [ ] Able to add tags to notes (Ex: matchup, decklist, review, custom, etc.) -> Right click to add a tag.
-- [ ] Integrate Poke-API in order to load in pokemon sprites.
-- [ ] Find a API to load card images.
+### Release v0.3 Goals: Make the features feel "complete".
+- [ ] For each <strong> note:</strong> Able to add tags to notes (Ex: matchup, decklist, review, custom, etc.) -> Right click to add a tag.
+- [ ] For each <strong> notebook: </strong> User can add a sprite for each notebook.
+- [ ] User can re-size the notebooks & notes sections on NotesPage.jsx
+- [ ] User can add a quick note.
+- [ ] User can see their most recently edited notes on the dashboard.
 
-### Release v0.4 Goals: User Testing and Iterative Cleanup
+For the above, do not forget to update the URL for querying purposes.
+
+### Release v0.4 Goals: Security
+- [ ] Make sure URL's are safe, consistent, and properly updated.
+- [ ] When switching between users, the new user should not have access to data from the previous user (since the db sends a response with data and you can view it in the console).
+- [ ] Check that inputs block injections.
+- [ ] Check that you can't just navigate to whatever URL you want. Have to be logged in, etc.
+
+
+### Release v0.5 Goals: User Testing and Iterative Cleanup
 - [ ] Get real world data and experiences to find out what should be added or changed.
 - [ ] Test for 2 - 4 weeks.
 - [ ] Make iterative changes based on feedback.
-
-### Release v0.5 Goals: Security
-- [ ] Make sure URL's are safe and properly updated.
-- [ ] When switching between users, the new user should not have access to data from the previous user.
-- [ ] Check that inputs block injections.
 
 <i>Full 1.0 release after the user testing phase<i/>
 

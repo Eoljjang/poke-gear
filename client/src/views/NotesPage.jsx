@@ -408,6 +408,7 @@ function NotesPage() {
           <ModalSprite
             onClose={handleCloseModalSprite}
             selectedNotebook={selectedNotebook}
+            selectedNote={selectedNote}
           >
           </ModalSprite>
       )}

@@ -11,6 +11,7 @@ import "react-quill/dist/quill.snow.css"; // Import Quill's styling.
 import axios from "axios";
 import {debounce} from 'lodash';
 import SyncingIcon from "../components/SyncingIcon.jsx";
+import ModalSprite from "../components/ModalSprite.jsx";
 
 function NotesPage() {
   const [userData, setUserData, syncing] = useOutletContext();
@@ -47,6 +48,15 @@ function NotesPage() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const userEmail = queryParams.get("userEmail");
+
+  // Modal States & Handlers
+  const [spriteModalOpen, setSpriteModalOpen] = useState(false);
+  const handleOpenModalSprite = () => {
+    setSpriteModalOpen(true);
+  }
+  const handleCloseModalSprite = () => {
+    setSpriteModalOpen(false);
+  }
 
   // Handlers
   const handleNotebookClick = (e, notebookId) => {
@@ -140,6 +150,10 @@ function NotesPage() {
         setRenamingNoteId(clickedItem.note_id);
         setRenameValue(noteToRename.title);
       }
+    }
+
+    if (action === "menu-add-sprite"){
+      handleOpenModalSprite(); // open the modal.
     }
 
     // Hide context menu after selection
@@ -388,6 +402,16 @@ function NotesPage() {
           />
         )}
       </div>
+
+      {/* Modal: Add a sprite. Only appears when state is true. */}
+      {spriteModalOpen && (
+          <ModalSprite
+            onClose={handleCloseModalSprite}
+            selectedNotebook={selectedNotebook}
+          >
+          </ModalSprite>
+      )}
+
     </>
   );
 }

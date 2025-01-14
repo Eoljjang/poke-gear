@@ -3,9 +3,7 @@
 import React from "react";
 import "../styles/components/ModalSprite.css"
 
-const ModalSprite = ({ isOpen, onClose, children }) => {
-    if (!isOpen) return null;
-
+const ModalSprite = ({onClose, children, selectedNotebook }) => {
     return (
         <div
             onClick={onClose}
@@ -33,6 +31,8 @@ const ModalSprite = ({ isOpen, onClose, children }) => {
                     boxShadow: "2px solid black",
                 }}
             >
+                <h3>Selected Notebook</h3>
+                <p>{selectedNotebook}</p>
                 {children}
             </div>
         </div>

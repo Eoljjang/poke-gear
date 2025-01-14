@@ -77,6 +77,8 @@
     border: none;
     border-radius: 16px;
     font-size:1rem;
+    background: black;
+    color: white;
 }
 
 #login-btn:hover{
@@ -94,6 +96,8 @@
     border: none;
     border-radius: 16px;
     font-size: 1rem;
+    background: black;
+    color: white;
 }
 
 #navigate-signup-btn:hover{

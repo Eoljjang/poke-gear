@@ -1,6 +1,6 @@
 import '../styles/components/Footer.css'
 import PropTypes from 'prop-types'
-
+import { useState } from 'react';
 // Props:
 // 1) footerLinks: Takes a JSON-style object {text: url}. Display text for the link, and the url to the link itself.
 

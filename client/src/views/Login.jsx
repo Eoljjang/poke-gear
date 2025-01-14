@@ -74,7 +74,6 @@ function Login() {
                 <h3>No Account?</h3>
                 <button id="navigate-signup-btn"onClick={btnSignupClick}>Signup</button>
             </div>
-
         </div>
     )
 }

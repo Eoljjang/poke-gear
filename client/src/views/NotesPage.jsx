@@ -45,7 +45,7 @@ function NotesPage() {
 
   // For updating the url
   const navigate = useNavigate();
-  const location = useLocation();
+  const locationUrl = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const userEmail = queryParams.get("userEmail");
 
@@ -57,6 +57,19 @@ function NotesPage() {
   const handleCloseModalSprite = () => {
     setSpriteModalOpen(false);
   }
+
+  // When the URL changes, it updates the selected notebook & note. IE: when you navigate here from RecentNotes.jsx.
+  useEffect(() => {
+    const url_notebook_id = queryParams.get("notebook_id");
+    const url_note_id = queryParams.get("note_id");
+    setSelectedNote(Number(url_note_id))
+    setSelectedNotebook(Number(url_notebook_id));
+
+    setIsVisible({
+      notebooks: true,
+      notes: true,
+    });
+  }, [locationUrl])
 
   // Handlers
   const handleNotebookClick = (e, notebookId) => {

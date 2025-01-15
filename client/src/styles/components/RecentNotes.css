@@ -29,6 +29,10 @@
     padding: inherit;
 }
 
+.notebook-name, .recent-last-edited{
+    font-size: smaller;
+}
+
 .note-name, .details-container{
     padding-left: 12px;
     padding-right: 12px;

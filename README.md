@@ -34,11 +34,9 @@ Note Taking Functionality:
 For the above, do not forget to update the URL for querying purposes.
 
 ### Release v0.4 Goals: Security
-- [ ] Make sure URL's are safe, consistent, and properly updated.
+- [ ] Check that you can't just navigate to whatever URL you want. IE: You have to be logged in in order to navigate to a specific link with query arguments.
 - [ ] When switching between users, the new user should not have access to data from the previous user (since the db sends a response with data and you can view it in the console).
 - [ ] Check that inputs block injections.
-- [ ] Check that you can't just navigate to whatever URL you want. Have to be logged in, etc.
-
 
 ### Release v0.5 Goals: User Testing and Iterative Cleanup
 - [ ] Get real world data and experiences to find out what should be added or changed.

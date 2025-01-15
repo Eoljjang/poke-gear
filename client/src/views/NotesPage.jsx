@@ -14,6 +14,7 @@ import SyncingIcon from "../components/SyncingIcon.jsx";
 import ModalSprite from "../components/ModalSprite.jsx";
 
 function NotesPage() {
+  // ------------- STATES -------------
   const [userData, setUserData, syncing] = useOutletContext();
   const [isVisible, setIsVisible] = useState({
     notebooks: true,
@@ -26,40 +27,30 @@ function NotesPage() {
     clickedItem: null,
     x: 0,
     y: 0,
-  }); // state of the context menu.
+  });
   const [renamingNotebookId, setRenamingNotebookId] = useState(null);
   const [renamingNoteId, setRenamingNoteId] = useState(null);
   const [renameValue, setRenameValue] = useState("");
   const [isBtnDisabled, setIsBtnDisabled] = useState(false); // Whether or not add btn is enabled. This is so that user can't spam add the add btn and overload db.
+  const [spriteModalOpen, setSpriteModalOpen] = useState(false);
+  // ------------- STATES -------------
 
-  // Current notebook = selected one.
-  const currentNotebook = userData.find(
+  // ------------- DATA -------------
+  const currentNotebook = userData.find( // Current notebook = selected one.
     (notebook) => notebook.notebook_id === selectedNotebook
   );
+  const currentNotes = currentNotebook ? currentNotebook.notes : []; // The notes for the selected notebook.
+  const activeNote = currentNotes.find((note) => note.note_id === selectedNote); // Find the active note based on the note_id.
 
-  // The notes for the selected notebook.
-  const currentNotes = currentNotebook ? currentNotebook.notes : [];
-
-  // Find the active note based on the note_id.
-  const activeNote = currentNotes.find((note) => note.note_id === selectedNote);
-
-  // For updating the url
+  // URL
   const navigate = useNavigate();
   const locationUrl = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const userEmail = queryParams.get("userEmail");
+  // ------------- DATA -------------
 
-  // Modal States & Handlers
-  const [spriteModalOpen, setSpriteModalOpen] = useState(false);
-  const handleOpenModalSprite = () => {
-    setSpriteModalOpen(true);
-  }
-  const handleCloseModalSprite = () => {
-    setSpriteModalOpen(false);
-  }
-
-  // When the URL changes, it updates the selected notebook & note. IE: when you navigate here from RecentNotes.jsx.
-  useEffect(() => {
+  // ------------- USE EFFECTS  -------------
+  useEffect(() => { // When the URL changes, it updates the selected notebook & note. IE: when you navigate here from RecentNotes.jsx.
     const url_notebook_id = queryParams.get("notebook_id");
     const url_note_id = queryParams.get("note_id");
     setSelectedNote(Number(url_note_id))
@@ -70,8 +61,9 @@ function NotesPage() {
       notes: true,
     });
   }, [locationUrl])
+  // ------------- USE EFFECTS  -------------
 
-  // Handlers
+  // ------------- HANDLERS  -------------
   const handleNotebookClick = (e, notebookId) => {
     if (e.type === "click") {
       console.log("Left clicked notebook:", notebookId);
@@ -329,6 +321,15 @@ function NotesPage() {
   const handleDelete = (id) => {
     console.log("Deleted note / notebook:", id);
   };
+
+  const handleOpenModalSprite = () => {
+    setSpriteModalOpen(true);
+  }
+
+  const handleCloseModalSprite = () => {
+    setSpriteModalOpen(false);
+  }
+  // ------------- HANDLERS  -------------
 
   return (
     <>

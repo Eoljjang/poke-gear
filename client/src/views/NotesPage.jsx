@@ -61,7 +61,7 @@ function NotesPage() {
   // Handlers
   const handleNotebookClick = (e, notebookId) => {
     if (e.type === "click") {
-      console.log("Left clicked a notebook.");
+      console.log("Left clicked notebook:", notebookId);
       setSelectedNotebook(notebookId);
       setSelectedNote(null); // Reset note selection
       // Make sure we sure the notes lol.
@@ -77,7 +77,7 @@ function NotesPage() {
 
 
     } else if (e.type === "contextmenu") {
-      console.log("Right clicked a notebook.");
+      console.log("Right clicked notebook:", notebookId);
       setContextMenu({
         visible: true,
         clickedItem: { notebook_id: notebookId },
@@ -88,9 +88,8 @@ function NotesPage() {
   };
 
   const handleNoteClick = (e, noteId) => {
-    console.log(e.button);
     if (e.type === "click") {
-      console.log("Left clicked a note.");
+      console.log("Left clicked note:", noteId);
       setSelectedNote(noteId);
 
       // Handle URL changes
@@ -99,7 +98,7 @@ function NotesPage() {
       navigate(`${location.pathname}?${searchParams.toString()}`, { replace: true }); // set the new url.
 
     } else if (e.type === "contextmenu") {
-      console.log("Right clicked a note.");
+      console.log("Right clicked note:", noteId);
       setContextMenu({
         visible: true,
         clickedItem: { note_id: noteId },

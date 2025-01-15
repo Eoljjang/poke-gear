@@ -29,7 +29,7 @@ Note Taking Functionality:
 - [ ] For each <strong> notebook: </strong> User can add a sprite for each notebook.
 - [ ] User can re-size the notebooks & notes sections on NotesPage.jsx
 - [ ] User can add a quick note.
-- [ ] User can see their most recently edited notes on the dashboard.
+- [X] User can see their most recently edited notes on the dashboard. Clicking one takes them to the note.
 
 For the above, do not forget to update the URL for querying purposes.
 

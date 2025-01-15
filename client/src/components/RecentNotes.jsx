@@ -38,13 +38,14 @@ function RecentNotes(){
 
     // Show the top 5 most recently edited IF the length of the array is greater than 5.
     let top5Recent = []
-    if (output.length > 0){
-        output.forEach((item) => {
-            output.sort((current, next) => current.last_edited - next.last_edited) // Sorts it in descending order.
-
-            // Grab the top 5 most recent items. If there are less than 5 notes, then it'll grab it all.
-            top5Recent = output.slice(0, 5);
+    if (output.length > 0) {
+        // Sort the array by `last_edited` in descending order
+        output.sort(function(a, b){
+            return new Date(b.last_edited) - new Date(a.last_edited)
         })
+
+        // Grab the top 5 most recent items, or all if there are fewer than 5
+        top5Recent = output.slice(0, 5);
     }
 
     return(

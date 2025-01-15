@@ -27,7 +27,28 @@ function ActiveNote({activeNote, handleNoteTitleUpdate, handleNoteUpdate}){
             handleNoteUpdate(activeNote.note_id, value); // Only call the update handler if content changes.
         }
     }
+
+    // Convert the "last_edited" field to be a string that can be displayed
     if (activeNote){
+        const formatDate = (date) => {
+            const d = new Date(date);
+            // Check if the date is valid
+            if (isNaN(d.getTime())) {
+                return ""; // Return empty string for invalid dates
+            }
+
+            // Format date if valid
+            return d.toLocaleString("en-US", {
+                weekday: "short",  // e.g., "Mon"
+                year: "numeric",   // e.g., "2025"
+                month: "short",    // e.g., "Jan"
+                day: "numeric",    // e.g., "14"
+                hour: "2-digit",   // e.g., "12"
+                minute: "2-digit", // e.g., "30"
+                hour12: true       // e.g., "AM/PM"
+            });
+        };
+
         return(
             <div className="test">
                 <div className="active-note-heading">
@@ -41,7 +62,7 @@ function ActiveNote({activeNote, handleNoteTitleUpdate, handleNoteUpdate}){
                         Date Created: {activeNote.note_date.split("T")[0]} {/* Take off the time created. */}
                     </div>
                     <div className="active-note-subheader">
-                        Last Edited: {activeNote.last_edited}
+                        Last Edited: {formatDate(activeNote.last_edited)}
                     </div>
                 </div>
 

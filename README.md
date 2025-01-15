@@ -74,6 +74,7 @@ For the above, do not forget to update the URL for querying purposes.
 
 ### Bugs / Tickets to Do
 - [ ] There's a version error mismatch when editing note title and note content back and forth. This occurs when you put a debounce on renaming -> Since the title may have a discrepancy with the note content.
+- [X] last_edited field is being saved as a string instead of a date object.
 - [X] <del>The syncing icon has nothing to do with interaction with the db. It's simply called whenever setUserData is called. Would be worthwhile to implement such that it displays and waits for a 200 response from the server.</del>
     - Resolved. The syncing icon now depends on the request instead (see App.jsx syncUserData() for more details).
 - [ ] Add error handling if syncing fails. Display a failed sync message.

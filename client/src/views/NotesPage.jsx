@@ -184,7 +184,8 @@ function NotesPage() {
           notes: notebook.notes.map((note) => ({
             ...note,
             title: note.note_id === renamingNoteId ? renameValue : note.title,
-            last_edited: `${formattedDate} at ${formattedTime}`, // for note only.
+            //last_edited: `${formattedDate} at ${formattedTime}`, // for note only.
+            last_edited: now
           })),
         }))
       );
@@ -240,7 +241,8 @@ function NotesPage() {
                   ? {
                     ...note,
                     title: updatedTitle,
-                    last_edited: `${formattedDate} at ${formattedTime}`,
+                    //last_edited: `${formattedDate} at ${formattedTime}`,
+                    last_edited: now
                   }
                   : note
 
@@ -266,7 +268,8 @@ function NotesPage() {
                   ? {
                     ...note,
                     content: updatedContent,
-                    last_edited: `${formattedDate} at ${formattedTime}`,
+                    //last_edited: `${formattedDate} at ${formattedTime}`,
+                    last_edited: now
                   }
                   : note
               ),

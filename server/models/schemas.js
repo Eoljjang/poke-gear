@@ -8,7 +8,7 @@ const noteSchema = new Schema({
     title: {type: String, default: ""},
     note_date: {type: Date, default: Date.now},
     content: {type: String, default: ""},
-    last_edited: {type: String, default: ""}
+    last_edited: {type: Date, default: Date.now}
 })
 
 const notebookSchema = new Schema({

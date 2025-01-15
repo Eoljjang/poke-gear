@@ -7,6 +7,7 @@ import '../styles/views/TextEditor.css'; // Import Quill's styling.
 import Editor from "quill/core/editor";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
+import { formatDate } from "../functions/Helpers";
 
 function ActiveNote({activeNote, handleNoteTitleUpdate, handleNoteUpdate}){
     // Handle URL querying
@@ -30,25 +31,6 @@ function ActiveNote({activeNote, handleNoteTitleUpdate, handleNoteUpdate}){
 
     // Convert the "last_edited" field to be a string that can be displayed
     if (activeNote){
-        const formatDate = (date) => {
-            const d = new Date(date);
-            // Check if the date is valid
-            if (isNaN(d.getTime())) {
-                return ""; // Return empty string for invalid dates
-            }
-
-            // Format date if valid
-            return d.toLocaleString("en-US", {
-                weekday: "short",  // e.g., "Mon"
-                year: "numeric",   // e.g., "2025"
-                month: "short",    // e.g., "Jan"
-                day: "numeric",    // e.g., "14"
-                hour: "2-digit",   // e.g., "12"
-                minute: "2-digit", // e.g., "30"
-                hour12: true       // e.g., "AM/PM"
-            });
-        };
-
         return(
             <div className="test">
                 <div className="active-note-heading">

@@ -11,4 +11,34 @@
     border: 0.5px solid #000000;
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.4);
     border-radius: 22px;
+
+    gap: 12px;
+}
+
+.recent-notes-title{
+    font-size: 1.25rem;
+}
+
+.recent-note-item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%; /* No need to set padding since the width essentially "includes" it as a %.*/
+    border: 1px solid black;
+    border-radius: 12px;
+    padding: inherit;
+}
+
+.note-name, .details-container{
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+.recent-note-item:hover{
+    scale: 1.05;
+    transition: 0.2s;
+}
+
+.recent-note-item:not(:hover){
+    transition: 0.2s;
 }

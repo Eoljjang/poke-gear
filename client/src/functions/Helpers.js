@@ -18,3 +18,8 @@ export function formatDate(dateString) {
     const formattedDate = `${year}-${month}-${day} ${String(hours).padStart(2, '0')}:${minutes} ${period}`;
     return formattedDate;
 }
+
+export function previewContent(content, maxLength){
+    const truncatedContent = content.slice(0, maxLength) + "..."
+    return truncatedContent
+}

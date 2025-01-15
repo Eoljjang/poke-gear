@@ -36,15 +36,21 @@ function RecentNotes(){
 
     return(
         <div className="recent-notes-container">
+            <div className="recent-notes-title">
+                <strong>Recent Notes</strong>
+            </div>
             {top5Recent.map((item) => {
                 // Display a recent-note-item. Show the following
                 // 1) notebook_name > note_name
                 // 2) last edited
                 // 3) a short preview of the content
-                return <div key={item.note_id} className='recent-note-item'>
-                    {item.notebook_name}
-                    {item.note_name}
-                    {formatDate(item.last_edited)}
+                return <div key={item.note_id} className='recent-note-item'> {/*onClick, navigate to: http://localhost:5173/app/notes?userEmail=n&notebook_id=1&note_id=1 */}
+                    <div className="note-name">{item.note_name}</div>
+
+                    <div className="details-container">
+                        <div className="notebook-name">{item.notebook_name}</div>
+                        <div className="recent-last-edited">{formatDate(item.last_edited)}</div>
+                    </div>
                 </div>;
             })}
         </div>

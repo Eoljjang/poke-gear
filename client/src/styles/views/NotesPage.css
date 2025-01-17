@@ -116,3 +116,8 @@
   flex-direction: column;
   position: relative; /* Establish positioning context for absolute elements */
 }
+
+.notebooks-section, .notes-section{
+  resize: horizontal;
+  overflow: auto;
+}

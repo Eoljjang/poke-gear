@@ -12,6 +12,7 @@ import axios from "axios";
 import {debounce} from 'lodash';
 import SyncingIcon from "../components/SyncingIcon.jsx";
 import ModalSprite from "../components/ModalSprite.jsx";
+import {Resizable} from 'react-resizable';
 
 function NotesPage() {
   // ------------- STATES -------------
@@ -396,17 +397,17 @@ function NotesPage() {
           )}
 
           {/* 3) Active Note Editor */}
-          <div className="active-note-section">
-            {syncing && (
-              <SyncingIcon/>
-            )}
-            <ActiveNote
-              activeNote={activeNote}
-              currentNotebook={currentNotebook}
-              handleNoteTitleUpdate={handleNoteTitleUpdate}
-              handleNoteUpdate={handleNoteUpdate}
-            />
-          </div>
+            <div className="active-note-section">
+              {syncing && (
+                <SyncingIcon/>
+              )}
+              <ActiveNote
+                activeNote={activeNote}
+                currentNotebook={currentNotebook}
+                handleNoteTitleUpdate={handleNoteTitleUpdate}
+                handleNoteUpdate={handleNoteUpdate}
+              />
+            </div>
         </div>
         {/* If there was a right click, then we render the context menu. */}
         {contextMenu.visible && (

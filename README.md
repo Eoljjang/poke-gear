@@ -30,6 +30,7 @@ Note Taking Functionality:
 - [ ] User can re-size the notebooks & notes sections on NotesPage.jsx
 - [ ] User can add a quick note.
 - [X] User can see their most recently edited notes on the dashboard. Clicking one takes them to the note.
+- [ ] On the dashboard, user can see some links to popular websites.
 
 For the above, do not forget to update the URL for querying purposes.
 

@@ -1,13 +1,39 @@
 import { useState } from "react";
 import '../styles/components/QuickNote.css'
-function QuickNote(){
-    const [QuickNote, setQuickNote] = useState([]); // State of the quick note content.
+import ModalQuickNote from "../Modals/ModalQuickNote";
+function QuickNote({userData, setUserData}){
+    const [modalVisible, setModalVisible] = useState(false);
 
-    // Future feature: Logic to create a quick note.
+    // On click of the quick note button, it'll open up a modal.
+    const handleOpen = () => {
+        setModalVisible(true);
+        console.log("quicknote btn has been clicked.");
+    }
+
+    const handleClose = () => {
+        setModalVisible(false)
+        console.log("quicknote modal has been closed.")
+    }
 
     return(
-        <div className="quicknote-container">
-            Quick Note
+        <div className="quicknote-container" >
+            <button className="open-quicknote-btn"onClick={handleOpen}>
+                Quicknote
+            </button>
+            {modalVisible && (
+                <>
+                    {/* Overlay blocks interactions with content behind the modal. */}
+                    <div className="modal-overlay"></div>
+
+                    {/* Conditonally renders the modal. */}
+                    <ModalQuickNote
+                        userData={userData}
+                        handleClose={handleClose}
+                    >
+                    </ModalQuickNote>
+                </>
+
+            )}
         </div>
     )
 }

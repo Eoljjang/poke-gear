@@ -1,0 +1,95 @@
+.modal-overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 998; /* Make sure it's behind the modal */
+    pointer-events: all; /* Allow interactions with the overlay */
+
+    backdrop-filter: blur(2px); /* Apply the blur effect */
+    -webkit-backdrop-filter: blur(5px); /* For Safari support */
+    background: rgba(0, 0, 0, 0.1); /* Slight background color to make the blur visible */
+}
+
+#modal-quicknote-container{
+    /* Makes it so that the modal itself is still interactable. */
+    z-index: 999;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+
+    /* Dimmensions */
+    width: 400px;
+
+    /* Styling */
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border: 2px solid black;
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    gap: 2rem;
+}
+
+.modal-title{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.quicknote-editor{
+    max-width: 100%; /* Quill won't go beyond the modal container. */
+
+}
+
+.modal-quicknote-btn-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 94%;
+    font-size: 0.75rem;
+}
+
+.modal-close-btn{
+    background-color: lightcoral;
+    color: black;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    border: 2px solid black;
+}
+
+.modal-close-btn:hover{
+    background-color: white;
+    border: 2px solid black;
+    color: black;
+    transition: 0.2s;
+}
+
+.btn-confirm-quicknote{
+    background-color: white;
+    border: 2px solid black;
+    color: black;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.btn-confirm-quicknote:hover{
+    background-color:deepskyblue;
+    transition: 0.2s;
+}
+
+.modal-close-btn:not(:hover), .btn-confirm-quicknote:not(:hover){
+    transition: 0.2s;
+}
+
+#note-title-input{
+    font-size:2rem;
+    background: none;
+    color: black;
+    border: none;
+}
+
+#note-title-input:focus{
+    outline: none; /* Remove default styling */
+    border-bottom: 1px solid #007BFF;
+}

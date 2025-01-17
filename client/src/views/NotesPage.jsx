@@ -11,7 +11,7 @@ import "react-quill/dist/quill.snow.css"; // Import Quill's styling.
 import axios from "axios";
 import {debounce} from 'lodash';
 import SyncingIcon from "../components/SyncingIcon.jsx";
-import ModalSprite from "../components/ModalSprite.jsx";
+import ModalSprite from "../Modals/ModalSprite.jsx";
 import {Resizable} from 'react-resizable';
 
 function NotesPage() {

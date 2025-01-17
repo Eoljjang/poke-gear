@@ -13,6 +13,7 @@ function ModalQuickNote({userData, handleClose}){
 
     const handleQuicknoteSave = async(value) => {
         console.log(userData);
+        handleClose();
     }
 
     return(
@@ -20,8 +21,9 @@ function ModalQuickNote({userData, handleClose}){
             <div className="modal-title">
                 Quicknote
             </div>
-            <input type="text" id="note-title-input"  onChange={handleTitleChange}/>
+
             <div className="quicknote-editor">
+                <input type="text" id="quicknote-title-input"  onChange={handleTitleChange} placeholder="Note Title..."/>
                 <ReactQuill
                     theme="snow"
                 />

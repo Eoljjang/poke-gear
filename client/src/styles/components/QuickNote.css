@@ -13,3 +13,13 @@
   border-radius: 22px;
   box-shadow: 4px 4px 4px rgba(43, 83, 94, 0.75);
 }
+
+.open-quicknote-btn{
+  width: 100%;
+  background: none;
+  color: black;
+  font-weight: 600;
+  font-size: 1.15rem;
+  border: none;
+  outline: none;
+}

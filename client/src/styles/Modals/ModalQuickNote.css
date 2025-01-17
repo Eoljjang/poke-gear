@@ -41,6 +41,10 @@
 }
 .quicknote-editor{
     max-width: 100%; /* Quill won't go beyond the modal container. */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
 
 }
 
@@ -82,14 +86,15 @@
     transition: 0.2s;
 }
 
-#note-title-input{
-    font-size:2rem;
+#quicknote-title-input{
+    font-size:1rem;
     background: none;
     color: black;
     border: none;
+    width: 100%;
 }
 
-#note-title-input:focus{
+#quicknote-title-input:focus{
     outline: none; /* Remove default styling */
     border-bottom: 1px solid #007BFF;
 }

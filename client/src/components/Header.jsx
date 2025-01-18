@@ -10,10 +10,15 @@ const Header = ({ children }) => {
         navigate("/login");
     }
 
+    const handleGoHome = (e) => {
+        console.log("Clicked on poke-gear title. Navigating back home.")
+        navigate("/app");
+    }
+
     return (
         <header className="header-container">
             {children}
-            <h1 className="header-title">Poke-Gear</h1>
+            <h1 className="main-header-title" onClick={handleGoHome}>Poke-Gear</h1>
             <button onClick={handleSignout} className="header-button">
                 Signout
             </button>

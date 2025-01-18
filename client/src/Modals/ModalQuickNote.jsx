@@ -3,17 +3,35 @@ import "../styles/Modals/ModalQuickNote.css"
 import ReactQuill from 'react-quill';
 import { useOutletContext } from "react-router-dom";
 import { useState } from "react";
+const dbUrl = import.meta.env.VITE_DB_URL;
+import axios from "axios";
+
 function ModalQuickNote({userData, handleClose}){
     const [noteTitle, setNoteTitle] = useState("")
+    const [noteContent, setNoteContent] = useState("")
 
     const handleTitleChange = (event) => {
         setNoteTitle(event.target.value);
+    }
 
+    const handleNoteChange = async(value) => {
+        setNoteContent(value);
     }
 
     const handleQuicknoteSave = async(value) => {
-        console.log(userData);
         handleClose();
+        const postData = {
+            title: noteTitle,
+            content: noteContent,
+            notebook_id: "" // whichever note they want to save it in. 
+        }
+        try{
+            await axios.post(dbUrl + "/saveQuickNote", postData)
+        }
+        catch(e) {
+            console.error("Error saving quicknote:", e)
+        }
+        
     }
 
     return(
@@ -26,6 +44,8 @@ function ModalQuickNote({userData, handleClose}){
                 <input type="text" id="quicknote-title-input"  onChange={handleTitleChange} placeholder="Note Title..."/>
                 <ReactQuill
                     theme="snow"
+                    value={noteContent}
+                    onChange={handleNoteChange}
                 />
             </div>
 

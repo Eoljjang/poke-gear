@@ -80,13 +80,6 @@ router.post("/getUserData", async (req, res) => {
     }
 })
 
-// router.get("/recentNotes", async (req, res) => {
-//     const {userEmail} = req.body;
-//     try{
-//         const user = await schemas.Users.findOne({email}: user)
-//     }
-// })
-
 // -------- LIVE SYNCING DATA WITH DB --------------
 router.post('/syncUserData', async(req, res) => {
     // Note that userData is their notebooks collection (which includes notes).
@@ -108,6 +101,23 @@ router.post('/syncUserData', async(req, res) => {
     catch(e){
         console.error("Error when syncing data:", e)
     }
+})
+
+router.post('/saveQuickNote', async(req, res) => {
+    const {title, content, notebook_id} = req.body;
+
+    // 0) If the user does not input anything, no quicknote is created
+    if (!title && !content){
+        return;
+    }
+
+    // 1) If user doesn't input a title
+
+    // 2) If user doesn't input any content
+
+    // 3) If user doesn't select a notebook.
+    console.log('received:', title, content)
+
 })
 
 module.exports = router

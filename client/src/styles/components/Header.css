@@ -23,7 +23,8 @@
   text-decoration: underline;
 }
 
-.header-title {
+.main-header-title {
   margin: 0;
   font-size: 1.5rem;
+  cursor: pointer;
 }

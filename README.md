@@ -27,11 +27,12 @@ Note Taking Functionality:
 ### Release v0.3 Goals: Make the features feel "complete".
 - [ ] For each <strong> note:</strong> Able to add tags to notes (Ex: matchup, decklist, review, custom, etc.) -> Right click to add a tag.
 - [ ] For each <strong> notebook: </strong> User can add a sprite for each notebook.
-- [ ] User can re-size the notebooks & notes sections on NotesPage.jsx
+- [X] User can re-size the notebooks & notes sections on NotesPage.jsx (naiive implementation).
 - [ ] User can add a quick note.
 - [X] User can see their most recently edited notes on the dashboard. Clicking one takes them to the note.
 - [ ] On the dashboard, user can see some links to popular websites.
-
+- [ ] Refactor: Make all usages of "date" consistent.
+- [ ] Refactor: Use Mongo's auto generated _id field instead of note_id.
 For the above, do not forget to update the URL for querying purposes.
 
 ### Release v0.4 Goals: Security

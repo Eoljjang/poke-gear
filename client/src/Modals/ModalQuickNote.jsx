@@ -10,6 +10,8 @@ function ModalQuickNote({userData, handleClose}){
     const [noteTitle, setNoteTitle] = useState("")
     const [noteContent, setNoteContent] = useState("")
     const [selectedNotebook, setSelectedNotebook] = useState(null);
+    const queryParams = new URLSearchParams(location.search);
+    const userEmail = queryParams.get("userEmail");
 
     const handleTitleChange = (event) => {
         setNoteTitle(event.target.value);
@@ -25,12 +27,12 @@ function ModalQuickNote({userData, handleClose}){
             alert("Please add a title and ensure the note content is not empty.");
         }
         else{
-            console.log("Selected Notebook:", selectedNotebook);
             handleClose();
             const postData = {
                 title: noteTitle,
                 content: noteContent,
-                notebook_id: selectedNotebook // whichever note they want to save it in.
+                notebook_id: selectedNotebook, // whichever note they want to save it in.
+                userEmail: userEmail
             }
             try{
                 await axios.post(dbUrl + "/saveQuickNote", postData)
@@ -38,6 +40,7 @@ function ModalQuickNote({userData, handleClose}){
             catch(e) {
                 console.error("Error saving quicknote:", e)
             }
+
         }
     }
     const handleNotebookSelect = (e) => {

@@ -104,8 +104,55 @@ router.post('/syncUserData', async(req, res) => {
 })
 
 router.post('/saveQuickNote', async(req, res) => {
-    const {title, content, notebook_id} = req.body;
+    // Note: TItle, content, and notebook_id have been asserted to be non-null at this point.
+    const {title, content, notebook_id, userEmail} = req.body;
+    const notebook_id_int = Number(notebook_id); // Convert back to an int.
+    console.log("title:", title, "content:", content, "notebook id:", notebook_id, "user email:", userEmail);
 
+    try{
+        // 1) Get the user.
+        const user = await schemas.Users.findOne({email: userEmail});
+        if (!user){
+            return res.status(404).json({message: "Unable to find user under specified email - when saving quicknote."})
+        }
+        // 2) Get the notebook
+        else{
+            const notebook_to_update = user.notebooks.find(n => n.notebook_id === notebook_id_int);
+            if (!notebook_to_update){
+                return res.status(404).json({message: "Unable to find notebook when saving quicknote."})
+            }
+
+            // 3) Create a new note object
+            const quickNote = {
+                note_id: 100,
+                title: title,
+                content: content,
+                note_date: new Date(),
+                last_edited: new Date().toISOString()
+            }
+
+            // 4) Add the note to the notebook
+            try{
+                notebook_to_update.notes.push(quickNote);
+            }
+            catch(e){
+                console.log("Unable to push quicknote to notes:", e)
+            }
+
+            // 5) Save
+            await user.save();
+
+        }
+    }
+    catch(e){
+        return res.status(500).json({message: "Error when retrieving user data (saving quicknote):", e})
+    }
+
+
+
+    // 3) Add the note to the notebook.
+
+    // 4) Save
     // 0) If the user does not input anything, no quicknote is created
     if (!title && !content){
         return;

@@ -116,7 +116,10 @@ router.post('/saveQuickNote', async(req, res) => {
     // 2) If user doesn't input any content
 
     // 3) If user doesn't select a notebook.
+
+    // 4) If the user DID select a notebook.
     console.log('received:', title, content)
+    console.log('Notebook ID:', notebook_id)
 
 })
 

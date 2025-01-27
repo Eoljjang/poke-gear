@@ -13,6 +13,7 @@ import {debounce} from 'lodash';
 import SyncingIcon from "../components/SyncingIcon.jsx";
 import ModalSprite from "../Modals/ModalSprite.jsx";
 import {Resizable} from 'react-resizable';
+import {v4 as uuidv4} from 'uuid';
 
 function NotesPage() {
   // ------------- STATES -------------
@@ -54,8 +55,8 @@ function NotesPage() {
   useEffect(() => { // When the URL changes, it updates the selected notebook & note. IE: when you navigate here from RecentNotes.jsx.
     const url_notebook_id = queryParams.get("notebook_id");
     const url_note_id = queryParams.get("note_id");
-    setSelectedNote(Number(url_note_id))
-    setSelectedNotebook(Number(url_notebook_id));
+    setSelectedNote((url_note_id))
+    setSelectedNotebook((url_notebook_id));
 
     setIsVisible({
       notebooks: true,
@@ -96,6 +97,7 @@ function NotesPage() {
   const handleNoteClick = (e, noteId) => {
     if (e.type === "click") {
       console.log("Left clicked note:", noteId);
+      console.log("Type of clicked note:", typeof(noteId))
       setSelectedNote(noteId);
 
       // Handle URL changes
@@ -202,7 +204,7 @@ function NotesPage() {
   const handleCreateNotebook = () => {
     setIsBtnDisabled(true); // Disable the add btn.
     const newNotebook = {
-      notebook_id: userData.length + 1,
+      notebook_id: uuidv4(),//userData.length + 1,
       name: `Notebook ${userData.length + 1}`,
       notes: [],
     };
@@ -214,7 +216,7 @@ function NotesPage() {
     if (currentNotebook) {
       setIsBtnDisabled(true); // Disable the add btn.
       const newNote = {
-        note_id: currentNotebook.notes.length + 1,
+        note_id: uuidv4(),//currentNotebook.notes.length + 1,
         title: `New Note`,
         content: "",
         note_date: new Date().toISOString(), // have to assign the date locally.
@@ -286,7 +288,6 @@ function NotesPage() {
   }, 1000); // 1s debounce between each keystroke.
 
   const onClickCollapseNotebooks = () => {
-    console.log("reached");
     if (isVisible.notebooks === true) {
       setIsVisible({
         notebooks: false,

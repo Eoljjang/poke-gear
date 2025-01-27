@@ -5,6 +5,7 @@ import { useOutletContext } from "react-router-dom";
 import { useState } from "react";
 const dbUrl = import.meta.env.VITE_DB_URL;
 import axios from "axios";
+import {v4 as uuidv4} from 'uuid';
 
 function ModalQuickNote({userData, setUserData, handleClose}){
     const [noteTitle, setNoteTitle] = useState("")
@@ -29,7 +30,7 @@ function ModalQuickNote({userData, setUserData, handleClose}){
         else{
             handleClose();
             const newNote = {
-                note_id: 5,
+                note_id: uuidv4(),
                 title: noteTitle,
                 content: noteContent,
                 note_date: new Date().toISOString(),
@@ -38,10 +39,7 @@ function ModalQuickNote({userData, setUserData, handleClose}){
 
             setUserData((prevData) =>
                 prevData.map((notebook) => {
-                  console.log("notebook id type:", typeof(notebook.notebook_id));
-                  console.log("selected notebook type:", Number(selectedNotebook));
-
-                  return notebook.notebook_id === Number(selectedNotebook)
+                  return notebook.notebook_id === selectedNotebook
                     ? { ...notebook, notes: [...notebook.notes, newNote] }
                     : notebook;
                 })

@@ -6,7 +6,7 @@ import { useState } from "react";
 const dbUrl = import.meta.env.VITE_DB_URL;
 import axios from "axios";
 
-function ModalQuickNote({userData, handleClose}){
+function ModalQuickNote({userData, setUserData, handleClose}){
     const [noteTitle, setNoteTitle] = useState("")
     const [noteContent, setNoteContent] = useState("")
     const [selectedNotebook, setSelectedNotebook] = useState(null);
@@ -28,18 +28,24 @@ function ModalQuickNote({userData, handleClose}){
         }
         else{
             handleClose();
-            const postData = {
+            const newNote = {
+                note_id: 5,
                 title: noteTitle,
                 content: noteContent,
-                notebook_id: selectedNotebook, // whichever note they want to save it in.
-                userEmail: userEmail
+                note_date: new Date().toISOString(),
+                last_edited: new Date().toISOString()
             }
-            try{
-                await axios.post(dbUrl + "/saveQuickNote", postData)
-            }
-            catch(e) {
-                console.error("Error saving quicknote:", e)
-            }
+
+            setUserData((prevData) =>
+                prevData.map((notebook) => {
+                  console.log("notebook id type:", typeof(notebook.notebook_id));
+                  console.log("selected notebook type:", Number(selectedNotebook));
+
+                  return notebook.notebook_id === Number(selectedNotebook)
+                    ? { ...notebook, notes: [...notebook.notes, newNote] }
+                    : notebook;
+                })
+              );
 
         }
     }

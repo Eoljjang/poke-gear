@@ -32,7 +32,7 @@ Note Taking Functionality:
 - [X] User can see their most recently edited notes on the dashboard. Clicking one takes them to the note.
 - [ ] On the dashboard, user can see some links to popular websites.
 - [ ] Refactor: Make all usages of "date" consistent.
-- [ ] Refactor: Use Mongo's auto generated _id field instead of note_id.
+- [ ] Refactor: Assign better notebook_ids and note_ids.
 For the above, do not forget to update the URL for querying purposes.
 
 ### Release v0.4 Goals: Security

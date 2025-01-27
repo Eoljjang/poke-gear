@@ -28,6 +28,7 @@ function QuickNote({userData, setUserData}){
                     {/* Conditonally renders the modal. */}
                     <ModalQuickNote
                         userData={userData}
+                        setUserData={setUserData}
                         handleClose={handleClose}
                     >
                     </ModalQuickNote>

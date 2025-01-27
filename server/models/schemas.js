@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const noteSchema = new Schema({
-    note_id: {type: Number, default: null},
+    note_id: {type: String, default: null}, // UUID is a string so we should save it as a string.
     title: {type: String, default: ""},
     note_date: {type: Date, default: Date.now},
     content: {type: String, default: ""},
@@ -12,7 +12,7 @@ const noteSchema = new Schema({
 })
 
 const notebookSchema = new Schema({
-    notebook_id: {type: Number, default: null},
+    notebook_id: {type: String, default: null},
     name: {type: String, defualt: ""}, // What the user decides to name it.
     sprite: {type: String, default: ""}, // Link to sprite api.
     notes: [noteSchema], // holds "note"

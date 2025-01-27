@@ -28,12 +28,11 @@ Note Taking Functionality:
 - [ ] For each <strong> note:</strong> Able to add tags to notes (Ex: matchup, decklist, review, custom, etc.) -> Right click to add a tag.
 - [ ] For each <strong> notebook: </strong> User can add a sprite for each notebook.
 - [X] User can re-size the notebooks & notes sections on NotesPage.jsx (naiive implementation).
-- [ ] User can add a quick note.
+- [X] User can add a quick note.
 - [X] User can see their most recently edited notes on the dashboard. Clicking one takes them to the note.
 - [ ] On the dashboard, user can see some links to popular websites.
 - [ ] Refactor: Make all usages of "date" consistent.
-- [ ] Refactor: Assign better notebook_ids and note_ids.
-For the above, do not forget to update the URL for querying purposes.
+- [X] Refactor: Assign better notebook_ids and note_ids.
 
 ### Release v0.4 Goals: Security
 - [ ] Check that you can't just navigate to whatever URL you want. IE: You have to be logged in in order to navigate to a specific link with query arguments.

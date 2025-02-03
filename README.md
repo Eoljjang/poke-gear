@@ -31,6 +31,7 @@ Note Taking Functionality:
 - [X] Refactor: Make all usages of "date" consistent.
 - [X] Refactor: Assign better notebook_ids and note_ids (we now use UUID)
 - [X] Encrypt passwords when user signs up.
+    - [ ] Fix deploy issue now that I am using a bcrypt library.
 
 ### Release v0.4 Goals: Add features to make it feel "complete".
 - [X] User can re-size the notebooks & notes sections on NotesPage.jsx (naiive implementation).

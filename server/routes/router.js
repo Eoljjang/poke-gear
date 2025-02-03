@@ -2,6 +2,8 @@
 const express = require('express')
 const router = express.Router()
 const schemas = require('../models/schemas');
+const bcrypt = require('bcrypt');
+const jwt = require("jsonwebtoken");
 
 router.get("/", async (req, res) => {
     res.send("Hello world!")
@@ -12,32 +14,47 @@ router.post('/login', async (req, res) => {
     const { email, password } = req.body;
     console.log("Attempting login through backend...")
 
-    try{
-        const user = await schemas.Users.findOne({email});
-        if (!user){
-            return res.status(404).json({message: "Email does not exist. Please sign up."});
-        }
+    const response = await verifyLogin(email, password) // Calls this function that handles all login logic.
 
-        if (password !== user.password){
-            return res.status(401).json({message: "Password is incorrect."});
-        }
+    if (response.status === 'ok'){
+        // Stores JWT token as a cookie in the browser.
+        //res.cookie('token',token,{ maxAge: 2 * 60 * 60 * 1000, httpOnly: true });
         res.status(200).json({message: "Login successful.", userEmail: email});
+    }
 
-        // Compare the passwords
-        // const isMatch = await schemas.Users.comparePassword(password);
-        // if (!isMatch){
-        //     return res.status(401).json({message: "Invalid email or password."});
-        // }
+    else{
+        return res.status(401).json({message: "Password is incorrect."});
+    }
+});
+
+// Function for decrypting password from db.
+const verifyLogin = async(email, password) => {
+    try{
+        const user = await schemas.Users.findOne({email}).lean()
+        if (!user){
+            return {status:'error',error:'user not found'}
+        }
+        // Compare the 2 passwords
+        if (await bcrypt.compare(password, user.password)){
+            // This essentially creates a "session token" for a given user that's logged in.
+            //let token = jwt.sign({id:user._id, email: user.email, type:"user"}, JWT_SECRET, {expiresIn: '2h'})
+            return {status:'ok'}//,data:token}
+        }
+        // If password is wrong
+        return {status:'error',error:'invalid password'}
     }
     catch(error){
-        console.log(error);
-        return res.status(500).json({message: "Server Error"})
+        console.log(error)
+        return {status:'error',error:'timed out'}
     }
-
-});
+}
 
 router.post('/signup', async(req, res) => {
     const {firstName, lastName, password, email} = req.body
+
+    // Encrypt pw
+    const saltRounds = 10;
+    const passwordEncrypted = await bcrypt.hash(password, saltRounds);
 
     // Check if the email already exists.
     try{
@@ -53,7 +70,7 @@ router.post('/signup', async(req, res) => {
 
     // Now create the new user.
     try{
-        const userData = {firstName: firstName, lastName: lastName, password: password, email: email}
+        const userData = {firstName: firstName, lastName: lastName, password: passwordEncrypted, email: email}
         const newUser = new schemas.Users(userData)
         const saveUser = await newUser.save()
         if (saveUser){

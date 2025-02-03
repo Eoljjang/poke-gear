@@ -10,7 +10,7 @@ import {v4 as uuidv4} from 'uuid';
 function ModalQuickNote({userData, setUserData, handleClose}){
     const [noteTitle, setNoteTitle] = useState("")
     const [noteContent, setNoteContent] = useState("")
-    const [selectedNotebook, setSelectedNotebook] = useState(null);
+    const [selectedNotebook, setSelectedNotebook] = useState("None");
     const queryParams = new URLSearchParams(location.search);
     const userEmail = queryParams.get("userEmail");
 
@@ -24,8 +24,14 @@ function ModalQuickNote({userData, setUserData, handleClose}){
 
     const handleQuicknoteSave = async(value) => {
         // Checks that note title and note content can not be empty.
-        if (noteTitle.trim() === "" || noteContent.trim() === ""){
-            alert("Please add a title and ensure the note content is not empty.");
+        if (noteTitle.trim() === ""){
+            alert("A title is required.");
+        }
+        else if (noteContent.trim() === "") {
+            alert("The note content cannot be empty.")
+        }
+        else if (selectedNotebook === "None"){ // If no notebook is selected...
+            alert("Please select a notebook.")
         }
         else{
             handleClose();
@@ -33,8 +39,8 @@ function ModalQuickNote({userData, setUserData, handleClose}){
                 note_id: uuidv4(),
                 title: noteTitle,
                 content: noteContent,
-                note_date: new Date().toISOString(),
-                last_edited: new Date().toISOString()
+                note_date: new Date(),
+                last_edited: new Date(),
             }
 
             setUserData((prevData) =>
@@ -44,7 +50,6 @@ function ModalQuickNote({userData, setUserData, handleClose}){
                     : notebook;
                 })
               );
-
         }
     }
     const handleNotebookSelect = (e) => {
@@ -60,7 +65,7 @@ function ModalQuickNote({userData, setUserData, handleClose}){
             <form action="">
                 <label htmlFor="select-notebook">Select a Notebook: </label>
                 <select name="select-notebook" id="select-notebook-dropdown" onChange={handleNotebookSelect}>
-                    <option value="none" selected>
+                    <option value="none">
                         None
                     </option>
                     {

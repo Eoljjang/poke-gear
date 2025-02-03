@@ -215,7 +215,7 @@ function NotesPage() {
         note_id: uuidv4(),//currentNotebook.notes.length + 1,
         title: `Untitled Note`,
         content: "",
-        note_date: new Date().toISOString(), // have to assign the date locally.
+        note_date: new Date(), // have to assign the date locally.
         last_edited: new Date(),
       };
       setUserData((prevData) =>

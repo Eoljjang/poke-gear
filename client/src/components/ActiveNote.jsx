@@ -41,7 +41,7 @@ function ActiveNote({activeNote, handleNoteTitleUpdate, handleNoteUpdate}){
                         maxLength={50}
                     />
                     <div className="active-note-subheader">
-                        Date Created: {activeNote.note_date.split("T")[0]} {/* Take off the time created. */}
+                        Date Created: {formatDate(activeNote.note_date)} {/* Convert to ISO string here. */}
                     </div>
                     <div className="active-note-subheader">
                         Last Edited: {formatDate(activeNote.last_edited)}

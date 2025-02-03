@@ -24,21 +24,22 @@ Note Taking Functionality:
     - See backlog list as to why debounce was not implemented for renaming. We'll skip it for now and maybe re-visit it later.
 - [X] Show a "syncing" icon while data is being synced to the database.
 
-### Release v0.3 Goals: Make the features feel "complete".
-- [ ] For each <strong> note:</strong> Able to add tags to notes (Ex: matchup, decklist, review, custom, etc.) -> Right click to add a tag.
-- [ ] For each <strong> notebook: </strong> User can add a sprite for each notebook.
+### Release v0.3 Goals: Clean up the SW. Add much needed security checks.
+- [ ] Check that you can't just navigate to whatever URL you want. IE: You have to be logged in in order to navigate to a specific link with query arguments. For example, you can take a logged in user's URL, paste it and navigate to it LOL.
+    - This might be resolved by implementing react "onEnter" hook.
+- [ ] Check that inputs block injections.
+- [X] Refactor: Make all usages of "date" consistent.
+- [X] Refactor: Assign better notebook_ids and note_ids (we now use UUID)
+- [X] Encrypt passwords when user signs up.
+
+### Release v0.4 Goals: Add features to make it feel "complete".
 - [X] User can re-size the notebooks & notes sections on NotesPage.jsx (naiive implementation).
 - [X] User can add a quick note.
 - [X] User can see their most recently edited notes on the dashboard. Clicking one takes them to the note.
 - [ ] On the dashboard, user can see some links to popular websites.
-- [ ] Refactor: Make all usages of "date" consistent.
-- [X] Refactor: Assign better notebook_ids and note_ids.
-- [X] Encrypt passwords when user signs up.
+- [ ] For each <strong> note:</strong> Able to add tags to notes (Ex: matchup, decklist, review, custom, etc.) -> Right click to add a tag.
+- [ ] For each <strong> notebook: </strong> User can add a sprite for each notebook.
 
-### Release v0.4 Goals: Security
-- [ ] Check that you can't just navigate to whatever URL you want. IE: You have to be logged in in order to navigate to a specific link with query arguments. For example, you can take a logged in user's URL, paste it and navigate to it LOL.
-    - This might be resolved by implementing react "onEnter" hook.
-- [ ] Check that inputs block injections.
 
 ### Release v0.5 Goals: User Testing and Iterative Cleanup
 - [ ] Get real world data and experiences to find out what should be added or changed.

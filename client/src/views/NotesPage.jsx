@@ -168,9 +168,6 @@ function NotesPage() {
   };
 
   const handleRenameUpdate = () => {
-    const now = new Date();
-    const formattedDate = now.toISOString().split("T")[0]; // yyyy-mm-dd
-    const formattedTime = now.toLocaleTimeString("en-US", { hour12: true, hour:'numeric', minute: 'numeric' }); // Show in 12hr time. Hide the seconds.
     if (renamingNotebookId) {
       setUserData((prevData) =>
         prevData.map((notebook) => ({
@@ -191,8 +188,7 @@ function NotesPage() {
           notes: notebook.notes.map((note) => ({
             ...note,
             title: note.note_id === renamingNoteId ? renameValue : note.title,
-            //last_edited: `${formattedDate} at ${formattedTime}`, // for note only.
-            last_edited: now
+            last_edited: new Date(),
           })),
         }))
       );
@@ -205,7 +201,7 @@ function NotesPage() {
     setIsBtnDisabled(true); // Disable the add btn.
     const newNotebook = {
       notebook_id: uuidv4(),//userData.length + 1,
-      name: `Notebook ${userData.length + 1}`,
+      name: `Untitled Notebook`,
       notes: [],
     };
     setUserData([...userData, newNotebook]);
@@ -217,9 +213,10 @@ function NotesPage() {
       setIsBtnDisabled(true); // Disable the add btn.
       const newNote = {
         note_id: uuidv4(),//currentNotebook.notes.length + 1,
-        title: `New Note`,
+        title: `Untitled Note`,
         content: "",
         note_date: new Date().toISOString(), // have to assign the date locally.
+        last_edited: new Date(),
       };
       setUserData((prevData) =>
         prevData.map((notebook) =>
@@ -235,9 +232,6 @@ function NotesPage() {
   };
 
   const handleNoteTitleUpdate = (noteId, updatedTitle) => {
-    const now = new Date();
-    const formattedDate = now.toISOString().split("T")[0]; // yyyy-mm-dd
-    const formattedTime = now.toLocaleTimeString("en-US", { hour12: true, hour:'numeric', minute: 'numeric' }); // Show in 12hr time. Hide the seconds.
     setUserData((prevData) =>
       prevData.map((notebook) =>
         notebook.notebook_id === selectedNotebook
@@ -249,7 +243,7 @@ function NotesPage() {
                     ...note,
                     title: updatedTitle,
                     //last_edited: `${formattedDate} at ${formattedTime}`,
-                    last_edited: now
+                    last_edited: new Date(),
                   }
                   : note
 
@@ -261,10 +255,6 @@ function NotesPage() {
   };
 
   const handleNoteUpdate = debounce((noteId, updatedContent) => {
-    const now = new Date();
-    const formattedDate = now.toISOString().split("T")[0]; // yyyy-mm-dd
-    const formattedTime = now.toLocaleTimeString("en-US", { hour12: true, hour:'numeric', minute: 'numeric' }); // Show in 12hr time. Hide the seconds.
-
     setUserData((prevData) =>
       prevData.map((notebook) =>
         notebook.notebook_id === selectedNotebook
@@ -276,7 +266,7 @@ function NotesPage() {
                     ...note,
                     content: updatedContent,
                     //last_edited: `${formattedDate} at ${formattedTime}`,
-                    last_edited: now
+                    last_edited: new Date()
                   }
                   : note
               ),
@@ -318,10 +308,6 @@ function NotesPage() {
         notes: true,
       });
     }
-  };
-
-  const handleDelete = (id) => {
-    console.log("Deleted note / notebook:", id);
   };
 
   const handleOpenModalSprite = () => {

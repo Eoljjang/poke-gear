@@ -21,7 +21,7 @@ function Login() {
         await axios.post(dbUrl+'/login', postData)
         .then(response => {
             console.log(response)
-            console.log(`User ${email} and PW ${password}`)
+            //console.log(`User ${email} and PW ${password}`)
             const userEmail = response.data.userEmail;
             navigate(`/app?userEmail=${userEmail}`)
         })

@@ -33,10 +33,11 @@ Note Taking Functionality:
 - [ ] On the dashboard, user can see some links to popular websites.
 - [ ] Refactor: Make all usages of "date" consistent.
 - [X] Refactor: Assign better notebook_ids and note_ids.
+- [X] Encrypt passwords when user signs up.
 
 ### Release v0.4 Goals: Security
-- [ ] Check that you can't just navigate to whatever URL you want. IE: You have to be logged in in order to navigate to a specific link with query arguments.
-- [ ] When switching between users, the new user should not have access to data from the previous user (since the db sends a response with data and you can view it in the console).
+- [ ] Check that you can't just navigate to whatever URL you want. IE: You have to be logged in in order to navigate to a specific link with query arguments. For example, you can take a logged in user's URL, paste it and navigate to it LOL.
+    - This might be resolved by implementing react "onEnter" hook.
 - [ ] Check that inputs block injections.
 
 ### Release v0.5 Goals: User Testing and Iterative Cleanup

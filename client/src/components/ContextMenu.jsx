@@ -1,6 +1,6 @@
 // This component is for having a custom menu pop up when you right click a notebook.
 // This component will handle both right-clicking a notebook and right-clicking a note.
-import '../styles/components/ContextMenu.css'
+import styles from '../styles/components/ContextMenu.module.css'
 import { useRef, useEffect, useState } from 'react';
 
 // Props:
@@ -17,7 +17,7 @@ function ContextMenu({clickedItem, posx, posy, handleContextMenuOptionClick}){
     }
 
     return(
-        <div id="context-menu-container"
+        <div id={styles["context-menu-container"]}
             style={{
                 position: 'absolute',
                 top: posy,
@@ -25,10 +25,10 @@ function ContextMenu({clickedItem, posx, posy, handleContextMenuOptionClick}){
             }}
         >
 
-        <ul id="context-menu">
-            <li id="menu-rename" onClick={() => handleContextMenuOptionClick("menu-rename", clickedItem)}>Rename</li>
-            <li id="menu-add-sprite" onClick={() => handleContextMenuOptionClick("menu-add-sprite", clickedItem)}>Add Sprite</li>
-            <li id="menu-delete" onClick={() => handleContextMenuOptionClick("menu-delete", clickedItem)}>Delete</li>
+        <ul id={styles["context-menu"]}>
+            <li id={styles["menu-rename"]} onClick={() => handleContextMenuOptionClick("menu-rename", clickedItem)}>Rename</li>
+            <li id={styles["menu-add-sprite"]} onClick={() => handleContextMenuOptionClick("menu-add-sprite", clickedItem)}>Add Sprite</li>
+            <li id={styles["menu-delete"]} onClick={() => handleContextMenuOptionClick("menu-delete", clickedItem)}>Delete</li>
         </ul>
 
         </div>

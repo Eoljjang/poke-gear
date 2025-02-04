@@ -1,22 +1,22 @@
 // src/components/Sidebar.jsx
 import React from "react";
 import PropTypes from "prop-types";
-import "../styles/components/Sidebar.css"; // We'll create this CSS file
+import styles from "../styles/components/Sidebar.module.css"; // We'll create this CSS file
 
 const Sidebar = ({ children, isOpen, onClose }) => {
   return (
     <>
       <div
-        className={`sidebar-overlay ${isOpen ? "open" : ""}`}
+        className={`${styles.sidebar} ${isOpen ? styles.open : ""}`}
         onClick={onClose}
       />
 
-      <div className={`sidebar ${isOpen ? "open" : ""}`}>
-        <div className="sidebar-content">
-          <ul className="sidebar-list">
+      <div className={`${styles.sidebar} ${isOpen ? styles.open : ""}`}>
+        <div className={styles["sidebar-content"]}>
+          <ul className={styles["sidebar-list"]}>
 
           {React.Children.map(children, (child, index) => (
-            <li onClick={onClose} className="sidebar-list-item">
+            <li onClick={onClose} className={styles["sidebar-list-item"]}>
               <p>
                 {child}
               </p>

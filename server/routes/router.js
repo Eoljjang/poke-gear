@@ -2,7 +2,7 @@
 const express = require('express')
 const router = express.Router()
 const schemas = require('../models/schemas');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const jwt = require("jsonwebtoken");
 
 router.get("/", async (req, res) => {

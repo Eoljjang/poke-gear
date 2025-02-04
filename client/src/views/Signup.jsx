@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
-import "../styles/views/Signup.css"
+import styles from "../styles/views/Signup.module.css"
 const dbUrl = import.meta.env.VITE_DB_URL; // Takes the db_url depending on if you're on dev or production.
 
 function Signup() {
@@ -50,35 +50,35 @@ function Signup() {
     }
 
     return(
-        <div className="signup-page">
-            <form className="signup-form" action="" method="post" onSubmit={handleSubmit}>
-                <div className="input-container">
+        <div className={styles["signup-page"]}>
+            <form className={styles["signup-form"]} action="" method="post" onSubmit={handleSubmit}>
+                <div className={styles["input-container"]}>
                     <label htmlFor="firstname">First Name:</label>
                     <input type="text" id="firstname" name="firstname"onChange={(e) => setFirstName(e.target.value)} required/>
                 </div>
 
-                <div className="input-container">
+                <div className={styles["input-container"]}>
                     <label htmlFor="lastname">Last Name:</label>
                     <input type="text" id="lastname" name="lastname" onChange={(e) => setLastName(e.target.value)} required/>
                 </div>
 
-                <div className="input-container">
+                <div className={styles["input-container"]}>
                     <label htmlFor="password">Set Password:</label>
                     <input type="text" id="password" name = "password" onChange= {(e) => setPassword(e.target.value)} required/>
                 </div>
 
-                <div className="input-container">
+                <div className={styles["input-container"]}>
                     <label htmlFor="email">Set Email:</label>
                     <input type="text" id="email" name = "email" onChange= {(e) => setEmail(e.target.value)} required/>
                 </div>
 
-                <div className="btn-container">
-                    <button className="btn-return" onClick={handleReturn}>return to login</button>
-                    <button className="btn-submit" type="submit">Complete Signup</button>
+                <div className={styles["btn-container"]}>
+                    <button className={styles["btn-return"]} onClick={handleReturn}>return to login</button>
+                    <button className={styles["btn-submit"]} type="submit">Complete Signup</button>
                 </div>
 
                 {errorMsg &&(
-                    <div className="error-msg">{errorMsg}</div>
+                    <div className={styles["error-msg"]}>{errorMsg}</div>
                 )}
             </form>
 

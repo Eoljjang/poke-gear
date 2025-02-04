@@ -6,6 +6,10 @@
     justify-content: center;
 }
 
+.header{
+    border: 2px solid red;
+}
+
 .signup-form{
     display: flex;
     flex-direction: column;
@@ -17,7 +21,21 @@
     padding: 32px;
     border-radius: 12px;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-    
+}
+
+.input-container{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-container input{
+    background-color: white ;
+    color: black;
+    padding: 12px;
+    font-size: 1.25rem;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    border-radius: 8px;
 }
 
 .btn-container{

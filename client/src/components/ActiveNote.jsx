@@ -1,4 +1,4 @@
-import "../styles/components/ActiveNote.css";
+import "../styles/components/ActiveNote.module.css";
 import React, { act, useState } from 'react';
 import ReactQuill from 'react-quill';
 import Quill from "quill";

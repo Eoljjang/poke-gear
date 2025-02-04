@@ -25,13 +25,16 @@ Note Taking Functionality:
 - [X] Show a "syncing" icon while data is being synced to the database.
 
 ### Release v0.3 Goals: Clean up the SW. Add much needed security checks.
-- [ ] Check that you can't just navigate to whatever URL you want. IE: You have to be logged in in order to navigate to a specific link with query arguments. For example, you can take a logged in user's URL, paste it and navigate to it LOL.
+- [X] Check that you can't just navigate to whatever URL you want. IE: You have to be logged in in order to navigate to a specific link with query arguments. For example, you can take a logged in user's URL, paste it and navigate to it LOL.
     - This might be resolved by implementing react "onEnter" hook.
-- [ ] Check that inputs block injections.
+    - This behaviour exists in localhost, but does not exist once it's hosted on Render! Yahoo. So no changes were needed.
+- [X] Check that inputs block injections.
+    - This is automatically done by react / jsx. It escapes all text input.
 - [X] Refactor: Make all usages of "date" consistent.
 - [X] Refactor: Assign better notebook_ids and note_ids (we now use UUID)
 - [X] Encrypt passwords when user signs up.
-    - [ ] Fix deploy issue now that I am using a bcrypt library.
+    - [X] Fix deploy issue now that I am using a bcrypt library. UPDATE: I Just had to change it to use "bcryptjs" library instead.
+- [ ] Refactor: Scope CSS files (this will take a long time).
 
 ### Release v0.4 Goals: Add features to make it feel "complete".
 - [X] User can re-size the notebooks & notes sections on NotesPage.jsx (naiive implementation).

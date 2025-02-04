@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react';
 import axios from "axios"
-import '../styles/views/Login.css'
+import styles from '../styles/views/Login.module.css'
 const dbUrl = import.meta.env.VITE_DB_URL; // Takes the db_url depending on if you're on dev or production.
 
 function Login() {
@@ -46,33 +46,33 @@ function Login() {
     }
     return(
         <div className="login-page">
-            <div className="header">
-                <div className="header-text">Welcome to Poke-Gear!</div>
-                <div className="subheader-text">Lets get you signed in</div>
+            <div className={styles.header}>
+                <div className={styles['header-text']}>Welcome to Poke-Gear!</div>
+                <div className={styles["subheader-text"]}>Lets get you signed in</div>
             </div>
-            <div className="login-form-container">
+            <div className={styles["login-form-container"]}>
                 <h3>Login:</h3>
-                <form className="login-form" action="" method="POST" onSubmit={handleLogin}>
-                    <div className="input-container">
+                <form className={styles["login-form"]} action="" method="POST" onSubmit={handleLogin}>
+                    <div className={styles["input-container"]}>
                         <label htmlFor="email">Email:</label>
                         <input type="text" value={email} placeholder="Enter Email" name="email" onChange={(e) => setEmail(e.target.value)}required/>
                     </div>
 
-                    <div className="input-container">
+                    <div className={styles["input-container"]}>
                         <label htmlFor="password">Password:</label>
                         <input type="password" value={password} placeholder="Enter Password" name="password" onChange={(e) => setPassword(e.target.value)}required/>
                     </div>
 
                     {errorMsg &&(
-                        <div className="error-msg">{errorMsg}</div> // display error msg if any when trying to log in.
+                        <div className={styles["error-msg"]}>{errorMsg}</div> // display error msg if any when trying to log in.
                     )}
-                    <button type="submit" id="login-btn">Login</button>
+                    <button type="submit" id={styles["login-btn"]}>Login</button>
                 </form>
             </div>
 
-            <div className="signup-container">
+            <div className={styles["signup-container"]}>
                 <h3>No Account?</h3>
-                <button id="navigate-signup-btn"onClick={btnSignupClick}>Signup</button>
+                <button id={styles["navigate-signup-btn"]} onClick={btnSignupClick}>Signup</button>
             </div>
         </div>
     )

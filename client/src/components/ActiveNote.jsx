@@ -1,4 +1,4 @@
-import "../styles/components/ActiveNote.module.css";
+import styles from "../styles/components/ActiveNote.module.css";
 import React, { act, useState } from 'react';
 import ReactQuill from 'react-quill';
 import Quill from "quill";
@@ -32,23 +32,23 @@ function ActiveNote({activeNote, handleNoteTitleUpdate, handleNoteUpdate}){
     // Convert the "last_edited" field to be a string that can be displayed
     if (activeNote){
         return(
-            <div className="test">
-                <div className="active-note-heading">
-                    <input type="text" id="note-title-input"
+            <div className={styles["active-note-container"]}>
+                <div className={styles["active-note-heading"]}>
+                    <input type="text" id={styles["note-title-input"]}
                         value={activeNote.title}
                         onChange={(e) => handleTitleChange(e.target.value)}
                         placeholder="Untitled"
                         maxLength={50}
                     />
-                    <div className="active-note-subheader">
+                    <div className={styles["active-note-subheader"]}>
                         Date Created: {formatDate(activeNote.note_date)} {/* Convert to ISO string here. */}
                     </div>
-                    <div className="active-note-subheader">
+                    <div className={styles["active-note-subheader"]}>
                         Last Edited: {formatDate(activeNote.last_edited)}
                     </div>
                 </div>
 
-                <div className="active-note-content">
+                <div className={styles["active-note-content"]}>
                     <ReactQuill /* Do not give this an id otherwise the onChange stops working. */
                         key={activeNote.note_id} // If the note_id changes, then forces Quill to re-render.
                         value={activeNote.content}

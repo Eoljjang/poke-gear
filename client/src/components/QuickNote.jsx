@@ -1,5 +1,5 @@
 import { useState } from "react";
-import '../styles/components/QuickNote.css'
+import styles from '../styles/components/QuickNote.module.css'
 import ModalQuickNote from "../Modals/ModalQuickNote";
 function QuickNote({userData, setUserData}){
     const [modalVisible, setModalVisible] = useState(false);
@@ -16,14 +16,14 @@ function QuickNote({userData, setUserData}){
     }
 
     return(
-        <div className="quicknote-container" >
-            <button className="open-quicknote-btn"onClick={handleOpen}>
+        <div className={styles["quicknote-container"]} >
+            <button className={styles["open-quicknote-btn"]} onClick={handleOpen}>
                 Quicknote
             </button>
             {modalVisible && (
                 <>
                     {/* Overlay blocks interactions with content behind the modal. */}
-                    <div className="modal-overlay"></div>
+                    <div className={styles["modal-overlay"]}></div>
 
                     {/* Conditonally renders the modal. */}
                     <ModalQuickNote

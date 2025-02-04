@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import "../styles/Modals/ModalQuickNote.css"
+import styles from "../styles/Modals/ModalQuickNote.module.css"
 import ReactQuill from 'react-quill';
 import { useOutletContext } from "react-router-dom";
 import { useState } from "react";
@@ -57,14 +57,14 @@ function ModalQuickNote({userData, setUserData, handleClose}){
 
     }
     return(
-        <div id="modal-quicknote-container">
-            <div className="modal-title">
+        <div id={styles["modal-quicknote-container"]}>
+            <div className={styles["modal-title"]}>
                 Quicknote
             </div>
 
             <form action="">
                 <label htmlFor="select-notebook">Select a Notebook: </label>
-                <select name="select-notebook" id="select-notebook-dropdown" onChange={handleNotebookSelect}>
+                <select name="select-notebook" id={styles["select-notebook-dropdown"]} onChange={handleNotebookSelect}>
                     <option value="none">
                         None
                     </option>
@@ -79,7 +79,7 @@ function ModalQuickNote({userData, setUserData, handleClose}){
             </form>
 
             <div className="quicknote-editor">
-                <input type="text" id="quicknote-title-input"  onChange={handleTitleChange} placeholder="Note Title..."/>
+                <input type="text" id={styles["quicknote-title-input"]}  onChange={handleTitleChange} placeholder="Note Title..."/>
                 <ReactQuill
                     theme="snow"
                     value={noteContent}
@@ -87,11 +87,11 @@ function ModalQuickNote({userData, setUserData, handleClose}){
                 />
             </div>
 
-            <div className="modal-quicknote-btn-container">
-                <button className="modal-close-btn" onClick={handleClose}>
+            <div className={styles["modal-quicknote-btn-container"]}>
+                <button className={styles["modal-close-btn"]} onClick={handleClose}>
                     Cancel
                 </button>
-                <button className="btn-confirm-quicknote" onClick={handleQuicknoteSave}>
+                <button className={styles["btn-confirm-quicknote"]} onClick={handleQuicknoteSave}>
                     Save
                 </button>
             </div>

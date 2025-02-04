@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
-import '../styles/components/RecentNotes.css'
+import styles from '../styles/components/RecentNotes.module.css'
 import { formatDate } from '../functions/Helpers';
 
 function RecentNotes(){
@@ -49,8 +49,8 @@ function RecentNotes(){
     }
 
     return(
-        <div className="recent-notes-container">
-            <div className="recent-notes-title">
+        <div className={styles["recent-notes-container"]}>
+            <div className={styles["recent-notes-title"]}>
                 <strong>Recent Notes</strong>
             </div>
             {top5Recent.map((item) => {
@@ -58,12 +58,12 @@ function RecentNotes(){
                 // 1) notebook_name > note_name
                 // 2) last edited
                 // 3) a short preview of the content
-                return <div key={item.note_id} className='recent-note-item' onClick={() => handleNavigate(item.notebook_id, item.note_id)}>
-                    <div className="note-name">{item.note_name}</div>
+                return <div key={item.note_id} className={styles['recent-note-item']} onClick={() => handleNavigate(item.notebook_id, item.note_id)}>
+                    <div className={styles["note-name"]}>{item.note_name}</div>
 
-                    <div className="details-container">
-                        <div className="notebook-name"><i>{item.notebook_name}</i></div>
-                        <div className="recent-last-edited"><i>{formatDate(item.last_edited)}</i></div>
+                    <div className={styles["details-container"]}>
+                        <div className={styles["notebook-name"]}><i>{item.notebook_name}</i></div>
+                        <div className={styles["recent-last-edited"]}><i>{formatDate(item.last_edited)}</i></div>
                     </div>
                 </div>;
             })}

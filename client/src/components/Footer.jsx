@@ -1,4 +1,4 @@
-import '../styles/components/Footer.css'
+import styles from '../styles/components/Footer.module.css'
 import PropTypes from 'prop-types'
 import { useState } from 'react';
 // Props:
@@ -6,9 +6,9 @@ import { useState } from 'react';
 
 function Footer({footerLinks}) {
     return(
-        <footer>
+        <footer className={styles.footer}>
             {Object.entries(footerLinks).map(([text, url], index) => (
-                <a key={`${url}-${index}`} href={url} className="footer-link">
+                <a key={`${url}-${index}`} href={url} className={styles["footer-link"]}>
                     {text}
                 </a>
             ))}

@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import '../styles/components/Header.css'
+import styles from '../styles/components/Header.module.css'
 import PropTypes from 'prop-types'
 
 const Header = ({ children }) => {
@@ -16,10 +16,10 @@ const Header = ({ children }) => {
     }
 
     return (
-        <header className="header-container">
+        <header className={styles["header-container"]}>
             {children}
-            <h1 className="main-header-title" onClick={handleGoHome}>Poke-Gear</h1>
-            <button onClick={handleSignout} className="header-button">
+            <h1 className={styles["main-header-title"]} onClick={handleGoHome}>Poke-Gear</h1>
+            <button onClick={handleSignout} className={styles["header-button"]}>
                 Signout
             </button>
         </header>

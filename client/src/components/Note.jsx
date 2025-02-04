@@ -1,4 +1,4 @@
-import "../styles/components/Note.css";
+import styles from "../styles/components/Note.module.css";
 import { useEffect, useRef } from "react";
 // Props:
 // 1) notebook = The specific notebook to be rendered.
@@ -27,7 +27,7 @@ function Note({
 
   return (
     <div
-      className={`note-item ${selected_class}`}
+      className={`${styles["note-item"]} ${styles[selected_class]}`}
       onClick={(e) => {
         handleNoteClick(e, note.note_id);
       }}
@@ -36,10 +36,10 @@ function Note({
         e.preventDefault(); // Prevents default browser contextmenu.
       }}
     >
-      <div className="note-name">
+      <div className={styles["note-name"]}>
         {isRenaming ? (
           <input
-            className="note-name-input"
+            className={styles["note-name-input"]}
             ref={inputRef}
             value={renameValue}
             onChange={(e) => {
@@ -56,7 +56,7 @@ function Note({
           <span>{note.title}</span>
         )}
       </div>
-      <div className="note-img">
+      <div className={styles["note-img"]}>
         <img src="" alt="" />{" "}
         {/* Future: Should be able to handle multiple sprites. */}
       </div>

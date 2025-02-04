@@ -1,4 +1,4 @@
-import "../styles/components/Notebook.css";
+import styles from "../styles/components/Notebook.module.css";
 import gardevoirSprite from "../assets/gardevoirSprite.png";
 import { useEffect, useRef } from "react";
 
@@ -29,7 +29,7 @@ function Notebook({
 
   return (
     <div
-      className={`notebook-item ${selected_class}`}
+      className={`${styles['notebook-item']} ${styles[selected_class]}`}
       onClick={(e) => {
         handleNotebookClick(e, notebook.notebook_id);
       }}
@@ -38,10 +38,10 @@ function Notebook({
         e.preventDefault(); // Prevents default browser contextmenu.
       }}
     >
-      <div className="notebook-name">
+      <div className={styles["notebook-name"]}>
         {isRenaming ? (
           <input
-            className="notebook-name-input"
+            className={styles["notebook-name-input"]}
             ref={inputRef}
             value={renameValue}
             onChange={(e) => {
@@ -58,7 +58,7 @@ function Notebook({
           notebook.name
         )}
       </div>
-      <div className="notebook-img">
+      <div className={styles["notebook-img"]}>
         <img src="" alt="" />{" "}
         {/* Future: Should be able to handle multiple sprites. */}
       </div>

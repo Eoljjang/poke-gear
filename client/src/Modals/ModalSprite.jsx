@@ -1,7 +1,7 @@
 // Modal.js
 
 import React from "react";
-import "../styles/components/ModalSprite.css"
+import styles from "../styles/Modals/ModalSprite.module.css"
 
 const ModalSprite = ({onClose, children, selectedNotebook, selectedNote }) => {
     return (

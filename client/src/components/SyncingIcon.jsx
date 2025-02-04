@@ -1,7 +1,7 @@
-import '../styles/components/SyncingIcon.css'
+import styles from '../styles/components/SyncingIcon.module.css'
 function SyncingIcon(){
     return(
-        <div id="syncing-icon">
+        <div id={styles["syncing-icon"]}>
         </div>
     )
 

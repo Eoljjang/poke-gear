@@ -34,7 +34,8 @@ Note Taking Functionality:
 - [X] Refactor: Assign better notebook_ids and note_ids (we now use UUID)
 - [X] Encrypt passwords when user signs up.
     - [X] Fix deploy issue now that I am using a bcrypt library. UPDATE: I Just had to change it to use "bcryptjs" library instead.
-- [ ] Refactor: Scope CSS files (this will take a long time).
+- [X] Refactor: Scope CSS files (this will take a long time).
+    - [ ] Touching dashboard / app.css completely explodes the program so I will not touch it.
 
 ### Release v0.4 Goals: Add features to make it feel "complete".
 - [X] User can re-size the notebooks & notes sections on NotesPage.jsx (naiive implementation).

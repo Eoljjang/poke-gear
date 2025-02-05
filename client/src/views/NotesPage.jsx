@@ -1,4 +1,4 @@
-import "../styles/views/NotesPage.css";
+import styles from "../styles/views/NotesPage.module.css";
 import Notebook from "../components/Notebook";
 import Note from "../components/Note";
 import ActiveNote from "../components/ActiveNote";
@@ -322,19 +322,19 @@ function NotesPage() {
   return (
     <>
       <div
-        className={`notes-page-overlay ${contextMenu.visible ? "open" : ""}`}
+        className={`${styles.overlay} ${contextMenu.visible ? styles.open : ""}`}
         onClick={() => setContextMenu({ visible: false, x: 0, y: 0 })}
       />
 
-      <div className="notes-page-container">
+      <div className={styles["notes-page-container"]}>
         <Toolbar
           onClickCollapseNotebooks={onClickCollapseNotebooks}
           onClickCollapseNotes={onClickCollapseNotes}
         />
-        <div className="notes-content">
+        <div className={styles["notes-content"]}>
           {/* 1) Notebook Selector */}
           {isVisible.notebooks && (
-            <div className="notebooks-section">
+            <div className={styles["notebooks-section"]}>
               {userData.map((notebook) => (
                 <Notebook
                   key={notebook.notebook_id}
@@ -348,7 +348,7 @@ function NotesPage() {
                 />
               ))}
               <button
-                className="add-notebooks-button"
+                className={styles["add-notebooks-button"]}
                 onClick={handleCreateNotebook}
                 disabled={isBtnDisabled}
               >
@@ -359,7 +359,7 @@ function NotesPage() {
 
           {/* 2) Note Selector */}
           {isVisible.notes && (
-            <div className="notes-section">
+            <div className={styles["notes-section"]}>
               {currentNotes.map((note) => (
                 <Note
                   key={note.note_id}
@@ -374,7 +374,7 @@ function NotesPage() {
               ))}
 
               <button
-                className="add-notebooks-button"
+                className={styles["add-notebooks-button"]}
                 onClick={handleCreateNote}
                 disabled={isBtnDisabled}
               >
@@ -384,7 +384,7 @@ function NotesPage() {
           )}
 
           {/* 3) Active Note Editor */}
-            <div className="active-note-section">
+            <div className={styles["active-note-section"]}>
               {syncing && (
                 <SyncingIcon/>
               )}

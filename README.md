@@ -83,6 +83,8 @@ Note Taking Functionality:
 - [X] <del>The syncing icon has nothing to do with interaction with the db. It's simply called whenever setUserData is called. Would be worthwhile to implement such that it displays and waits for a 200 response from the server.</del>
     - Resolved. The syncing icon now depends on the request instead (see App.jsx syncUserData() for more details).
 - [ ] Add error handling if syncing fails. Display a failed sync message.
-- [ ] Last edited field is NaN when creating a new note.
+- [X] Last edited field is NaN when creating a new note.
 - [ ] Quill insert link on text far left extends too far to the left. So the insert link field gets cut off.
 - [X] Make the poke-gear title a link back to home.
+- [ ] Expanding sidebar -> clicking outside of the sidebar -> does not close it anymore.
+    - This is likely due to the CSS scoping refactoring.

@@ -2,13 +2,16 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  gap: 10px;
 
   align-items: center;
   background: #ffffff;
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.15);
   border-radius: 6px;
-  padding: 0.5rem;
-  width: 125px;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.25rem;
+  width: 170px;
   overflow: hidden; /* hide overflowing text */
   flex-wrap: nowrap;
   gap: 0.25rem;
@@ -33,13 +36,17 @@
     rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
 }
 
-.note-img {
-  border: 1px solid black;
-  min-width: 15%;
+.note-img{
+  float: left;
+  width: auto;
+  height: 50px;
+  object-fit: cover;
 }
+
 
 .note-name {
   overflow-x: hidden;
+  margin-left: 0.25rem;
 }
 
 .note-name-input {

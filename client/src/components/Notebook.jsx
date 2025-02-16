@@ -58,10 +58,7 @@ function Notebook({
           notebook.name
         )}
       </div>
-      <div className={styles["notebook-img"]}>
-        <img src={notebook.notebook_sprite} alt="" />{" "}
-        {/* Future: Should be able to handle multiple sprites. */}
-      </div>
+      <img src={notebook.notebook_sprite} className={styles["notebook-img"]} alt="" />{" "}
     </div>
   );
 }

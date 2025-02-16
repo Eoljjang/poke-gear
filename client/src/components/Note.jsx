@@ -57,10 +57,7 @@ function Note({
           <span>{note.title}</span>
         )}
       </div>
-      <div className={styles["note-img"]}>
-        <img src={note.note_sprite} alt="" />{" "}
-        {/* Future: Should be able to handle multiple sprites. */}
-      </div>
+      <img src={note.note_sprite} className={styles["note-img"]} alt="" />{" "}
     </div>
   );
 }

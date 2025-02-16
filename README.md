@@ -89,3 +89,4 @@ Note Taking Functionality:
 - [X] Make the poke-gear title a link back to home.
 - [ ] Expanding sidebar -> clicking outside of the sidebar -> does not close it anymore.
     - This is likely due to the CSS scoping refactoring.
+- [ ] Clicking outside of the context menu should close it.

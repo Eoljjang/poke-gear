@@ -31,7 +31,11 @@ function RecentNotes(){
                 note_id: note.note_id,
 
                 last_edited: note.last_edited,
-                content: note.content
+                content: note.content,
+
+                notebook_sprite: notebook.notebook_sprite,
+                note_sprite: note.note_sprite
+
             })
         })
     })
@@ -59,11 +63,19 @@ function RecentNotes(){
                 // 2) last edited
                 // 3) a short preview of the content
                 return <div key={item.note_id} className={styles['recent-note-item']} onClick={() => handleNavigate(item.notebook_id, item.note_id)}>
-                    <div className={styles["note-name"]}>{item.note_name}</div>
+                    <div className={styles["note-container"]}>
+                        <div className={styles["note-name"]}>{item.note_name}</div>
+                        
+                    </div>
 
+                    
                     <div className={styles["details-container"]}>
-                        <div className={styles["notebook-name"]}><i>{item.notebook_name}</i></div>
-                        <div className={styles["recent-last-edited"]}><i>{formatDate(item.last_edited)}</i></div>
+                        <img className={styles["sprite-img"]} alt="" src={item.note_sprite}/>
+                        <div>
+                            <div className={styles["notebook-name"]}><i>{item.notebook_name}</i></div>
+                            <div className={styles["recent-last-edited"]}><i>{formatDate(item.last_edited)}</i></div>
+                        </div>
+                        
                     </div>
                 </div>;
             })}

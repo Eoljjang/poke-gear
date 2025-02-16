@@ -1,42 +1,49 @@
 // Modal.js
 
 import React from "react";
+import { useState } from "react";
 import styles from "../styles/Modals/ModalSprite.module.css"
+import axios from "axios";
+const dbUrl = import.meta.env.VITE_DB_URL;
 
 const ModalSprite = ({onClose, children, selectedNotebook, selectedNote }) => {
+    const [search, setSearch] = useState("")
+    const handleSearchChange = async(e) => {
+        setSearch(e.target.value);
+        const postData = {
+            query: search // Live searching
+        }
+
+        // Query poke-api for sprite
+        axios.post(dbUrl + "/searchPokeApi", postData)
+        .then(response => {
+            console.log(response);
+
+        })
+        .catch(e => {
+            if (e.response) {
+                console.error(e.response.data.message);  // Specific error message from the server
+            } else {
+                console.error("Error: ", e.message); // Fallback for other errors (e.g., network issues)
+            }
+        })
+    }
     return (
-        <div
-            onClick={onClose}
-            style={{
-                position: "fixed",
-                top: 0,
-                left: 0,
-                width: "100%",
-                height: "100%",
-                background: "rgba(0, 0, 0, 0.5)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-            }}
-        >
-            <div
-                style={{
-                    background: "white",
-                    height: 150,
-                    width: 240,
-                    margin: "auto",
-                    padding: "2%",
-                    border: "2px solid #000",
-                    borderRadius: "10px",
-                    boxShadow: "2px solid black",
-                }}
-            >
+        <div className={styles["modal-sprite-wrapper"]}>
+            <div className={styles["modal-sprite-container"]}>
+                <button className={styles["modal-close-btn"]} onClick={onClose}>Close</button>
                 <p>Selected Notebook: {selectedNotebook}</p>
                 <p>Selected Note:{selectedNote}</p>
-                {children}
+                <input type="text" className={styles["search"]} onChange={handleSearchChange}/>
+                <div className={styles["sprite-content"]}>
+                    sprite goes here!
+                </div>
+
             </div>
         </div>
+
     );
-};
+    }
+
 
 export default ModalSprite;

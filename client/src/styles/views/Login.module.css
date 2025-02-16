@@ -78,9 +78,11 @@
 #login-btn{
     border: none;
     border-radius: 16px;
-    font-size:1rem;
+    font-size:1.1rem;
     background: black;
     color: white;
+    padding: 12px;
+    width: 100%;
 }
 
 #login-btn:hover{
@@ -95,21 +97,21 @@
 }
 
 #navigate-signup-btn{
-    border: none;
     border-radius: 16px;
-    font-size: 1rem;
-    background: black;
-    color: white;
+    font-size:1.1rem;
+    background-color: white;
+    border: 1px solid black;
+    color: black;
+    padding: 12px;
+    width: 150px;
 }
 
 #navigate-signup-btn:hover{
-    border: none;
     scale: 1.05;
     transition: 0.2s;
 }
 
 #navigate-signup-btn:not(:hover){
-    border: none;
     transition: 0.2s;
 }
 

@@ -59,14 +59,11 @@ function Notebook({
         )}
       </div>
       <div className={styles["notebook-img"]}>
-        <img src="" alt="" />{" "}
+        <img src={notebook.notebook_sprite} alt="" />{" "}
         {/* Future: Should be able to handle multiple sprites. */}
       </div>
     </div>
   );
 }
-
-// To-do
-// Props validation once we have real data.
 
 export default Notebook;

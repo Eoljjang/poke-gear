@@ -7,7 +7,7 @@ import axios from "axios";
 const dbUrl = import.meta.env.VITE_DB_URL;
 import {debounce} from 'lodash';
 
-const ModalSprite = ({onClose, selectedNotebook, selectedNote, handleSpriteSelect }) => {
+const ModalSprite = ({onClose, rightClickedItem, handleSpriteSelect }) => {
     const [search, setSearch] = useState("")
     const [spriteUrls, setSpriteUrls] = useState([])
     const [error, setError] = useState("")
@@ -35,8 +35,7 @@ const ModalSprite = ({onClose, selectedNotebook, selectedNote, handleSpriteSelec
         <div className={styles["modal-sprite-wrapper"]}>
             <div className={styles["modal-sprite-container"]}>
                 <button className={styles["modal-close-btn"]} onClick={onClose}>Close</button>
-                <p>Selected Notebook: {selectedNotebook}</p>
-                <p>Selected Note:{selectedNote}</p>
+                <p>Clicked Item: {rightClickedItem}</p>
                 <input type="text" className={styles["search"]} onChange={handleSearchChange}/>
                 <div className={styles["sprite-content"]}>
                     {/* If search failed: */}
@@ -44,7 +43,7 @@ const ModalSprite = ({onClose, selectedNotebook, selectedNote, handleSpriteSelec
 
                     {/* Else, it'll diplay the sprites*/}
                     {spriteUrls.map((url, index) => (
-                        <img key={index} src={url} alt={`Sprite ${index}`} onClick={() => handleSpriteSelect(url, selectedNotebook, selectedNote)}/>
+                        <img key={index} src={url} alt={`Sprite ${index}`} onClick={() => handleSpriteSelect(url, rightClickedItem)}/>
                     ))}
                 </div>
 

@@ -58,7 +58,7 @@ function Note({
         )}
       </div>
       <div className={styles["note-img"]}>
-        <img src="" alt="" />{" "}
+        <img src={note.note_sprite} alt="" />{" "}
         {/* Future: Should be able to handle multiple sprites. */}
       </div>
     </div>

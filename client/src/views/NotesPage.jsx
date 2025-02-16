@@ -30,6 +30,7 @@ function NotesPage() {
     x: 0,
     y: 0,
   });
+  const [rightClickedItem, setRightClickedItem] = useState(null);
   const [renamingNotebookId, setRenamingNotebookId] = useState(null);
   const [renamingNoteId, setRenamingNoteId] = useState(null);
   const [renameValue, setRenameValue] = useState("");
@@ -85,6 +86,7 @@ function NotesPage() {
 
     } else if (e.type === "contextmenu") {
       console.log("Right clicked notebook:", notebookId);
+      setRightClickedItem(notebookId);
       setContextMenu({
         visible: true,
         clickedItem: { notebook_id: notebookId },
@@ -107,6 +109,7 @@ function NotesPage() {
 
     } else if (e.type === "contextmenu") {
       console.log("Right clicked note:", noteId);
+      setRightClickedItem(noteId);
       setContextMenu({
         visible: true,
         clickedItem: { note_id: noteId },
@@ -233,8 +236,26 @@ function NotesPage() {
 
   };
 
-  const handleSpriteSelect = (noteId, notebookId, spriteUrl) => {
-  }
+  const handleSpriteSelect = (spriteUrl, rightClickedItem) => {
+    setUserData((prevData) =>
+        prevData.map((notebook) => {
+            // If the right-clicked item is a notebook, update its sprite
+            if (notebook.notebook_id === rightClickedItem) {
+                return { ...notebook, notebook_sprite: spriteUrl };
+            }
+
+            // Otherwise, check if it's a note inside this notebook
+            const updatedNotes = notebook.notes.map((note) =>
+                note.note_id === rightClickedItem
+                    ? { ...note, note_sprite: spriteUrl } // Update the note sprite
+                    : note
+            );
+
+            return { ...notebook, notes: updatedNotes };
+        })
+    );
+};
+
 
   const handleNoteTitleUpdate = (noteId, updatedTitle) => {
     setUserData((prevData) =>
@@ -418,8 +439,7 @@ function NotesPage() {
       {spriteModalOpen && (
           <ModalSprite
             onClose={handleCloseModalSprite}
-            selectedNotebook={selectedNotebook}
-            selectedNote={selectedNote}
+            rightClickedItem={rightClickedItem}
             handleSpriteSelect={handleSpriteSelect}
           >
           </ModalSprite>

@@ -1,32 +1,38 @@
 // Modal.js
 
 import React from "react";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import styles from "../styles/Modals/ModalSprite.module.css"
 import axios from "axios";
 const dbUrl = import.meta.env.VITE_DB_URL;
+import {debounce} from 'lodash';
 
 const ModalSprite = ({onClose, children, selectedNotebook, selectedNote }) => {
     const [search, setSearch] = useState("")
-    const handleSearchChange = async(e) => {
-        setSearch(e.target.value);
-        const postData = {
-            query: search // Live searching
-        }
+    const [spriteUrls, setSpriteUrls] = useState([])
+    const [error, setError] = useState("")
+    const handleSearchChange = useCallback(
+        debounce(async (e) => {
+            const newSearch = e.target.value.trim();
+            setSearch(newSearch);
 
-        // Query poke-api for sprite
-        axios.post(dbUrl + "/searchPokeApi", postData)
-        .then(response => {
-            console.log(response);
+            const postData = {
+                query: newSearch, // Use the updated search value
+            };
 
-        })
-        .catch(e => {
-            if (e.response) {
-                console.error(e.response.data.message);  // Specific error message from the server
-            } else {
-                console.error("Error: ", e.message); // Fallback for other errors (e.g., network issues)
+            try {
+                const response = await axios.post(`${dbUrl}/searchPokeApi`, postData);
+                console.log("api:", response.data);
+                setSpriteUrls(Object.values(response.data))
+            } catch (e) {
+                setSpriteUrls([]); // Clear previous results
             }
-        })
+        }, 500), // 500ms debounce time
+        []
+    );
+
+    const handleSpriteSelect = () => {
+        // When user selects a sprite. it'll set it here.
     }
     return (
         <div className={styles["modal-sprite-wrapper"]}>
@@ -36,7 +42,13 @@ const ModalSprite = ({onClose, children, selectedNotebook, selectedNote }) => {
                 <p>Selected Note:{selectedNote}</p>
                 <input type="text" className={styles["search"]} onChange={handleSearchChange}/>
                 <div className={styles["sprite-content"]}>
-                    sprite goes here!
+                    {/* If search failed: */}
+                    {error && <p style={{ color: "red" }}>{error}</p>}
+
+                    {/* Else, it'll diplay the sprites*/}
+                    {spriteUrls.map((url, index) => (
+                        <img key={index} src={url} alt={`Sprite ${index}`} />
+                    ))}
                 </div>
 
             </div>

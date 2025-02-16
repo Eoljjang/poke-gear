@@ -4,6 +4,7 @@ const router = express.Router()
 const schemas = require('../models/schemas');
 const bcrypt = require('bcryptjs');
 const jwt = require("jsonwebtoken");
+const axios = require('axios');
 
 router.get("/", async (req, res) => {
     res.send("Hello world!")
@@ -187,4 +188,37 @@ router.post('/saveQuickNote', async(req, res) => {
 
 })
 
+const extractSprites = (sprites) => {
+    return Object.fromEntries(
+        Object.entries(sprites)
+            .filter(([key, value]) => value !== null && typeof value === "string") // Ignore null and nested objects
+    );
+};
+
+router.post("/searchPokeApi", async(req, res) => {
+    try {
+        const { query } = req.body; // Extract search query
+        if (!query) {
+            return res.status(400).json({ message: "Query parameter is required" });
+        }
+        const apiUrl = `https://pokeapi.co/api/v2/pokemon/${query.toLowerCase()}`;
+
+        // 1) Query poke-api
+        console.log("Fetching data from:", apiUrl);
+        const response = await axios.get(apiUrl);
+
+        // 2) Filter the response for the sprites
+        const sprites = extractSprites(response.data.sprites)
+
+        // 3) Send (sprite) data back to client
+        res.json(200, sprites); 
+    } catch (error) {
+        if (error.response && error.response.status === 404) {
+            res.status(404).json({ message: "Pokémon not found" });
+        } else {
+            res.status(500).json({ message: "Internal Server Error", error: error.message });
+        }
+    }
+
+})
 module.exports = router

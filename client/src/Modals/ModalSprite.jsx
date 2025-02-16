@@ -7,7 +7,7 @@ import axios from "axios";
 const dbUrl = import.meta.env.VITE_DB_URL;
 import {debounce} from 'lodash';
 
-const ModalSprite = ({onClose, children, selectedNotebook, selectedNote }) => {
+const ModalSprite = ({onClose, selectedNotebook, selectedNote, handleSpriteSelect }) => {
     const [search, setSearch] = useState("")
     const [spriteUrls, setSpriteUrls] = useState([])
     const [error, setError] = useState("")
@@ -30,10 +30,7 @@ const ModalSprite = ({onClose, children, selectedNotebook, selectedNote }) => {
         }, 500), // 500ms debounce time
         []
     );
-
-    const handleSpriteSelect = () => {
-        // When user selects a sprite. it'll set it here.
-    }
+    
     return (
         <div className={styles["modal-sprite-wrapper"]}>
             <div className={styles["modal-sprite-container"]}>
@@ -47,7 +44,7 @@ const ModalSprite = ({onClose, children, selectedNotebook, selectedNote }) => {
 
                     {/* Else, it'll diplay the sprites*/}
                     {spriteUrls.map((url, index) => (
-                        <img key={index} src={url} alt={`Sprite ${index}`} />
+                        <img key={index} src={url} alt={`Sprite ${index}`} onClick={() => handleSpriteSelect(url, selectedNotebook, selectedNote)}/>
                     ))}
                 </div>
 

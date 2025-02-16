@@ -203,6 +203,7 @@ function NotesPage() {
       notebook_id: uuidv4(),//userData.length + 1,
       name: `Untitled Notebook`,
       notes: [],
+      notebook_sprite: "",
     };
     setUserData([...userData, newNotebook]);
     setTimeout(() => setIsBtnDisabled(false), 1000); // Change btn back to enabled after 1 second.
@@ -217,6 +218,7 @@ function NotesPage() {
         content: "",
         note_date: new Date(), // have to assign the date locally.
         last_edited: new Date(),
+        note_sprite: ""
       };
       setUserData((prevData) =>
         prevData.map((notebook) =>
@@ -230,6 +232,9 @@ function NotesPage() {
     }
 
   };
+
+  const handleSpriteSelect = (noteId, notebookId, spriteUrl) => {
+  }
 
   const handleNoteTitleUpdate = (noteId, updatedTitle) => {
     setUserData((prevData) =>
@@ -345,6 +350,7 @@ function NotesPage() {
                   renameValue={renameValue}
                   onRenameChange={(value) => setRenameValue(value)}
                   handleRenameUpdate={handleRenameUpdate}
+                  sprite={notebook.notebook_sprite}
                 />
               ))}
               <button
@@ -370,6 +376,7 @@ function NotesPage() {
                   renameValue={renameValue}
                   onRenameChange={(value) => setRenameValue(value)}
                   handleRenameUpdate={handleRenameUpdate}
+                  sprite={note.note_sprite}
                 />
               ))}
 
@@ -413,6 +420,7 @@ function NotesPage() {
             onClose={handleCloseModalSprite}
             selectedNotebook={selectedNotebook}
             selectedNote={selectedNote}
+            handleSpriteSelect={handleSpriteSelect}
           >
           </ModalSprite>
       )}

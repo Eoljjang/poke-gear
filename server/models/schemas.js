@@ -8,13 +8,14 @@ const noteSchema = new Schema({
     title: {type: String, default: ""},
     note_date: {type: Date, default: Date.now},
     content: {type: String, default: ""},
-    last_edited: {type: Date, default: Date.now}
+    last_edited: {type: Date, default: Date.now},
+    note_sprite: {type: String, default: ""}
 })
 
 const notebookSchema = new Schema({
     notebook_id: {type: String, default: null},
     name: {type: String, defualt: ""}, // What the user decides to name it.
-    sprite: {type: String, default: ""}, // Link to sprite api.
+    notebook_sprite: {type: String, default: ""}, // Link to sprite api.
     notes: [noteSchema], // holds "note"
 })
 

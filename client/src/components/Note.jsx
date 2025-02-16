@@ -10,6 +10,7 @@ function Note({
   renameValue,
   onRenameChange,
   handleRenameUpdate,
+  selectedSprite
 }) {
   let selected_class = "";
   if (selected) {

@@ -67,10 +67,10 @@ function NotesPage() {
   // ------------- USE EFFECTS  -------------
 
   // ------------- HANDLERS  -------------
-  const handleNotebookClick = (e, notebookId) => {
+  const handleNotebookClick = (e, notebook) => { // Accepts a 'notebook' object.
     if (e.type === "click") {
-      console.log("Left clicked notebook:", notebookId);
-      setSelectedNotebook(notebookId);
+      console.log("Left clicked notebook:", notebook.notebook_id);
+      setSelectedNotebook(notebook.notebook_id);
       setSelectedNote(null); // Reset note selection
       // Make sure we sure the notes lol.
       setIsVisible({
@@ -80,39 +80,39 @@ function NotesPage() {
 
       // Handle URL changes
       const searchParams = new URLSearchParams(location.search);
-      searchParams.set('notebook_id', notebookId); // append to current url.
+      searchParams.set('notebook_id', notebook.notebook_id); // append to current url.
       navigate(`${location.pathname}?${searchParams.toString()}`, { replace: true }); // set the new url.
 
 
     } else if (e.type === "contextmenu") {
-      console.log("Right clicked notebook:", notebookId);
-      setRightClickedItem(notebookId);
+      console.log("Right clicked notebook:", notebook.notebook_id);
+      setRightClickedItem(notebook.notebook_id);
       setContextMenu({
         visible: true,
-        clickedItem: { notebook_id: notebookId },
+        clickedItem: { notebook_id: notebook.notebook_id },
         x: e.pageX,
         y: e.pageY,
       });
     }
   };
 
-  const handleNoteClick = (e, noteId) => {
+  const handleNoteClick = (e, note) => { // Accepts a 'note' object.
     if (e.type === "click") {
-      console.log("Left clicked note:", noteId);
-      console.log("Type of clicked note:", typeof(noteId))
-      setSelectedNote(noteId);
+      console.log("Left clicked note:", note.note_id);
+      console.log("Type of clicked note:", typeof(note.note_id))
+      setSelectedNote(note.note_id);
 
       // Handle URL changes
       const searchParams = new URLSearchParams(location.search);
-      searchParams.set('note_id', noteId); // append to current url.
+      searchParams.set('note_id', note.note_id); // append to current url.
       navigate(`${location.pathname}?${searchParams.toString()}`, { replace: true }); // set the new url.
 
     } else if (e.type === "contextmenu") {
-      console.log("Right clicked note:", noteId);
-      setRightClickedItem(noteId);
+      console.log("Right clicked note:", note.note_id);
+      setRightClickedItem(note.note_id);
       setContextMenu({
         visible: true,
-        clickedItem: { note_id: noteId },
+        clickedItem: { note_id: note.note_id },
         x: e.pageX,
         y: e.pageY,
       });

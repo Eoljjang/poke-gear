@@ -30,10 +30,10 @@ function Note({
     <div
       className={`${styles["note-item"]} ${styles[selected_class]}`}
       onClick={(e) => {
-        handleNoteClick(e, note.note_id);
+        handleNoteClick(e, note);
       }}
       onContextMenu={(e) => {
-        handleNoteClick(e, note.note_id);
+        handleNoteClick(e, note);
         e.preventDefault(); // Prevents default browser contextmenu.
       }}
     >

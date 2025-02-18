@@ -31,10 +31,10 @@ function Notebook({
     <div
       className={`${styles['notebook-item']} ${styles[selected_class]}`}
       onClick={(e) => {
-        handleNotebookClick(e, notebook.notebook_id);
+        handleNotebookClick(e, notebook); // passes the notebook object onClick.
       }}
       onContextMenu={(e) => {
-        handleNotebookClick(e, notebook.notebook_id);
+        handleNotebookClick(e, notebook);
         e.preventDefault(); // Prevents default browser contextmenu.
       }}
     >

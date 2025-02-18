@@ -8,6 +8,7 @@ import { useRef, useEffect, useState } from 'react';
 // 2) posx -> X position of clicked item.
 // 3) posy -> Y position of clicked item.
 function ContextMenu({clickedItem, posx, posy, handleContextMenuOptionClick}){
+    console.log(clickedItem);
     console.log("positions:", posx, posy);
     if(clickedItem.notebook_id){
         console.log("Right-clicked notebook menu:", clickedItem.notebook_id);

@@ -84,6 +84,7 @@
 .btn-confirm-quicknote:hover{
     background-color:deepskyblue;
     transition: 0.2s;
+    border: 2px solid black;
 }
 
 .modal-close-btn:not(:hover), .btn-confirm-quicknote:not(:hover){

@@ -3,7 +3,7 @@
     position: absolute;
     top: 0.75rem;
     left: 1rem;
-    animation: rotate-syncing 1.5s linear infinite;
+    animation: rotate-syncing 0.75s linear infinite;
   }
 
   #syncing-icon,

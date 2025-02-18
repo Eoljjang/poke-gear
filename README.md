@@ -43,7 +43,7 @@ Note Taking Functionality:
 - [X] User can see their most recently edited notes on the dashboard. Clicking one takes them to the note.
 - [ ] On the dashboard, user can see some links to popular websites.
 - [ ] For each <strong> note:</strong> Able to add tags to notes (Ex: matchup, decklist, review, custom, etc.) -> Right click to add a tag.
-- [ ] For each <strong> notebook: </strong> User can add a sprite for each notebook.
+- [X] For each <strong> notebook: </strong> User can add a sprite for each notebook.
 
 
 ### Release v0.5 Goals: User Testing and Iterative Cleanup

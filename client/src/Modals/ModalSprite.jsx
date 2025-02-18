@@ -42,13 +42,12 @@ const ModalSprite = ({onClose, rightClickedItem, handleSpriteSelect, handleSprit
         <div className={styles["modal-sprite-wrapper"]}>
             <div className={styles["modal-sprite-container"]}>
                 <div className={styles["header"]}>
-                    <h2>Add a Sprite</h2>
+                    <h2>Edit Sprite</h2>
                     <button className={styles["modal-close-btn"]} onClick={onClose}>&#10006;</button>
                 </div>
 
                 <div className={styles.content}>
-                    <p className={styles.hint}><i>Separate spaces with a hyphen. E.g: iron-hands</i></p>
-                    <input type="text" className={styles["search"]} onChange={handleSearchChange}/>
+                    <input type="text" className={styles["search"]} onChange={handleSearchChange} placeholder="Separate spaces with a hyphen. E.g: iron-hands"/>
                     <div className={styles["sprite-content"]}>
                         {/* If search failed: */}
                         {error && <p style={{ color: "red" }}>{error}</p>}
@@ -63,7 +62,7 @@ const ModalSprite = ({onClose, rightClickedItem, handleSpriteSelect, handleSprit
                                     handleHighlightSprite(url);
                                 }}
                                 // Highlights based on the selected URL.
-                                className={highlightedSprite === url ? styles["highlighted-sprite"] : ""}
+                                className={`${styles["loaded-sprite-img"]} ${highlightedSprite === url ? styles["highlighted-sprite"] : ""}`}
                             />
                         ))}
                     </div>

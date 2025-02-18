@@ -46,7 +46,7 @@ function App() {
       await axios.post(dbUrl + "/syncUserData", postData);
       setTimeout(() => {
         setSyncing(false); // Hide syncing after the delay
-      }, 2000); // Show syncing icon for 2 s.
+      }, 1000); // Length of syncing icon display.
     } catch (e) {
       console.error("Error saving user data:", e);
       setSyncing(false); // Ensure syncing is turned off even if an error occurs.

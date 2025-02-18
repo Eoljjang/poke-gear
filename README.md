@@ -41,16 +41,17 @@ Note Taking Functionality:
 - [X] User can re-size the notebooks & notes sections on NotesPage.jsx (naiive implementation).
 - [X] User can add a quick note.
 - [X] User can see their most recently edited notes on the dashboard. Clicking one takes them to the note.
-- [ ] Redesign the dashboard & links to popular sites.
-- [ ] For each <strong> note:</strong> Able to add tags to notes (Ex: matchup, decklist, review, custom, etc.) -> Right click to add a tag.
-- [X] For each <strong> notebook: </strong> User can add a sprite for each notebook.
+- [ ] Redesign the dashboard & add links to popular sites.
+- [X] For each <strong> note:</strong> Able to add tags to notes (Ex: matchup, decklist, review, custom, etc.)
+- [X] For any notebook / note, User can add a sprite for each notebook.
 
 
 ### Release v0.5 Goals: User Testing and Iterative Cleanup
 - [ ] Get real world data and experiences to find out what should be added or changed.
 - [ ] Test for 2 - 4 weeks.
 - [ ] Make iterative changes based on feedback.
-
+- [ ] Use this time to fix backlog items, slowly improve UI, code cleanup, etc.
+ 
 <i>Full 1.0 release after the user testing phase<i/>
 
 ---

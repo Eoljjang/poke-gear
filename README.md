@@ -80,6 +80,10 @@ Note Taking Functionality:
 ### Bugs / Tickets to Do
 - [ ] Add error handling if syncing fails. Display a failed sync message.
 - [ ] Quill insert link on text far left extends too far to the left. So the insert link field gets cut off.
+- [ ] Disabled clicking home-icon to navigate back to dashboard. There's a bug where this feature causes userData to not be refetched.
+    - Solution is probably using some sort of global state for userData.
+    - Keep this in mind if you use other links that navigate back home.
+    - For some reason this issue does not exist in the sidebar.
 - [X] Clicking outside of the sidebar should close it.
 - [X] Clicking outside of the context menu should close it.
 - [ ] If no notebook is selected, quicknote automatically should go under a "quicknotes" folder.

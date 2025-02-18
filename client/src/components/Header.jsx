@@ -14,7 +14,8 @@ const Header = ({ children }) => {
 
     const handleGoHome = (e) => {
         console.log("Clicked on poke-gear title. Navigating back home.")
-        navigate(`/app?userEmail${userEmail}`);
+        console.log("^ This feature is disbaled for now due to userData refetching errors.")
+        //navigate(`/app?userEmail${userEmail}`);
     }
 
     return (

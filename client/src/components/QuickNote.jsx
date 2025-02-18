@@ -18,7 +18,7 @@ function QuickNote({userData, setUserData}){
     return(
         <div className={styles["quicknote-container"]} >
             <button className={styles["open-quicknote-btn"]} onClick={handleOpen}>
-                Quicknote
+                +
             </button>
             {modalVisible && (
                 <>

@@ -5,12 +5,14 @@
 
   margin: 0 auto;
   padding: 0.5rem; /* padding within the container */
-  min-width: 70%;
+  height: 40px;
+  width: 40px;
+
 
   color: black;
   background: #84c5f0;
   border: 0.5px solid #000000;
-  border-radius: 22px;
+  border-radius: 50%;
   box-shadow: 4px 4px 4px rgba(43, 83, 94, 0.75);
 }
 

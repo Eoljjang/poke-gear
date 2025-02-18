@@ -28,6 +28,11 @@ function QuickLinks() {
                     <div className={styles["link-icon"]}>🔗</div> {/* Replace with an actual icon if needed */}
                 </a>
             ))}
+            {/* Here's a perma link */}
+            <a href="https://github.com/Eoljjang/poke-gear" className={styles["link-item"]} target="_blank" >Link to source code.</a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScFrNA2vyXdRFx8MY1VdoDZtaKC2A6DeRRzlND4tPj17URP0w/viewform?usp=sharing" className={styles["link-item"]} target="_blank" >Link to feedback form.</a>
+            
+
             </div>
         </div>
     )

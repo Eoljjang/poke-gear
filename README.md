@@ -41,16 +41,14 @@ Note Taking Functionality:
 - [X] User can re-size the notebooks & notes sections on NotesPage.jsx (naiive implementation).
 - [X] User can add a quick note.
 - [X] User can see their most recently edited notes on the dashboard. Clicking one takes them to the note.
-- [ ] Redesign the dashboard & add links to popular sites.
+- [X] Redesign the dashboard & add links to popular sites.
 - [X] For each <strong> note:</strong> Able to add tags to notes (Ex: matchup, decklist, review, custom, etc.)
 - [X] For any notebook / note, User can add a sprite for each notebook.
 
 
 ### Release v0.5 Goals: User Testing and Iterative Cleanup
 - [ ] Get real world data and experiences to find out what should be added or changed.
-- [ ] Test for 2 - 4 weeks.
-- [ ] Make iterative changes based on feedback.
-- [ ] Use this time to fix backlog items, slowly improve UI, code cleanup, etc.
+- [ ] Use this time to fix backlog items, improve UI, code cleanup, etc. Small iterative changes only, no major logic changes.
  
 <i>Full 1.0 release after the user testing phase<i/>
 
@@ -80,13 +78,11 @@ Note Taking Functionality:
 - Currently we are querying the database from pre-defined ids like notebook_id, note_id, etc. Mongo actually automatically genereates an object id for each item. So it might be worthwhile to use that instead but idk yet.
 
 ### Bugs / Tickets to Do
-- [ ] There's a version error mismatch when editing note title and note content back and forth. This occurs when you put a debounce on renaming -> Since the title may have a discrepancy with the note content.
-- [X] last_edited field is being saved as a string instead of a date object.
-- [X] <del>The syncing icon has nothing to do with interaction with the db. It's simply called whenever setUserData is called. Would be worthwhile to implement such that it displays and waits for a 200 response from the server.</del>
-    - Resolved. The syncing icon now depends on the request instead (see App.jsx syncUserData() for more details).
 - [ ] Add error handling if syncing fails. Display a failed sync message.
-- [X] Last edited field is NaN when creating a new note.
 - [ ] Quill insert link on text far left extends too far to the left. So the insert link field gets cut off.
-- [X] Make the poke-gear title a link back to home.
 - [ ] Clicking outside of the sidebar should close it.
 - [ ] Clicking outside of the context menu should close it.
+- [ ] If no notebook is selected, quicknote automatically should go under a "quicknotes" folder.
+    - This is important as a new user actually can't use the "quicknotes" feature.
+- [ ] Find some sort of use for the footer.
+- [ ] Styling when a NEW user arrives is kinda wack.

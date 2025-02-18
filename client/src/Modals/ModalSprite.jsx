@@ -10,9 +10,14 @@ import {debounce} from 'lodash';
 const ModalSprite = ({onClose, rightClickedItem, handleSpriteSelect, handleSpriteRemove }) => {
     const [search, setSearch] = useState("")
     const [spriteUrls, setSpriteUrls] = useState([])
-    const [highlightedSprite, setHighlightedSprite] = useState(null) // is set to be the img key.
+    const [highlightedSprite, setHighlightedSprite] = useState(null) // holds the selected sprite url.
     const [error, setError] = useState("")
-    
+
+    const handleHighlightSprite = (spriteUrl) => {
+        setHighlightedSprite(spriteUrl)
+
+    }
+
     const handleSearchChange = useCallback(
         debounce(async (e) => {
             const newSearch = e.target.value.trim();
@@ -50,7 +55,16 @@ const ModalSprite = ({onClose, rightClickedItem, handleSpriteSelect, handleSprit
 
                         {/* Else, it'll diplay the sprites*/}
                         {spriteUrls.map((url, index) => (
-                            <img key={index} src={url} alt={`Sprite ${index}`} onClick={() => handleSpriteSelect(url, rightClickedItem)}/>
+                            <img 
+                                key={index} 
+                                src={url} 
+                                alt={`Sprite ${index}`} 
+                                onClick={() => {
+                                    handleHighlightSprite(url);
+                                }}
+                                // Highlights based on the selected URL.
+                                className={highlightedSprite === url ? styles["highlighted-sprite"] : ""}
+                            />
                         ))}
                     </div>
                 </div>
@@ -61,13 +75,12 @@ const ModalSprite = ({onClose, rightClickedItem, handleSpriteSelect, handleSprit
                         <button className={styles["remove-sprite-btn"]} onClick={() => handleSpriteRemove(rightClickedItem)}>Remove Sprite</button>
                     )}
 
-                    <button className={styles["confirm-add-sprite-btn"]}>Confirm</button>
+                    <button className={styles["confirm-add-sprite-btn"]} onClick={() => handleSpriteSelect(highlightedSprite, rightClickedItem)}>Confirm</button>
                 </div>
 
 
             </div>
         </div>
-
     );
     }
 

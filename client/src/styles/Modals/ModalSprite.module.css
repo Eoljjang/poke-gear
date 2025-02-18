@@ -47,6 +47,11 @@
     box-shadow: 2px solid black;
 }
 
+.highlighted-sprite{
+    border: 2px solid blue;
+    border-radius: 12px;
+}
+
 .search{
     background-color: white;
     padding: 8px;

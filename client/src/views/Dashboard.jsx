@@ -13,10 +13,6 @@ function Dashboard() {
         </div>
 
         <div className="col-2-container">
-          <QuickNote
-            userData={userData}
-            setUserData={setUserData}
-          />
           <RecentNotes />
         </div>
       </div>

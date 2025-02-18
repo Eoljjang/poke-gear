@@ -3,9 +3,10 @@ import { useNavigate, useOutletContext } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import styles from '../styles/components/RecentNotes.module.css'
 import { formatDate } from '../functions/Helpers';
+import QuickNote from './QuickNote';
 
 function RecentNotes(){
-    const [userData] = useOutletContext();
+    const [userData, setUserData] = useOutletContext();
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -43,7 +44,7 @@ function RecentNotes(){
     })
 
     // Show the top 5 most recently edited IF the length of the array is greater than 5.
-    let top5Recent = []
+    let topRecent = []
     if (output.length > 0) {
         // Sort the array by `last_edited` in descending order
         output.sort(function(a, b){
@@ -51,33 +52,38 @@ function RecentNotes(){
         })
 
         // Grab the top 5 most recent items, or all if there are fewer than 5
-        top5Recent = output.slice(0, 5);
+        topRecent = output.slice(0, 8);
     }
 
     return(
         <div className={styles["recent-notes-container"]}>
-            <div className={styles["recent-notes-title"]}>
+            {/* <div className={styles["recent-notes-title"]}>
                 <strong>Recent Notes</strong>
-            </div>
-            {top5Recent.map((item) => {
+            </div> */}
+            {topRecent.map((item) => {
                 // Display a recent-note-item. Show the following
                 // 1) notebook_name > note_name
                 // 2) last edited
                 // 3) a short preview of the content
                 return <div key={item.note_id} className={styles['recent-note-item']} onClick={() => handleNavigate(item.notebook_id, item.note_id)}>
                     <div className={styles["note-container"]}>
-                        <div className={styles["note-name"]}>{item.note_name}</div>
+                        <div className={styles["title-container"]}>
+                            <span className={styles["note-name"]}>{item.note_name}</span>
+                            {item.note_sprite && (
+                                <img className={styles['sprite-img']} src={item.note_sprite}/>
+                            )}
+                        </div>
                         {item.tag && (
                             <div className={styles["note-tag"]}>
                                 {item.tag}
                             </div>
                         )}
-                        
                     </div>
+                    
 
                     
                     <div className={styles["details-container"]}>
-                        <img className={styles["sprite-img"]} alt="" src={item.note_sprite}/>
+                        <img className={styles["sprite-img"]} alt="" src={item.notebook_sprite}/>
                         <div>
                             <div className={styles["notebook-name"]}><i>{item.notebook_name}</i></div>
                             <div className={styles["recent-last-edited"]}><i>{formatDate(item.last_edited)}</i></div>
@@ -86,6 +92,14 @@ function RecentNotes(){
                     </div>
                 </div>;
             })}
+            <div className={styles["quicknote-container"]}>
+                <QuickNote
+                    userData={userData}
+                    setUserData={setUserData}
+                />
+            </div>
+
+
         </div>
     )
 }

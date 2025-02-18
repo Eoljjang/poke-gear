@@ -1,19 +1,13 @@
 .recent-notes-container{
+
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     align-items: center;
+
+    gap: 1rem;
+    display: flex;
     padding: 0.5rem;
 
-    margin: 0 auto;
-    min-height: 80%;
-    min-width: 70%;
-
-    border: 0.5px solid #000000;
-    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.4);
-    border-radius: 22px;
-    height: fit-content;
-
-    gap: 12px;
 }
 
 .recent-notes-title{
@@ -21,13 +15,24 @@
 }
 
 .recent-note-item{
+    border: 1px solid#B7B7B7;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    width: 90%; /* No need to set padding since the width essentially "includes" it as a %.*/
-    border: 1px solid black;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 12px;
     border-radius: 12px;
-    padding: inherit;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    height: 150px;
+    width: 200px;
+}
+
+.title-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 42px;
 }
 
 .note-container{
@@ -35,6 +40,15 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+}
+
+.quicknote-container{
+    width: 200px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
 }
 
 .notebook-name, .recent-last-edited{

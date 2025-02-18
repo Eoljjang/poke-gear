@@ -24,7 +24,7 @@ html,
 }
 
 .col-1-container {
-  width: 60%;
+  width: 40%;
   padding: 1rem; /* Padding for both col-1/2 should be the same to maintain alignment.*/
 }
 
@@ -32,8 +32,11 @@ html,
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  width: 40%;
-  padding: 1rem;
+  width: 60%;
+}
+
+.col-2-header{
+  font-size: 1.5rem;
 }
 
 .link {

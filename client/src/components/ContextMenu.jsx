@@ -9,14 +9,12 @@ import { useRef, useEffect, useState } from 'react';
 // 3) posy -> Y position of clicked item.
 function ContextMenu({clickedItem, posx, posy, handleContextMenuOptionClick}){
     console.log(clickedItem);
-    console.log("positions:", posx, posy);
     if(clickedItem.notebook_id){
         console.log("Right-clicked notebook menu:", clickedItem.notebook_id);
     }
     else if (clickedItem.note_id){
         console.log("Right-clicked note menu:", clickedItem.note_id);
     }
-
     return(
         <div id={styles["context-menu-container"]}
             style={{
@@ -28,7 +26,7 @@ function ContextMenu({clickedItem, posx, posy, handleContextMenuOptionClick}){
 
         <ul id={styles["context-menu"]}>
             <li id={styles["menu-rename"]} onClick={() => handleContextMenuOptionClick("menu-rename", clickedItem)}>Rename</li>
-            <li id={styles["menu-add-sprite"]} onClick={() => handleContextMenuOptionClick("menu-add-sprite", clickedItem)}>Add Sprite</li>
+            <li id={styles["menu-add-sprite"]} onClick={() => handleContextMenuOptionClick("menu-add-sprite", clickedItem)}>Edit Sprite</li>
             <li id={styles["menu-delete"]} onClick={() => handleContextMenuOptionClick("menu-delete", clickedItem)}>Delete</li>
         </ul>
 

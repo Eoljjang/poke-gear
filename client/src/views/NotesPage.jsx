@@ -30,7 +30,7 @@ function NotesPage() {
     x: 0,
     y: 0,
   });
-  const [rightClickedItem, setRightClickedItem] = useState(null);
+  const [rightClickedItem, setRightClickedItem] = useState(null); 
   const [renamingNotebookId, setRenamingNotebookId] = useState(null);
   const [renamingNoteId, setRenamingNoteId] = useState(null);
   const [renameValue, setRenameValue] = useState("");
@@ -86,10 +86,10 @@ function NotesPage() {
 
     } else if (e.type === "contextmenu") {
       console.log("Right clicked notebook:", notebook.notebook_id);
-      setRightClickedItem(notebook.notebook_id);
+      setRightClickedItem(notebook);
       setContextMenu({
         visible: true,
-        clickedItem: { notebook_id: notebook.notebook_id },
+        clickedItem: notebook,
         x: e.pageX,
         y: e.pageY,
       });
@@ -109,10 +109,10 @@ function NotesPage() {
 
     } else if (e.type === "contextmenu") {
       console.log("Right clicked note:", note.note_id);
-      setRightClickedItem(note.note_id);
+      setRightClickedItem(note);
       setContextMenu({
         visible: true,
-        clickedItem: { note_id: note.note_id },
+        clickedItem: note,
         x: e.pageX,
         y: e.pageY,
       });
@@ -240,13 +240,13 @@ function NotesPage() {
     setUserData((prevData) =>
         prevData.map((notebook) => {
             // If the right-clicked item is a notebook, update its sprite
-            if (notebook.notebook_id === rightClickedItem) {
+            if (notebook.notebook_id === rightClickedItem.notebook_id) {
                 return { ...notebook, notebook_sprite: spriteUrl };
             }
 
             // Otherwise, check if it's a note inside this notebook
             const updatedNotes = notebook.notes.map((note) =>
-                note.note_id === rightClickedItem
+                note.note_id === rightClickedItem.note_id
                     ? { ...note, note_sprite: spriteUrl } // Update the note sprite
                     : note
             );
@@ -254,8 +254,27 @@ function NotesPage() {
             return { ...notebook, notes: updatedNotes };
         })
     );
-};
+  };
 
+  const handleSpriteRemove = (rightClickedItem) => {
+    setUserData((prevData) =>
+        prevData.map((notebook) => {
+            // If the right-clicked item is a notebook, remove its sprite
+            if (notebook.notebook_id === rightClickedItem.notebook_id) {
+                return { ...notebook, notebook_sprite: "" };
+            }
+
+            // Otherwise, check if it's a note inside this notebook
+            const updatedNotes = notebook.notes.map((note) =>
+                note.note_id === rightClickedItem.note_id
+                    ? { ...note, note_sprite: "" } // Remove the note sprite
+                    : note
+            );
+
+            return { ...notebook, notes: updatedNotes };
+        })
+    );
+};
 
   const handleNoteTitleUpdate = (noteId, updatedTitle) => {
     setUserData((prevData) =>
@@ -441,6 +460,7 @@ function NotesPage() {
             onClose={handleCloseModalSprite}
             rightClickedItem={rightClickedItem}
             handleSpriteSelect={handleSpriteSelect}
+            handleSpriteRemove={handleSpriteRemove}
           >
           </ModalSprite>
       )}

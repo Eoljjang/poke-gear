@@ -7,10 +7,12 @@ import axios from "axios";
 const dbUrl = import.meta.env.VITE_DB_URL;
 import {debounce} from 'lodash';
 
-const ModalSprite = ({onClose, rightClickedItem, handleSpriteSelect }) => {
+const ModalSprite = ({onClose, rightClickedItem, handleSpriteSelect, handleSpriteRemove }) => {
     const [search, setSearch] = useState("")
     const [spriteUrls, setSpriteUrls] = useState([])
+    const [highlightedSprite, setHighlightedSprite] = useState(null) // is set to be the img key.
     const [error, setError] = useState("")
+    
     const handleSearchChange = useCallback(
         debounce(async (e) => {
             const newSearch = e.target.value.trim();
@@ -39,8 +41,6 @@ const ModalSprite = ({onClose, rightClickedItem, handleSpriteSelect }) => {
                     <button className={styles["modal-close-btn"]} onClick={onClose}>&#10006;</button>
                 </div>
 
-                
-
                 <div className={styles.content}>
                     <p className={styles.hint}><i>Separate spaces with a hyphen. E.g: iron-hands</i></p>
                     <input type="text" className={styles["search"]} onChange={handleSearchChange}/>
@@ -53,6 +53,15 @@ const ModalSprite = ({onClose, rightClickedItem, handleSpriteSelect }) => {
                             <img key={index} src={url} alt={`Sprite ${index}`} onClick={() => handleSpriteSelect(url, rightClickedItem)}/>
                         ))}
                     </div>
+                </div>
+
+                <div className={styles["btn-container"]}>
+                    {/* If there's a sprite set - give option to remove it. */}
+                    {(rightClickedItem?.notebook_sprite || rightClickedItem?.note_sprite) && (
+                        <button className={styles["remove-sprite-btn"]} onClick={() => handleSpriteRemove(rightClickedItem)}>Remove Sprite</button>
+                    )}
+
+                    <button className={styles["confirm-add-sprite-btn"]}>Confirm</button>
                 </div>
 
 

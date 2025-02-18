@@ -27,6 +27,9 @@ function ContextMenu({clickedItem, posx, posy, handleContextMenuOptionClick}){
         <ul id={styles["context-menu"]}>
             <li id={styles["menu-rename"]} onClick={() => handleContextMenuOptionClick("menu-rename", clickedItem)}>Rename</li>
             <li id={styles["menu-add-sprite"]} onClick={() => handleContextMenuOptionClick("menu-add-sprite", clickedItem)}>Edit Sprite</li>
+            {clickedItem.note_id &&(
+                <li id={styles["menu-edit-tag"]} onClick={() => handleContextMenuOptionClick("menu-edit-tag", clickedItem)}>Edit Tag</li>
+            )}
             <li id={styles["menu-delete"]} onClick={() => handleContextMenuOptionClick("menu-delete", clickedItem)}>Delete</li>
         </ul>
 

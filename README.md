@@ -41,7 +41,7 @@ Note Taking Functionality:
 - [X] User can re-size the notebooks & notes sections on NotesPage.jsx (naiive implementation).
 - [X] User can add a quick note.
 - [X] User can see their most recently edited notes on the dashboard. Clicking one takes them to the note.
-- [ ] On the dashboard, user can see some links to popular websites.
+- [ ] Redesign the dashboard & links to popular sites.
 - [ ] For each <strong> note:</strong> Able to add tags to notes (Ex: matchup, decklist, review, custom, etc.) -> Right click to add a tag.
 - [X] For each <strong> notebook: </strong> User can add a sprite for each notebook.
 
@@ -87,6 +87,5 @@ Note Taking Functionality:
 - [X] Last edited field is NaN when creating a new note.
 - [ ] Quill insert link on text far left extends too far to the left. So the insert link field gets cut off.
 - [X] Make the poke-gear title a link back to home.
-- [ ] Expanding sidebar -> clicking outside of the sidebar -> does not close it anymore.
-    - This is likely due to the CSS scoping refactoring.
+- [ ] Clicking outside of the sidebar should close it.
 - [ ] Clicking outside of the context menu should close it.

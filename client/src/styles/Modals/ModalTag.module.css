@@ -1,0 +1,115 @@
+.modal-close-btn{
+    background: lightcoral;
+    height: 30px;
+    width: 30px;
+    border-radius: 4px;
+    text-align: center;
+    position: absolute;
+    right: 0;
+    margin-right: 12px;
+}
+
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    margin: 0 auto;
+    padding-bottom: none;
+}
+
+.content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.tag-item{
+    border: 1px solid black;
+    padding: 8px;
+    border-radius: 8px;
+    width: 35%;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.tag-item:hover{
+    background-color:deepskyblue;
+    border: 2px solid black;
+    transition: 0.2s;
+}
+
+.tag-item:not(:hover){
+    transition: 0.2s;
+}
+
+.highlighted-tag{
+    background-color: deepskyblue;
+}
+
+
+.modal-tag-wrapper{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-tag-container{
+    position: fixed;
+    background: white;
+    height: fit-content;
+    width: 300px;
+    padding: 0 12px 0 12px;
+    border: 2px solid #000;
+    border-radius: 10px;
+    box-shadow: 2px solid black;
+}
+
+
+
+.btn-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.remove-tag-btn{
+    background-color: lightcoral;
+    border-radius: 8px;
+    padding: 8px;
+    color: black;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    border: 2px solid black;
+}
+
+.remove-tag-btn:hover{
+    background-color: white;
+    border: 2px solid black;
+    color: black;
+    transition: 0.2s;
+}
+
+.confirm-add-tag-btn{
+    border-radius: 8px;
+    padding: 8px;
+    background-color: white;
+    border: 2px solid black;
+    color: black;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.confirm-add-tag-btn:hover{
+    background-color:deepskyblue;
+    border: 2px solid black;
+    transition: 0.2s;
+}

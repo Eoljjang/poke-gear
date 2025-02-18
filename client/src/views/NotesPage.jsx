@@ -13,6 +13,7 @@ import {debounce} from 'lodash';
 import SyncingIcon from "../components/SyncingIcon.jsx";
 import ModalSprite from "../Modals/ModalSprite.jsx";
 import {Resizable} from 'react-resizable';
+import ModalTag from "../Modals/ModalTag.jsx";
 import {v4 as uuidv4} from 'uuid';
 
 function NotesPage() {
@@ -36,6 +37,7 @@ function NotesPage() {
   const [renameValue, setRenameValue] = useState("");
   const [isBtnDisabled, setIsBtnDisabled] = useState(false); // Whether or not add btn is enabled. This is so that user can't spam add the add btn and overload db.
   const [spriteModalOpen, setSpriteModalOpen] = useState(false);
+  const [tagModalOpen, setTagModalOpen] = useState(false);
   // ------------- STATES -------------
 
   // ------------- DATA -------------
@@ -165,6 +167,9 @@ function NotesPage() {
     if (action === "menu-add-sprite"){
       handleOpenModalSprite(); // open the modal.
     }
+    if (action === "menu-edit-tag"){
+      handleOpenModalTag(); // open the tag modal.
+    }
 
     // Hide context menu after selection
     setContextMenu({ visible: false, x: 0, y: 0 });
@@ -235,48 +240,6 @@ function NotesPage() {
     }
 
   };
-
-  const handleSpriteSelect = (spriteUrl, rightClickedItem) => {
-    setUserData((prevData) =>
-        prevData.map((notebook) => {
-            // If the right-clicked item is a notebook, update its sprite
-            if (notebook.notebook_id === rightClickedItem.notebook_id) {
-                return { ...notebook, notebook_sprite: spriteUrl };
-            }
-
-            // Otherwise, check if it's a note inside this notebook
-            const updatedNotes = notebook.notes.map((note) =>
-                note.note_id === rightClickedItem.note_id
-                    ? { ...note, note_sprite: spriteUrl } // Update the note sprite
-                    : note
-            );
-
-            return { ...notebook, notes: updatedNotes };
-        })
-    );
-    handleCloseModalSprite();
-  };
-
-  const handleSpriteRemove = (rightClickedItem) => {
-    setUserData((prevData) =>
-        prevData.map((notebook) => {
-            // If the right-clicked item is a notebook, remove its sprite
-            if (notebook.notebook_id === rightClickedItem.notebook_id) {
-                return { ...notebook, notebook_sprite: "" };
-            }
-
-            // Otherwise, check if it's a note inside this notebook
-            const updatedNotes = notebook.notes.map((note) =>
-                note.note_id === rightClickedItem.note_id
-                    ? { ...note, note_sprite: "" } // Remove the note sprite
-                    : note
-            );
-
-            return { ...notebook, notes: updatedNotes };
-        })
-    );
-    handleCloseModalSprite();
-};
 
   const handleNoteTitleUpdate = (noteId, updatedTitle) => {
     setUserData((prevData) =>
@@ -356,13 +319,83 @@ function NotesPage() {
       });
     }
   };
-
+  // MODAL HANDLERS //
   const handleOpenModalSprite = () => {
     setSpriteModalOpen(true);
   }
 
   const handleCloseModalSprite = () => {
     setSpriteModalOpen(false);
+  }
+
+  const handleOpenModalTag = () => {
+    setTagModalOpen(true);
+  }
+
+  const handleCloseModalTag = () => {
+    setTagModalOpen(false);
+  }
+
+  const handleSpriteSelect = (spriteUrl, rightClickedItem) => {
+    setUserData((prevData) =>
+        prevData.map((notebook) => {
+            // If the right-clicked item is a notebook, update its sprite
+            if (notebook.notebook_id === rightClickedItem.notebook_id) {
+                return { ...notebook, notebook_sprite: spriteUrl };
+            }
+
+            // Otherwise, check if it's a note inside this notebook
+            const updatedNotes = notebook.notes.map((note) =>
+                note.note_id === rightClickedItem.note_id
+                    ? { ...note, note_sprite: spriteUrl } // Update the note sprite
+                    : note
+            );
+
+            return { ...notebook, notes: updatedNotes };
+        })
+    );
+    handleCloseModalSprite();
+  };
+
+  const handleSpriteRemove = (rightClickedItem) => {
+    setUserData((prevData) =>
+        prevData.map((notebook) => {
+            // If the right-clicked item is a notebook, remove its sprite
+            if (notebook.notebook_id === rightClickedItem.notebook_id) {
+                return { ...notebook, notebook_sprite: "" };
+            }
+
+            // Otherwise, check if it's a note inside this notebook
+            const updatedNotes = notebook.notes.map((note) =>
+                note.note_id === rightClickedItem.note_id
+                    ? { ...note, note_sprite: "" } // Remove the note sprite
+                    : note
+            );
+
+            return { ...notebook, notes: updatedNotes };
+        })
+    );
+    handleCloseModalSprite();
+  };
+
+  const handleTagSelect = (tag, rightClickedItem) => {
+    // Tags can only be added to notes. Remember you have to iterate through the notebooks first.
+    setUserData((prevData) =>
+      prevData.map((notebook) => {
+        const updatedNotes = notebook.notes.map((note) =>
+          note.note_id === rightClickedItem.note_id
+              ? { ...note, tag: tag } // Update the note sprite
+              : note
+        );
+        return {...notebook, notes: updatedNotes}
+      })
+  );
+    handleCloseModalTag();
+
+  }
+
+  const handleTagRemove = (rightClickedItem) => {
+    handleCloseModalTag();
   }
   // ------------- HANDLERS  -------------
 
@@ -456,7 +489,7 @@ function NotesPage() {
         )}
       </div>
 
-      {/* Modal: Add a sprite. Only appears when state is true. */}
+      {/* Modals */}
       {spriteModalOpen && (
           <ModalSprite
             onClose={handleCloseModalSprite}
@@ -467,6 +500,15 @@ function NotesPage() {
           </ModalSprite>
       )}
 
+      {tagModalOpen && (
+        <ModalTag
+          onClose={handleCloseModalTag}
+          rightClickedItem={rightClickedItem}
+          handleTagSelect={handleTagSelect}
+          handleTagRemove={handleTagRemove}
+        >
+        </ModalTag>
+      )}
     </>
   );
 }

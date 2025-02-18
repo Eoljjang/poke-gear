@@ -9,7 +9,8 @@ const noteSchema = new Schema({
     note_date: {type: Date, default: Date.now},
     content: {type: String, default: ""},
     last_edited: {type: Date, default: Date.now},
-    note_sprite: {type: String, default: ""}
+    note_sprite: {type: String, default: ""},
+    tag: {type: String, default: ""}
 })
 
 const notebookSchema = new Schema({

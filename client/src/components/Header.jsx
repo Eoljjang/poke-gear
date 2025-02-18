@@ -1,9 +1,11 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from "react-router-dom";
 import styles from '../styles/components/Header.module.css'
 import PropTypes from 'prop-types'
 
 const Header = ({ children }) => {
     const navigate = useNavigate();
+    const queryParams = new URLSearchParams(location.search);
+    const userEmail = queryParams.get("userEmail");
 
     const handleSignout = (e) => {
         e.preventDefault();
@@ -12,7 +14,7 @@ const Header = ({ children }) => {
 
     const handleGoHome = (e) => {
         console.log("Clicked on poke-gear title. Navigating back home.")
-        navigate("/app");
+        navigate(`/app?userEmail${userEmail}`);
     }
 
     return (

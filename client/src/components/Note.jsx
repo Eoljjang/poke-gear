@@ -37,26 +37,34 @@ function Note({
         e.preventDefault(); // Prevents default browser contextmenu.
       }}
     >
-      <div className={styles["note-name"]}>
-        {isRenaming ? (
-          <input
-            className={styles["note-name-input"]}
-            ref={inputRef}
-            value={renameValue}
-            onChange={(e) => {
-              onRenameChange(e.target.value);
-            }}
-            onBlur={handleRenameUpdate}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                handleRenameUpdate();
-              }
-            }}
-          />
-        ) : (
-          <span>{note.title}</span>
+      <div className={styles["note-text-container"]}>
+        <div className={styles["note-name"]}>
+          {isRenaming ? (
+            <input
+              className={styles["note-name-input"]}
+              ref={inputRef}
+              value={renameValue}
+              onChange={(e) => {
+                onRenameChange(e.target.value);
+              }}
+              onBlur={handleRenameUpdate}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  handleRenameUpdate();
+                }
+              }}
+            />
+          ) : (
+            <span>{note.title}</span>
+          )}
+        </div>
+        {/* Show note tag only if it exists. */}
+        {note.tag && (
+          <div className={styles['note-tag']}>{note.tag}</div>
         )}
+
       </div>
+
       <img src={note.note_sprite} className={styles["note-img"]} alt="" />{" "}
     </div>
   );

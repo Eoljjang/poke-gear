@@ -11,7 +11,7 @@ const ModalTag = ({onClose, rightClickedItem, handleTagRemove, handleTagSelect }
     const [search, setSearch] = useState("")
     const [spriteUrls, setSpriteUrls] = useState([])
     const [highlightedTag, setHighlightedTag] = useState(null) // holds the selected sprite url.
-    const tags = ["general", "matchup", "decklist", "review", "cup", "challenge"]
+    const tags = ["General", "Matchup", "Decklist", "Review", "Cup", "Challenge"]
 
     const handleHighlightTag = (selectedTag) => {
         setHighlightedTag(selectedTag)

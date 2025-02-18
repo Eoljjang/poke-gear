@@ -34,7 +34,9 @@ function RecentNotes(){
                 content: note.content,
 
                 notebook_sprite: notebook.notebook_sprite,
-                note_sprite: note.note_sprite
+                note_sprite: note.note_sprite,
+
+                tag: note.tag
 
             })
         })
@@ -65,6 +67,11 @@ function RecentNotes(){
                 return <div key={item.note_id} className={styles['recent-note-item']} onClick={() => handleNavigate(item.notebook_id, item.note_id)}>
                     <div className={styles["note-container"]}>
                         <div className={styles["note-name"]}>{item.note_name}</div>
+                        {item.tag && (
+                            <div className={styles["note-tag"]}>
+                                {item.tag}
+                            </div>
+                        )}
                         
                     </div>
 

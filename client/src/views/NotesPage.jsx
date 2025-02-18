@@ -389,12 +389,21 @@ function NotesPage() {
         );
         return {...notebook, notes: updatedNotes}
       })
-  );
+    );
     handleCloseModalTag();
-
   }
 
   const handleTagRemove = (rightClickedItem) => {
+    setUserData((prevData) =>
+      prevData.map((notebook) => {
+        const updatedNotes = notebook.notes.map((note) =>
+          note.note_id === rightClickedItem.note_id
+              ? { ...note, tag: "" } // Update the note sprite
+              : note
+        );
+        return {...notebook, notes: updatedNotes}
+      })
+    );
     handleCloseModalTag();
   }
   // ------------- HANDLERS  -------------

@@ -411,7 +411,7 @@ function NotesPage() {
   return (
     <>
       <div
-        className={`${styles.overlay} ${contextMenu.visible ? styles.open : ""}`}
+        className={`${styles["notes-page-overlay"]} ${contextMenu.visible ? styles.open : ""}`}
         onClick={() => setContextMenu({ visible: false, x: 0, y: 0 })}
       />
 

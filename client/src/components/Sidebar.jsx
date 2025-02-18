@@ -7,7 +7,7 @@ const Sidebar = ({ children, isOpen, onClose }) => {
   return (
     <>
       <div
-        className={`${styles.sidebar} ${isOpen ? styles.open : ""}`}
+        className={`${styles['sidebar-overlay']} ${isOpen ? styles.open : ""}`}
         onClick={onClose}
       />
 

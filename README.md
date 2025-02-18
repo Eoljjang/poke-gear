@@ -80,8 +80,8 @@ Note Taking Functionality:
 ### Bugs / Tickets to Do
 - [ ] Add error handling if syncing fails. Display a failed sync message.
 - [ ] Quill insert link on text far left extends too far to the left. So the insert link field gets cut off.
-- [ ] Clicking outside of the sidebar should close it.
-- [ ] Clicking outside of the context menu should close it.
+- [X] Clicking outside of the sidebar should close it.
+- [X] Clicking outside of the context menu should close it.
 - [ ] If no notebook is selected, quicknote automatically should go under a "quicknotes" folder.
     - This is important as a new user actually can't use the "quicknotes" feature.
 - [ ] Find some sort of use for the footer.

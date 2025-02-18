@@ -254,6 +254,7 @@ function NotesPage() {
             return { ...notebook, notes: updatedNotes };
         })
     );
+    handleCloseModalSprite();
   };
 
   const handleSpriteRemove = (rightClickedItem) => {
@@ -274,6 +275,7 @@ function NotesPage() {
             return { ...notebook, notes: updatedNotes };
         })
     );
+    handleCloseModalSprite();
 };
 
   const handleNoteTitleUpdate = (noteId, updatedTitle) => {

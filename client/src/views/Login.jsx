@@ -73,7 +73,11 @@ function Login() {
             <div className={styles["signup-container"]}>
                 <h3>No Account?</h3>
                 <button id={styles["navigate-signup-btn"]} onClick={btnSignupClick}>Signup</button>
+                <a target="_blank"href="https://github.com/Eoljjang/poke-gear">SOURCE CODE</a>
+                <a  target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLScFrNA2vyXdRFx8MY1VdoDZtaKC2A6DeRRzlND4tPj17URP0w/viewform?usp=sharing">FEEDBACK FORM</a>
             </div>
+
+
         </div>
     )
 }

@@ -6,6 +6,7 @@ import styles from "../styles/Modals/ModalTag.module.css"
 import axios from "axios";
 const dbUrl = import.meta.env.VITE_DB_URL;
 import {debounce} from 'lodash';
+import colours from "../styles/Colours.module.css"
 
 const ModalTag = ({onClose, rightClickedItem, handleTagRemove, handleTagSelect }) => {
     const [search, setSearch] = useState("")
@@ -22,7 +23,7 @@ const ModalTag = ({onClose, rightClickedItem, handleTagRemove, handleTagSelect }
             <div className={styles["modal-tag-container"]}>
                 <div className={styles["header"]}>
                     <h2>Edit tag</h2>
-                    <button className={styles["modal-close-btn"]} onClick={onClose}>&#10006;</button>
+                    <button className={`${styles["modal-close-btn"]} ${colours["soft-red"]}`} onClick={onClose}>&#10006;</button>
                 </div>
 
                 <div className={styles.content}>
@@ -40,7 +41,7 @@ const ModalTag = ({onClose, rightClickedItem, handleTagRemove, handleTagSelect }
                 <div className={styles["btn-container"]}>
                     {/* If there's a tag set - give option to remove it. */}
                     {(rightClickedItem?.tag) && (
-                        <button className={styles["remove-tag-btn"]} onClick={() => handleTagRemove(rightClickedItem)}>Remove Tag</button>
+                        <button className={`${styles["remove-tag-btn"]} ${colours["soft-red"]}`}  onClick={() => handleTagRemove(rightClickedItem)}>Remove Tag</button>
                     )}
 
                     <button className={styles["confirm-add-tag-btn"]} onClick={() => handleTagSelect(highlightedTag, rightClickedItem)}>Confirm</button>

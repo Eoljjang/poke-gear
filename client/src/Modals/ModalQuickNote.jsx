@@ -6,6 +6,7 @@ import { useState } from "react";
 const dbUrl = import.meta.env.VITE_DB_URL;
 import axios from "axios";
 import {v4 as uuidv4} from 'uuid';
+import colours from "../styles/Colours.module.css"
 
 function ModalQuickNote({userData, setUserData, handleClose}){
     const [noteTitle, setNoteTitle] = useState("")
@@ -88,7 +89,7 @@ function ModalQuickNote({userData, setUserData, handleClose}){
             </div>
 
             <div className={styles["modal-quicknote-btn-container"]}>
-                <button className={styles["modal-close-btn"]} onClick={handleClose}>
+                <button className={`${styles["modal-close-btn"]} ${colours["soft-red"]}`} onClick={handleClose}>
                     Cancel
                 </button>
                 <button className={styles["btn-confirm-quicknote"]} onClick={handleQuicknoteSave}>

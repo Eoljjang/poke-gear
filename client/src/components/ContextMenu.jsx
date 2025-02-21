@@ -2,6 +2,7 @@
 // This component will handle both right-clicking a notebook and right-clicking a note.
 import styles from '../styles/components/ContextMenu.module.css'
 import { useRef, useEffect, useState } from 'react';
+import colours from "../styles/Colours.module.css"
 
 // Props:
 // 1) clickedItem -> Json object outlining if you clicked a notebook or note.

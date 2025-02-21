@@ -82,7 +82,7 @@
 }
 
 .btn-confirm-quicknote:hover{
-    background-color:deepskyblue;
+    background-color:#78C9FF;
     transition: 0.2s;
     border: 2px solid black;
 }

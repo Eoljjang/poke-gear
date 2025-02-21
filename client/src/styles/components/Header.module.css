@@ -8,12 +8,13 @@
   color: white;
   border-bottom: 2px solid black;
   flex: none; /* Ensures content takes up space between header and footer */
+  color: black;
 }
 
 .header-button {
   background: none;
   border: none;
-  color: white;
+  color: black;
   font-size: 1.5rem;
   cursor: pointer;
   padding: 0rem 1.25rem;
@@ -26,5 +27,6 @@
 .main-header-title {
   margin: 0;
   font-size: 1.5rem;
+  font-weight: 350;
   cursor: pointer;
 }

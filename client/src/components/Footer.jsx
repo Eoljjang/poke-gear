@@ -1,12 +1,13 @@
 import styles from '../styles/components/Footer.module.css'
 import PropTypes from 'prop-types'
 import { useState } from 'react';
+import colours from "../styles/Colours.module.css"
 // Props:
 // 1) footerLinks: Takes a JSON-style object {text: url}. Display text for the link, and the url to the link itself.
 
 function Footer({footerLinks}) {
     return(
-        <footer className={styles.footer}>
+        <footer className={`${styles.footer} ${colours["light-blue"]}`}>
             {Object.entries(footerLinks).map(([text, url], index) => (
                 <a key={`${url}-${index}`} href={url} className={styles["footer-link"]}>
                     {text}

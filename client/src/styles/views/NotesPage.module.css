@@ -64,9 +64,9 @@
   width: 2.25rem;
   height: 2.25rem;
   border-radius: 50%;
-  background: #007bff;
+  background: #3282B8;
   color: white;
-  border: none;
+  border: 1px solid black;
   cursor: pointer;
 }
 
@@ -83,8 +83,14 @@
 }
 
 .add-notebooks-button:hover {
-  background: #026ddf;
-  transform: scale(1.05);
+  transition: 0.2s;
+  color: black;
+  border: 1px solid black;
+  background-color: #e9ecef;
+}
+
+.add-notebooks-button:not(:hover){
+  transition: 0.2s;
 }
 
 .add-notebooks-button:focus {

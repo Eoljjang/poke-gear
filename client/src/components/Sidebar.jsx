@@ -2,6 +2,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styles from "../styles/components/Sidebar.module.css"; // We'll create this CSS file
+import colours from "../styles/Colours.module.css";
 
 const Sidebar = ({ children, isOpen, onClose }) => {
   return (
@@ -12,7 +13,7 @@ const Sidebar = ({ children, isOpen, onClose }) => {
       />
 
       <div className={`${styles.sidebar} ${isOpen ? styles.open : ""}`}>
-        <div className={styles["sidebar-content"]}>
+        <div className={`${styles["sidebar-content"]} ${colours["dark-blue"]}`}>
           <ul className={styles["sidebar-list"]}>
 
           {React.Children.map(children, (child, index) => (

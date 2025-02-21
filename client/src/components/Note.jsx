@@ -1,5 +1,6 @@
 import styles from "../styles/components/Note.module.css";
 import { useEffect, useRef } from "react";
+import colours from "../styles/Colours.module.css"
 // Props:
 // 1) notebook = The specific notebook to be rendered.
 function Note({

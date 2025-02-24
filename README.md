@@ -15,6 +15,7 @@
 ### Release Versions & Features
 <details>
 <summary>v0.1 - Concept</summary>
+
 - [X] A simple layout and vision for the interface should be developed.
 - [X] Integrate a simple storage system, where the user can **save** notes into JSON format.
 - [X] Hierarchy organization.
@@ -74,6 +75,9 @@
 <i>Full 1.0 release after the user testing phase</i>
 
 </details>
+
+### Project Board - Bugs, Tickets, Backlog.
+https://github.com/users/Eoljjang/projects/3
 
 ---
 

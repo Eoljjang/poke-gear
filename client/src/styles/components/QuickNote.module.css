@@ -33,5 +33,5 @@
 }
 
 .quicknote-container:not(:hover){
-  transition: 0.2s;
+  transition: 0.2s;/* test */
 }

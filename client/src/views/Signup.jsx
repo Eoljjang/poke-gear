@@ -9,6 +9,7 @@ function Signup() {
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
     const [errorMsg, setErrorMsg] = useState("");
     const navigate = useNavigate();
 
@@ -38,10 +39,27 @@ function Signup() {
         });
     }
 
+    const passwordMatch = (e) => { // Checks that password + confirmPassword match.
+        if (password === confirmPassword){
+            return true;
+        }
+        else if (password !== confirmPassword){
+            return false;
+        }
+        else{
+            console.log("Some unknown error with password matching.")
+            return false;
+        }
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault()
-        postCreateUser()
-
+        if(passwordMatch()){
+            postCreateUser();
+        }
+        else{
+            setErrorMsg("Passwords do not match.")
+        }
     }
 
     const handleReturn = (e) => { // cancel signup and go back to the login.
@@ -54,22 +72,27 @@ function Signup() {
             <form className={styles["signup-form"]} action="" method="post" onSubmit={handleSubmit}>
                 <div className={styles["input-container"]}>
                     <label htmlFor="firstname">First Name:</label>
-                    <input type="text" id="firstname" name="firstname"onChange={(e) => setFirstName(e.target.value)} required/>
+                    <input type="text" id={styles["firstname"]} name="firstname"onChange={(e) => setFirstName(e.target.value)} required/>
                 </div>
 
                 <div className={styles["input-container"]}>
                     <label htmlFor="lastname">Last Name:</label>
-                    <input type="text" id="lastname" name="lastname" onChange={(e) => setLastName(e.target.value)} required/>
+                    <input type="text" id={styles["lastname"]} name="lastname" onChange={(e) => setLastName(e.target.value)} required/>
                 </div>
 
                 <div className={styles["input-container"]}>
-                    <label htmlFor="password">Set Password:</label>
-                    <input type="password" id="password" name = "password" onChange= {(e) => setPassword(e.target.value)} required/>
+                    <label htmlFor="password">Password:</label>
+                    <input type="password" id={styles["password"]} name = "password" onChange= {(e) => setPassword(e.target.value)} required/>
+                </div>
+
+                <div className={styles["input-container"]}>
+                    <label htmlFor="password">Confirm Password:</label>
+                    <input type="password" id={styles["confirmPassword"]} name = "password" onChange= {(e) => setConfirmPassword(e.target.value)} required/>
                 </div>
 
                 <div className={styles["input-container"]}>
                     <label htmlFor="email">Set Email:</label>
-                    <input type="text" id="email" name = "email" onChange= {(e) => setEmail(e.target.value)} required/>
+                    <input type="text" id={styles["email"]} name = "email" onChange= {(e) => setEmail(e.target.value)} required/>
                 </div>
 
                 <div className={styles["btn-container"]}>

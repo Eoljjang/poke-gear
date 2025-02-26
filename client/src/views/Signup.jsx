@@ -64,7 +64,7 @@ function Signup() {
 
                 <div className={styles["input-container"]}>
                     <label htmlFor="password">Set Password:</label>
-                    <input type="text" id="password" name = "password" onChange= {(e) => setPassword(e.target.value)} required/>
+                    <input type="password" id="password" name = "password" onChange= {(e) => setPassword(e.target.value)} required/>
                 </div>
 
                 <div className={styles["input-container"]}>

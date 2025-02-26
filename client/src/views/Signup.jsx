@@ -22,7 +22,7 @@ function Signup() {
 
         await axios.post(dbUrl+"/signup", postData)
         .then(response => {
-            navigate("/login");
+            navigate("/"); /* Which defaults back to /login. We can't expicitly send user to /login on render since it blocks url jumps.*/
             console.log(response.data.message);
 
         })

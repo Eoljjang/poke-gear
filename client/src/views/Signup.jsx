@@ -96,8 +96,8 @@ function Signup() {
                 </div>
 
                 <div className={styles["btn-container"]}>
-                    <button className={styles["btn-return"]} onClick={handleReturn}>return to login</button>
-                    <button className={styles["btn-submit"]} type="submit">Complete Signup</button>
+                    <button className={styles["btn-return"]} onClick={handleReturn}>Return to login</button>
+                    <button className={styles["btn-submit"]} type="submit">Signup</button>
                 </div>
 
                 {errorMsg &&(

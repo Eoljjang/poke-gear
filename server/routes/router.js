@@ -14,18 +14,24 @@ router.get("/", async (req, res) => {
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;
     console.log("Attempting login through backend...")
+    try{
+        const response = await verifyLogin(email, password) // Calls this function that handles all login logic.
 
-    const response = await verifyLogin(email, password) // Calls this function that handles all login logic.
+        if (response.status === 'ok'){
+            // Stores JWT token as a cookie in the browser.
+            //res.cookie('token',token,{ maxAge: 2 * 60 * 60 * 1000, httpOnly: true });
+            res.status(200).json({message: "Login successful.", userEmail: email});
+        }
 
-    if (response.status === 'ok'){
-        // Stores JWT token as a cookie in the browser.
-        //res.cookie('token',token,{ maxAge: 2 * 60 * 60 * 1000, httpOnly: true });
-        res.status(200).json({message: "Login successful.", userEmail: email});
+        else{
+            return res.status(401).json({message: "Password is incorrect."});
+        }
+    }
+    catch(e){
+        console.log('login error:', e);
+        req.status(500, {message: "Server error"})
     }
 
-    else{
-        return res.status(401).json({message: "Password is incorrect."});
-    }
 });
 
 // Function for decrypting password from db.
@@ -211,7 +217,7 @@ router.post("/searchPokeApi", async(req, res) => {
         const sprites = extractSprites(response.data.sprites)
 
         // 3) Send (sprite) data back to client
-        res.json(200, sprites); 
+        res.json(200, sprites);
     } catch (error) {
         if (error.response && error.response.status === 404) {
             res.status(404).json({ message: "Pokémon not found" });

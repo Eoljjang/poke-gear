@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { useState } from 'react';
 import axios from "axios"
 import styles from '../styles/views/Login.module.css'
+import colours from '../styles/Colours.module.css'
 const dbUrl = import.meta.env.VITE_DB_URL; // Takes the db_url depending on if you're on dev or production.
 
 function Login() {
@@ -45,13 +46,12 @@ function Login() {
         navigate("/signup")
     }
     return(
-        <div className="login-page">
+        <div className={styles["login-page"]}>
             <div className={styles.header}>
                 <div className={styles['header-text']}>Welcome to Poke-Gear!</div>
                 <div className={styles["subheader-text"]}>Lets get you signed in</div>
             </div>
-            <div className={styles["login-form-container"]}>
-                <h3>Login:</h3>
+            <div className={`${styles["login-form-container"]} ${colours["light-blue"]}`}>
                 <form className={styles["login-form"]} action="" method="POST" onSubmit={handleLogin}>
                     <div className={styles["input-container"]}>
                         <label htmlFor="email">Email:</label>
@@ -72,7 +72,7 @@ function Login() {
 
             <div className={styles["signup-container"]}>
                 <h3>No Account?</h3>
-                <button id={styles["navigate-signup-btn"]} onClick={btnSignupClick}>Signup</button>
+                <button id={`${styles["navigate-signup-btn"]}`} className={colours["light-blue"]} onClick={btnSignupClick}>Signup</button>
                 <a target="_blank"href="https://github.com/Eoljjang/poke-gear">SOURCE CODE</a>
                 <a  target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLScFrNA2vyXdRFx8MY1VdoDZtaKC2A6DeRRzlND4tPj17URP0w/viewform?usp=sharing">FEEDBACK FORM</a>
             </div>

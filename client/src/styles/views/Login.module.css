@@ -31,7 +31,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #6ec0f7;
     border: 1px solid black;
     padding: 12px;
     border-radius: 12px;
@@ -76,37 +75,36 @@
 }
 
 #login-btn{
-    border: none;
+    border: 2px solid black;
     border-radius: 16px;
     font-size:1.1rem;
-    background: black;
-    color: white;
+    background: white;
+    color: black;
     padding: 12px;
-    width: 100%;
+    width: 150px;
 }
 
 #login-btn:hover{
-    border: none;
+    background: #78C9FF;
     scale: 1.05;
     transition: 0.2s;
 }
 
 #login-btn:not(:hover){
-    border: none;
     transition: 0.2s;
 }
 
 #navigate-signup-btn{
     border-radius: 16px;
     font-size:1.1rem;
-    background-color: white;
-    border: 1px solid black;
+    border: 2px solid black;
     color: black;
     padding: 12px;
     width: 150px;
 }
 
 #navigate-signup-btn:hover{
+    background: white;
     scale: 1.05;
     transition: 0.2s;
 }
@@ -114,8 +112,6 @@
 #navigate-signup-btn:not(:hover){
     transition: 0.2s;
 }
-
-
 
 .signup-container{
     display: flex;
